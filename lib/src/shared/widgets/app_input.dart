@@ -1,9 +1,10 @@
-import 'package:sdk_chat_remarked/src/core/ext.dart';
-import 'package:sdk_chat_remarked/src/shared/widgets/app_text.dart';
-import 'package:sdk_chat_remarked/src/theme/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:sdk_chat_remarked/src/core/consts.dart';
+
+import '../../core/ext.dart';
+import '../../core/consts.dart';
+import '../../theme/theme_provider.dart';
+import 'app_text.dart';
 
 /// Виджет текстового поля вввода.
 ///

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:sdk_chat_remarked/src/core/consts.dart';
-import 'package:sdk_chat_remarked/src/core/utils.dart';
+
+import 'consts.dart';
+import 'utils.dart';
 
 /// Расширения для String?
 extension StringEx on String? {

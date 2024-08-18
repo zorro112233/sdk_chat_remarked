@@ -1,8 +1,9 @@
 // ignore_for_file: public_member_api_docs
 
-import 'package:sdk_chat_remarked/src/theme/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import '../theme_provider.dart';
 
 /// Класс темной темы для цветов
 abstract final class DarkColorTheme {

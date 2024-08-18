@@ -1,8 +1,9 @@
-import 'package:sdk_chat_remarked/src/theme/colors/dark_color_theme.dart';
-import 'package:sdk_chat_remarked/src/theme/colors/light_color_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import 'colors/dark_color_theme.dart';
+import 'colors/light_color_theme.dart';
 
 part 'gen/theme_model.cg.f.dart';
 

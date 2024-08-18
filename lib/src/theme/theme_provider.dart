@@ -1,7 +1,8 @@
-import 'package:sdk_chat_remarked/src/theme/colors/dark_color_theme.dart';
-import 'package:sdk_chat_remarked/src/theme/colors/light_color_theme.dart';
 import 'package:sdk_chat_remarked/src/theme/text/text_theme_model.dart';
 import 'package:flutter/material.dart';
+
+import 'colors/dark_color_theme.dart';
+import 'colors/light_color_theme.dart';
 
 var _isDark = false;
 

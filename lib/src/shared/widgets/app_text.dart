@@ -1,8 +1,9 @@
 // ignore_for_file: public_member_api_docs
 import 'dart:ui' as ui show TextHeightBehavior;
-import 'package:sdk_chat_remarked/src/theme/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+
+import '../../theme/theme_provider.dart';
 
 extension AppTextX on AppTextType {
   /// Выбор стиля текста на основании данных AppTextType

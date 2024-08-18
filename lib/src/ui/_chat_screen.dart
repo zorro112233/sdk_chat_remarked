@@ -1,19 +1,3 @@
-// import 'dart:convert';
-
-// import 'package:sdk_chat_remarked/src/core/ext.dart';
-// import 'package:sdk_chat_remarked/src/core/inapp_logger.dart';
-// import 'package:sdk_chat_remarked/src/core/utils.dart';
-// import 'package:sdk_chat_remarked/src/dto/messages.cg.dart';
-// import 'package:sdk_chat_remarked/src/dto/receive_message.cg.dart';
-// import 'package:sdk_chat_remarked/src/domain/message.cg.dart';
-// import 'package:sdk_chat_remarked/src/shared/widgets/app_input.dart';
-// import 'package:sdk_chat_remarked/src/shared/widgets/app_text.dart';
-// import 'package:sdk_chat_remarked/src/shared/widgets/appbar_simple.dart';
-// import 'package:sdk_chat_remarked/src/theme/theme_provider.dart';
-// import 'package:flutter/material.dart';
-// import 'package:intl/intl.dart';
-// import 'package:web_socket_channel/web_socket_channel.dart';
-
 part of '../../sdk_chat_remarked.dart';
 
 class _ChatScreen extends StatefulWidget {

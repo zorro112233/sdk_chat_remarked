@@ -1,6 +1,6 @@
 name: sdk_chat_remarked
 description: "A new Flutter package project."
-version: 0.0.6+3
+version: 0.0.7+4
 homepage: https://github.com/flutter/packages
 
 environment:
@@ -34,7 +34,9 @@ flutter:
   assets:
     - lib/assets/
     - lib/assets/fonts/
-    - lib/assets/images/
+    - lib/assets/images/arrow-left.png
+    - lib/assets/images/chat.png
+    - lib/assets/images/readed.png
 
 
   fonts:

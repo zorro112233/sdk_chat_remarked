@@ -1,6 +1,7 @@
-import 'package:sdk_chat_remarked/src/dto/message.cg.dart';
-import 'package:sdk_chat_remarked/src/domain/messages.cg.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import '../domain/messages.cg.dart';
+import 'message.cg.dart';
 
 part 'gen/messages.cg.f.dart';
 part 'gen/messages.cg.g.dart';

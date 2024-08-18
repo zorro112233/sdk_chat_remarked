@@ -1,10 +1,9 @@
-// ignore_for_file: public_member_api_docs
-
-import 'package:sdk_chat_remarked/src/core/ext.dart';
-import 'package:sdk_chat_remarked/src/shared/icons.dart';
-import 'package:sdk_chat_remarked/src/shared/widgets/app_text.dart';
-import 'package:sdk_chat_remarked/src/theme/theme_provider.dart';
 import 'package:flutter/material.dart';
+
+import '../../theme/theme_provider.dart';
+import '../../core/ext.dart';
+import '../icons.dart';
+import 'app_text.dart';
 
 /// Простой AppBar содержащий кнопку назад
 class SimpleAppBar extends StatelessWidget implements PreferredSizeWidget {
