@@ -1,6 +1,6 @@
 name: sdk_chat_remarked
 description: "A new Flutter package project."
-version: 0.0.11+8
+version: 0.0.12+9
 homepage: https://github.com/flutter/packages
 
 environment:
@@ -35,21 +35,21 @@ flutter:
     - assets/
     - assets/fonts/
     - assets/images/
-    - assets/images/arrow-left.png
-    - assets/images/chat.png
-    - assets/images/readed.png
+    - packages/sdk_chat_remarked/assets/images/arrow-left.png
+    - packages/sdk_chat_remarked/assets/images/chat.png
+    - packages/sdk_chat_remarked/assets/images/readed.png
 
 
   fonts:
     - family: Inter
       fonts:
-        - asset: assets/fonts/Inter-Bold.ttf
+        - asset: packages/sdk_chat_remarked/assets/fonts/Inter-Bold.ttf
           weight: 700
-        - asset: assets/fonts/Inter-SemiBold.ttf
+        - asset: packages/sdk_chat_remarked/assets/fonts/Inter-SemiBold.ttf
           weight: 600
-        - asset: assets/fonts/Inter-Medium.ttf
+        - asset: packages/sdk_chat_remarked/assets/fonts/Inter-Medium.ttf
           weight: 500
-        - asset: assets/fonts/Inter-Regular.ttf
+        - asset: packages/sdk_chat_remarked/assets/fonts/Inter-Regular.ttf
           weight: 400
-        - asset: assets/fonts/Inter-Light.ttf
+        - asset: packages/sdk_chat_remarked/assets/fonts/Inter-Light.ttf
           weight: 300
