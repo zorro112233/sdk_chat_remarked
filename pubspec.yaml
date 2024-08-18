@@ -1,6 +1,6 @@
 name: sdk_chat_remarked
 description: "A new Flutter package project."
-version: 0.0.5+2
+version: 0.0.6+3
 homepage: https://github.com/flutter/packages
 
 environment:
@@ -32,21 +32,21 @@ flutter:
   # To add assets to your package, add an assets section, like this:
   uses-material-design: true
   assets:
-    - lib/src/assets/
-    - lib/src/assets/fonts/
-    - lib/src/assets/images/
+    - lib/assets/
+    - lib/assets/fonts/
+    - lib/assets/images/
 
 
   fonts:
     - family: Inter
       fonts:
-        - asset: lib/src/assets/fonts/Inter-Bold.ttf
+        - asset: lib/assets/fonts/Inter-Bold.ttf
           weight: 700
-        - asset: lib/src/assets/fonts/Inter-SemiBold.ttf
+        - asset: lib/assets/fonts/Inter-SemiBold.ttf
           weight: 600
-        - asset: lib/src/assets/fonts/Inter-Medium.ttf
+        - asset: lib/assets/fonts/Inter-Medium.ttf
           weight: 500
-        - asset: lib/src/assets/fonts/Inter-Regular.ttf
+        - asset: lib/assets/fonts/Inter-Regular.ttf
           weight: 400
-        - asset: lib/src/assets/fonts/Inter-Light.ttf
+        - asset: lib/assets/fonts/Inter-Light.ttf
           weight: 300
