@@ -1,10 +1,9 @@
-// ignore_for_file: public_member_api_docs
 import 'package:sdk_chat_remarked/src/core/consts.dart';
 import 'package:flutter/material.dart';
 
 /// Тут живут ссылки на все иконки и изображения, которые мы загружаем в assets
 class AppIcons {
-  static const String rootPath = 'assets/images';
+  static const String rootPath = 'lib/assets/images';
   static const String chat = '$rootPath/chat.png';
   static const String arrowLeftIcon = '$rootPath/arrow-left.png';
   static const String readedIcon = '$rootPath/readed.png';
