@@ -1,0 +1,188 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+      {
+          "label": "flutter: analyze",
+          "type": "shell",
+          "command": "flutter",
+          "group": "build",
+          "runOptions": {
+              "instanceLimit": 1,
+              "reevaluateOnRerun": false
+          },
+          "args": [
+              "analyze"
+          ],
+          "presentation": {
+              "echo": true,
+              "focus": false,
+              "panel": "shared",
+              "showReuseMessage": true,
+              "clear": true
+          },
+          "problemMatcher": []
+      },
+      {
+          "label": "flutter: pub get",
+          "type": "shell",
+          "command": "flutter",
+          "group": "build",
+          "runOptions": {
+              "instanceLimit": 1,
+              "reevaluateOnRerun": false
+          },
+          "args": [
+              "pub",
+              "get"
+          ],
+          "presentation": {
+              "echo": true,
+              "focus": false,
+              "panel": "shared",
+              "showReuseMessage": true,
+              "clear": true
+          },
+          "problemMatcher": []
+      },
+      {
+          "label": "flutter: clean",
+          "type": "shell",
+          "command": "flutter",
+          "group": "build",
+          "runOptions": {
+              "instanceLimit": 1,
+              "reevaluateOnRerun": false
+          },
+          "args": [
+              "clean"
+          ],
+          "presentation": {
+              "echo": true,
+              "focus": false,
+              "panel": "shared",
+              "showReuseMessage": true,
+              "clear": true
+          },
+          "problemMatcher": []
+      },
+      {
+          "label": "flutter: build_runner",
+          "type": "shell",
+          "command": "flutter",
+          "group": "build",
+          "runOptions": {
+              "instanceLimit": 1,
+              "reevaluateOnRerun": false
+          },
+          "args": [
+              "pub",
+              "run",
+              "build_runner",
+              "build",
+              "--delete-conflicting-outputs"
+          ],
+          "presentation": {
+              "echo": true,
+              "focus": true,
+              "panel": "shared",
+              "showReuseMessage": true,
+              "clear": true
+          },
+          "problemMatcher": []
+      },
+      {
+          "label": "flutter: format",
+          "type": "shell",
+          "command": "dart",
+          "group": "build",
+          "runOptions": {
+              "instanceLimit": 1,
+              "reevaluateOnRerun": false
+          },
+          "args": [
+              "format",
+              "."
+          ],
+          "presentation": {
+              "echo": true,
+              "focus": false,
+              "panel": "shared",
+              "showReuseMessage": true,
+              "clear": true
+          },
+          "problemMatcher": []
+      },
+      {
+          "label": "flutter: build prod apk",
+          "type": "shell",
+          "command": "flutter",
+          "group": "build",
+          "runOptions": {
+              "instanceLimit": 1,
+              "reevaluateOnRerun": false
+          },
+          "args": [
+              "build",
+              "apk",
+              "-t",
+              "lib/main_prod.dart"
+          ],
+          "presentation": {
+              "echo": true,
+              "focus": false,
+              "panel": "shared",
+              "showReuseMessage": true,
+              "clear": true
+          },
+          "problemMatcher": []
+      },
+      {
+          "label": "flutter: build demo apk",
+          "type": "shell",
+          "command": "flutter",
+          "group": "build",
+          "runOptions": {
+              "instanceLimit": 1,
+              "reevaluateOnRerun": false
+          },
+          "args": [
+              "build",
+              "apk",
+              "-t",
+              "lib/main_demo.dart"
+          ],
+          "presentation": {
+              "echo": true,
+              "focus": false,
+              "panel": "shared",
+              "showReuseMessage": true,
+              "clear": true
+          },
+          "problemMatcher": []
+      },
+      {
+          "label": "flutter: build stage apk",
+          "type": "shell",
+          "command": "flutter",
+          "group": "build",
+          "runOptions": {
+              "instanceLimit": 1,
+              "reevaluateOnRerun": false
+          },
+          "args": [
+              "build",
+              "apk",
+              "-t",
+              "lib/main_stage.dart"
+          ],
+          "presentation": {
+              "echo": true,
+              "focus": false,
+              "panel": "shared",
+              "showReuseMessage": true,
+              "clear": true
+          },
+          "problemMatcher": []
+      },
+  ]
+}
