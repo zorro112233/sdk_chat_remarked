@@ -17,15 +17,8 @@ class _ChatScreen extends StatefulWidget {
 }
 
 class __ChatScreenState extends State<_ChatScreen> {
-  // Alex
-  // static const token = 'd04e6dec-90ef-407e-b1a5-0ed62bdad52d';
-
-  // Tonya
-  // static const token = '37457b53-b23b-4948-a02c-13a5ec0f75cc';
-
   final _controller = TextEditingController();
 
-  // final _scrollController = ScrollController();
   late ScrollController _scrollController;
 
   static const url = 'wss://whatsapp.clientomer.ru:3003/chat';
@@ -38,6 +31,7 @@ class __ChatScreenState extends State<_ChatScreen> {
   );
 
   final List<Message> _messages = [];
+  var _unauthorized = '';
 
   Map<dynamic, dynamic> get lastMess => {
         "auth": {"token": widget.token},
@@ -51,7 +45,18 @@ class __ChatScreenState extends State<_ChatScreen> {
     channel.stream.listen(
       (message) {
         final map = jsonDecode(message) as Map<String, dynamic>;
+
         InAppLogger.instance.logInfoMessage('STREAM MESSAGE', map);
+
+        /// Сообщение об ошибке
+        if (map.containsKey('message')) {
+          final m = ReceiveMessageDto.fromJson(map).toDomain();
+          changeLoaing(false);
+          setState(() {
+            _unauthorized = m.message;
+          });
+          return;
+        }
 
         /// MESSAGES
         if (map.containsKey('messages')) {
@@ -158,89 +163,96 @@ class __ChatScreenState extends State<_ChatScreen> {
           Navigator.pop(context);
         },
       ),
-      body: Column(
-        children: <Widget>[
-          12.sbHeight,
-          if (isLoading)
-            const Expanded(
-              child: Center(
-                child: CircularProgressIndicator(),
-              ),
+      body: _unauthorized.isNotEmpty
+          ? Center(
+              child: AppText.bold24(_unauthorized),
             )
-          else if (_messages.isEmpty)
-            Expanded(
-              child: Center(
-                child: AppText.bold24('Переписка пуста'),
-              ),
-            )
-          else
-            Expanded(
-              child: ListView.builder(
-                shrinkWrap: true,
-                controller: _scrollController,
-                padding: const EdgeInsets.symmetric(horizontal: 12),
-                itemCount: _messages.length,
-                itemBuilder: (context, index) {
-                  final message = _messages[index];
-
-                  if (_messages.isEmpty) {
-                    return Center(
-                      child: AppText.bold24('No messages yet'),
-                    );
-                  }
-                  return _ChatBubble(
-                    message: message,
-                  );
-                },
-                // separatorBuilder: (context, index) => 12.sbHeight,
-              ),
-            ),
-          Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 12,
-              vertical: 16,
-            ),
-            decoration: const BoxDecoration(
-              color: Color(0xFFF8F9FC),
-            ),
-            child: Row(
+          : Column(
               children: <Widget>[
-                IconButton(
-                  icon: const Icon(Icons.add),
-                  onPressed: () {},
-                ),
-                Expanded(
-                  child: AppInput(
-                    controller: _controller,
-                    hintText: 'Type a message',
-                  ),
-                ),
-                12.sbWidth,
-                Material(
-                  borderRadius: const BorderRadius.all(Radius.circular(40)),
-                  child: InkWell(
-                    onTap: _sendMessage,
-                    borderRadius: const BorderRadius.all(Radius.circular(40)),
-                    child: Ink(
-                      height: 40,
-                      width: 40,
-                      decoration: const BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.all(Radius.circular(40)),
-                      ),
-                      child: Icon(
-                        Icons.north,
-                        size: 20,
-                        color: AppColors.white,
-                      ),
+                12.sbHeight,
+                if (isLoading)
+                  const Expanded(
+                    child: Center(
+                      child: CircularProgressIndicator(),
                     ),
+                  )
+                else if (_messages.isEmpty)
+                  Expanded(
+                    child: Center(
+                      child: AppText.bold24('Переписка пуста'),
+                    ),
+                  )
+                else
+                  Expanded(
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      controller: _scrollController,
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      itemCount: _messages.length,
+                      itemBuilder: (context, index) {
+                        final message = _messages[index];
+
+                        if (_messages.isEmpty) {
+                          return Center(
+                            child: AppText.bold24('No messages yet'),
+                          );
+                        }
+                        return _ChatBubble(
+                          message: message,
+                        );
+                      },
+                      // separatorBuilder: (context, index) => 12.sbHeight,
+                    ),
+                  ),
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 16,
+                  ),
+                  decoration: const BoxDecoration(
+                    color: Color(0xFFF8F9FC),
+                  ),
+                  child: Row(
+                    children: <Widget>[
+                      IconButton(
+                        icon: const Icon(Icons.add),
+                        onPressed: () {},
+                      ),
+                      Expanded(
+                        child: AppInput(
+                          controller: _controller,
+                          hintText: 'Type a message',
+                        ),
+                      ),
+                      12.sbWidth,
+                      Material(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(40)),
+                        child: InkWell(
+                          onTap: _sendMessage,
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(40)),
+                          child: Ink(
+                            height: 40,
+                            width: 40,
+                            decoration: const BoxDecoration(
+                              color: Colors.red,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(40)),
+                            ),
+                            child: Icon(
+                              Icons.north,
+                              size: 20,
+                              color: AppColors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
             ),
-          ),
-        ],
-      ),
     );
   }
 }

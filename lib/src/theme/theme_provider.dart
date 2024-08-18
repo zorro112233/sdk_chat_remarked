@@ -1,4 +1,4 @@
-import 'package:sdk_chat_remarked/src/theme/text/text_theme_model.dart';
+import 'text/text_theme_model.dart';
 import 'package:flutter/material.dart';
 
 import 'colors/dark_color_theme.dart';

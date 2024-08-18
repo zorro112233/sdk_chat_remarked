@@ -20,6 +20,6 @@ import 'src/shared/widgets/app_text.dart';
 import 'src/shared/widgets/appbar_simple.dart';
 import 'src/theme/theme_provider.dart';
 
-part 'src/ui/wrapper_chat_screen.dart';
+part 'src/ui/sdk_chat_remarked.dart';
 part 'src/ui/_chat_screen.dart';
 part 'src/ui/widgets/_bubble.dart';

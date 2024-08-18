@@ -9,6 +9,8 @@ part 'gen/receive_message.cg.g.dart';
 @freezed
 class ReceiveMessageDto with _$ReceiveMessageDto {
   const factory ReceiveMessageDto({
+    String? status,
+    String? message,
     List<MessageDto>? messages,
   }) = _ReceiveMessageDto;
 
@@ -22,6 +24,8 @@ class ReceiveMessageDto with _$ReceiveMessageDto {
   /// Конвертер в домен.
   ReceiveMessage toDomain() {
     return ReceiveMessage(
+      status: status ?? '',
+      message: message ?? '',
       messages: messages?.map((e) => e.toDomain()).toList() ?? [],
     );
   }

@@ -7,6 +7,8 @@ part 'gen/receive_message.cg.f.dart';
 @freezed
 class ReceiveMessage with _$ReceiveMessage {
   const factory ReceiveMessage({
+    required String status,
+    required String message,
     required List<Message> messages,
   }) = _ReceiveMessage;
 }

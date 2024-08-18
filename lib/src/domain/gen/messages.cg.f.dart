@@ -18,7 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AllMessages {
   Unseen get unseen => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AllMessages
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AllMessagesCopyWith<AllMessages> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -44,6 +46,8 @@ class _$AllMessagesCopyWithImpl<$Res, $Val extends AllMessages>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AllMessages
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -57,6 +61,8 @@ class _$AllMessagesCopyWithImpl<$Res, $Val extends AllMessages>
     ) as $Val);
   }
 
+  /// Create a copy of AllMessages
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $UnseenCopyWith<$Res> get unseen {
@@ -88,6 +94,8 @@ class __$$AllMessagesImplCopyWithImpl<$Res>
       _$AllMessagesImpl _value, $Res Function(_$AllMessagesImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AllMessages
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -126,7 +134,9 @@ class _$AllMessagesImpl implements _AllMessages {
   @override
   int get hashCode => Object.hash(runtimeType, unseen);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AllMessages
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AllMessagesImplCopyWith<_$AllMessagesImpl> get copyWith =>
@@ -139,8 +149,11 @@ abstract class _AllMessages implements AllMessages {
 
   @override
   Unseen get unseen;
+
+  /// Create a copy of AllMessages
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AllMessagesImplCopyWith<_$AllMessagesImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -150,7 +163,9 @@ mixin _$Unseen {
   int get count => throw _privateConstructorUsedError;
   List<Message> get messages => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Unseen
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $UnseenCopyWith<Unseen> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -172,6 +187,8 @@ class _$UnseenCopyWithImpl<$Res, $Val extends Unseen>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Unseen
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -209,6 +226,8 @@ class __$$UnseenImplCopyWithImpl<$Res>
       _$UnseenImpl _value, $Res Function(_$UnseenImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Unseen
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -263,7 +282,9 @@ class _$UnseenImpl implements _Unseen {
   int get hashCode => Object.hash(
       runtimeType, count, const DeepCollectionEquality().hash(_messages));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Unseen
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$UnseenImplCopyWith<_$UnseenImpl> get copyWith =>
@@ -279,8 +300,11 @@ abstract class _Unseen implements Unseen {
   int get count;
   @override
   List<Message> get messages;
+
+  /// Create a copy of Unseen
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UnseenImplCopyWith<_$UnseenImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

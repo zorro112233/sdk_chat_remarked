@@ -22,8 +22,12 @@ AllMessagesDto _$AllMessagesDtoFromJson(Map<String, dynamic> json) {
 mixin _$AllMessagesDto {
   UnseenDto? get unseen => throw _privateConstructorUsedError;
 
+  /// Serializes this AllMessagesDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AllMessagesDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AllMessagesDtoCopyWith<AllMessagesDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -49,6 +53,8 @@ class _$AllMessagesDtoCopyWithImpl<$Res, $Val extends AllMessagesDto>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AllMessagesDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -62,6 +68,8 @@ class _$AllMessagesDtoCopyWithImpl<$Res, $Val extends AllMessagesDto>
     ) as $Val);
   }
 
+  /// Create a copy of AllMessagesDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $UnseenDtoCopyWith<$Res>? get unseen {
@@ -97,6 +105,8 @@ class __$$AllMessagesDtoImplCopyWithImpl<$Res>
       _$AllMessagesDtoImpl _value, $Res Function(_$AllMessagesDtoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AllMessagesDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -135,11 +145,13 @@ class _$AllMessagesDtoImpl extends _AllMessagesDto {
             (identical(other.unseen, unseen) || other.unseen == unseen));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, unseen);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AllMessagesDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AllMessagesDtoImplCopyWith<_$AllMessagesDtoImpl> get copyWith =>
@@ -164,8 +176,11 @@ abstract class _AllMessagesDto extends AllMessagesDto {
 
   @override
   UnseenDto? get unseen;
+
+  /// Create a copy of AllMessagesDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AllMessagesDtoImplCopyWith<_$AllMessagesDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -179,8 +194,12 @@ mixin _$UnseenDto {
   int? get count => throw _privateConstructorUsedError;
   List<MessageDto>? get messages => throw _privateConstructorUsedError;
 
+  /// Serializes this UnseenDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of UnseenDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $UnseenDtoCopyWith<UnseenDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -203,6 +222,8 @@ class _$UnseenDtoCopyWithImpl<$Res, $Val extends UnseenDto>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of UnseenDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -241,6 +262,8 @@ class __$$UnseenDtoImplCopyWithImpl<$Res>
       _$UnseenDtoImpl _value, $Res Function(_$UnseenDtoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of UnseenDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -296,12 +319,14 @@ class _$UnseenDtoImpl extends _UnseenDto {
             const DeepCollectionEquality().equals(other._messages, _messages));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, count, const DeepCollectionEquality().hash(_messages));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UnseenDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$UnseenDtoImplCopyWith<_$UnseenDtoImpl> get copyWith =>
@@ -327,8 +352,11 @@ abstract class _UnseenDto extends UnseenDto {
   int? get count;
   @override
   List<MessageDto>? get messages;
+
+  /// Create a copy of UnseenDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UnseenDtoImplCopyWith<_$UnseenDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

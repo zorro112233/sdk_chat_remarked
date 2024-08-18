@@ -1,7 +1,7 @@
 import 'dart:developer' as developer;
 
 import 'package:logging/logging.dart';
-import 'package:sdk_chat_remarked/src/core/ext.dart';
+import 'ext.dart';
 
 const _maxLength = 100000;
 const Level _minimumLogLevel = Level.INFO;
