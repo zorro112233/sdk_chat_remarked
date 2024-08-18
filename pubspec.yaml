@@ -1,6 +1,6 @@
 name: sdk_chat_remarked
 description: "A new Flutter package project."
-version: 0.0.10+7
+version: 0.0.11+8
 homepage: https://github.com/flutter/packages
 
 environment:
