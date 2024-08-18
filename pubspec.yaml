@@ -1,6 +1,6 @@
 name: sdk_chat_remarked
 description: "A new Flutter package project."
-version: 0.0.8+5
+version: 0.0.9+6
 homepage: https://github.com/flutter/packages
 
 environment:
@@ -22,7 +22,7 @@ dev_dependencies:
   freezed: ^2.4.7
   json_serializable: ^6.7.1
   build_runner: ^2.4.8
-
+# /Users/nsvetlakov/.pub-cache/git/sdk_chat_remarked-972d99e917a714510b695521d4ba82e2b7658cae/lib/assets/images/chat.png
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

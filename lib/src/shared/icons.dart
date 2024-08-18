@@ -4,7 +4,7 @@ import '../core/consts.dart';
 
 /// Тут живут ссылки на все иконки и изображения, которые мы загружаем в assets
 class AppIcons {
-  static const String rootPath = 'packages/sdk_chat_remarked/assets/images';
+  static const String rootPath = 'package:sdk_chat_remarked/assets/images';
   static const String chat = '$rootPath/chat.png';
   static const String arrowLeftIcon = '$rootPath/arrow-left.png';
   static const String readedIcon = '$rootPath/readed.png';
