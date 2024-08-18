@@ -35,9 +35,7 @@ class AppIcons {
       height: height ?? Consts.iconSize,
       color: color,
       fit: fit,
-      // Этот фильтр обеспечивает лучшее качество, чем high при downscale
-      // и лучшее качество, чем low при upscale
-      filterQuality: FilterQuality.medium,
+      package: 'sdk_chat_remarked',
     );
   }
 }
