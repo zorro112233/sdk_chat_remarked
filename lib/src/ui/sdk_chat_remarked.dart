@@ -6,17 +6,18 @@ class SdkChatRemarked extends StatelessWidget {
     required this.child,
     required this.title,
     required this.token,
-    this.roomOrder,
+    this.idOrder,
   });
 
   final String title;
   final String token;
-  final int? roomOrder;
+  final int? idOrder;
   final Widget child;
 
   @override
   Widget build(BuildContext context) {
     return Stack(
+      fit: StackFit.expand,
       children: [
         child,
         if (token.isNotEmpty)
@@ -33,7 +34,7 @@ class SdkChatRemarked extends StatelessWidget {
                       builder: (context) => _ChatScreen(
                         title: title,
                         token: token,
-                        roomOrder: roomOrder,
+                        idOrder: idOrder,
                       ),
                     ),
                   );

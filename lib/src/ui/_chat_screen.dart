@@ -4,13 +4,13 @@ class _ChatScreen extends StatefulWidget {
   const _ChatScreen({
     required this.title,
     required this.token,
-    this.roomOrder,
+    this.idOrder,
   });
 
   final String title;
 
   final String token;
-  final int? roomOrder;
+  final int? idOrder;
 
   @override
   State<_ChatScreen> createState() => __ChatScreenState();
@@ -36,6 +36,7 @@ class __ChatScreenState extends State<_ChatScreen> {
   Map<dynamic, dynamic> get lastMess => {
         "auth": {"token": widget.token},
         "page": 0,
+        "id_order": widget.idOrder,
       };
 
   @override
@@ -49,7 +50,7 @@ class __ChatScreenState extends State<_ChatScreen> {
         InAppLogger.instance.logInfoMessage('STREAM MESSAGE', map);
 
         /// Сообщение об ошибке
-        if (map.containsKey('message')) {
+        if (map.containsKey('status')) {
           final m = ReceiveMessageDto.fromJson(map).toDomain();
           changeLoaing(false);
           setState(() {
