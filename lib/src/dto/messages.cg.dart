@@ -1,4 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:sdk_chat_remarked/src/domain/meta.cg.dart';
+import 'package:sdk_chat_remarked/src/dto/meta.cg.dart';
 
 import '../domain/messages.cg.dart';
 import 'message.cg.dart';
@@ -31,6 +33,7 @@ class UnseenDto with _$UnseenDto {
   const factory UnseenDto({
     int? count,
     List<MessageDto>? messages,
+    MetaDto? meta,
   }) = _UnseenDto;
 
   /// конструктор
@@ -45,6 +48,7 @@ class UnseenDto with _$UnseenDto {
     return Unseen(
       count: count ?? 0,
       messages: messages?.map((e) => e.toDomain()).toList() ?? [],
+      meta: meta?.toDomain() ?? Meta.empty,
     );
   }
 }

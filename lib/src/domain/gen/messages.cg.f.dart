@@ -162,6 +162,7 @@ abstract class _AllMessages implements AllMessages {
 mixin _$Unseen {
   int get count => throw _privateConstructorUsedError;
   List<Message> get messages => throw _privateConstructorUsedError;
+  Meta get meta => throw _privateConstructorUsedError;
 
   /// Create a copy of Unseen
   /// with the given fields replaced by the non-null parameter values.
@@ -174,7 +175,9 @@ abstract class $UnseenCopyWith<$Res> {
   factory $UnseenCopyWith(Unseen value, $Res Function(Unseen) then) =
       _$UnseenCopyWithImpl<$Res, Unseen>;
   @useResult
-  $Res call({int count, List<Message> messages});
+  $Res call({int count, List<Message> messages, Meta meta});
+
+  $MetaCopyWith<$Res> get meta;
 }
 
 /// @nodoc
@@ -194,6 +197,7 @@ class _$UnseenCopyWithImpl<$Res, $Val extends Unseen>
   $Res call({
     Object? count = null,
     Object? messages = null,
+    Object? meta = null,
   }) {
     return _then(_value.copyWith(
       count: null == count
@@ -204,7 +208,21 @@ class _$UnseenCopyWithImpl<$Res, $Val extends Unseen>
           ? _value.messages
           : messages // ignore: cast_nullable_to_non_nullable
               as List<Message>,
+      meta: null == meta
+          ? _value.meta
+          : meta // ignore: cast_nullable_to_non_nullable
+              as Meta,
     ) as $Val);
+  }
+
+  /// Create a copy of Unseen
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $MetaCopyWith<$Res> get meta {
+    return $MetaCopyWith<$Res>(_value.meta, (value) {
+      return _then(_value.copyWith(meta: value) as $Val);
+    });
   }
 }
 
@@ -215,7 +233,10 @@ abstract class _$$UnseenImplCopyWith<$Res> implements $UnseenCopyWith<$Res> {
       __$$UnseenImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int count, List<Message> messages});
+  $Res call({int count, List<Message> messages, Meta meta});
+
+  @override
+  $MetaCopyWith<$Res> get meta;
 }
 
 /// @nodoc
@@ -233,6 +254,7 @@ class __$$UnseenImplCopyWithImpl<$Res>
   $Res call({
     Object? count = null,
     Object? messages = null,
+    Object? meta = null,
   }) {
     return _then(_$UnseenImpl(
       count: null == count
@@ -243,6 +265,10 @@ class __$$UnseenImplCopyWithImpl<$Res>
           ? _value._messages
           : messages // ignore: cast_nullable_to_non_nullable
               as List<Message>,
+      meta: null == meta
+          ? _value.meta
+          : meta // ignore: cast_nullable_to_non_nullable
+              as Meta,
     ));
   }
 }
@@ -251,7 +277,9 @@ class __$$UnseenImplCopyWithImpl<$Res>
 
 class _$UnseenImpl implements _Unseen {
   const _$UnseenImpl(
-      {required this.count, required final List<Message> messages})
+      {required this.count,
+      required final List<Message> messages,
+      required this.meta})
       : _messages = messages;
 
   @override
@@ -265,8 +293,11 @@ class _$UnseenImpl implements _Unseen {
   }
 
   @override
+  final Meta meta;
+
+  @override
   String toString() {
-    return 'Unseen(count: $count, messages: $messages)';
+    return 'Unseen(count: $count, messages: $messages, meta: $meta)';
   }
 
   @override
@@ -275,12 +306,13 @@ class _$UnseenImpl implements _Unseen {
         (other.runtimeType == runtimeType &&
             other is _$UnseenImpl &&
             (identical(other.count, count) || other.count == count) &&
-            const DeepCollectionEquality().equals(other._messages, _messages));
+            const DeepCollectionEquality().equals(other._messages, _messages) &&
+            (identical(other.meta, meta) || other.meta == meta));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, count, const DeepCollectionEquality().hash(_messages));
+      runtimeType, count, const DeepCollectionEquality().hash(_messages), meta);
 
   /// Create a copy of Unseen
   /// with the given fields replaced by the non-null parameter values.
@@ -294,12 +326,15 @@ class _$UnseenImpl implements _Unseen {
 abstract class _Unseen implements Unseen {
   const factory _Unseen(
       {required final int count,
-      required final List<Message> messages}) = _$UnseenImpl;
+      required final List<Message> messages,
+      required final Meta meta}) = _$UnseenImpl;
 
   @override
   int get count;
   @override
   List<Message> get messages;
+  @override
+  Meta get meta;
 
   /// Create a copy of Unseen
   /// with the given fields replaced by the non-null parameter values.

@@ -17,6 +17,9 @@ class _ChatScreen extends StatefulWidget {
 }
 
 class __ChatScreenState extends State<_ChatScreen> {
+  int _page = 0;
+  int totalMessages = 0;
+
   final _controller = TextEditingController();
 
   late ScrollController _scrollController;
@@ -33,15 +36,15 @@ class __ChatScreenState extends State<_ChatScreen> {
   final List<Message> _messages = [];
   var _unauthorized = '';
 
-  Map<dynamic, dynamic> get lastMess => {
-        "auth": {"token": widget.token},
-        "page": 0,
-        "id_order": widget.idOrder,
-      };
+  Debouncer _debouncer = Debouncer(delay: const Duration(seconds: 1));
 
   @override
   void initState() {
     super.initState();
+    _scrollController = ScrollController();
+
+    debugPrint('chat token ${widget.token}');
+    debugPrint('chat idOrder ${widget.idOrder}');
     start();
     channel.stream.listen(
       (message) {
@@ -66,8 +69,9 @@ class __ChatScreenState extends State<_ChatScreen> {
             _messages.add(message.messages.firstOrNull ?? Message.empty);
           });
           changeLoaing(false);
-
-          addPostFrameCallback(() => _scrollToBottom(isJump: true));
+          if (_page <= 0) {
+            addPostFrameCallback(() => _scrollToBottom(isJump: true));
+          }
         }
 
         /// UNSEEN
@@ -75,32 +79,75 @@ class __ChatScreenState extends State<_ChatScreen> {
           final allMessages = AllMessagesDto.fromJson(map).toDomain();
 
           setState(() {
-            _messages.addAll(allMessages.unseen.messages);
+            totalMessages = allMessages.unseen.meta.total;
+            if (_page == 0) {
+              _messages.addAll(allMessages.unseen.messages);
+            } else {
+              _messages.insertAll(0, allMessages.unseen.messages);
+            }
           });
           changeLoaing(false);
 
-          addPostFrameCallback(() => _scrollToBottom(isJump: true));
+          if (_page <= 0) {
+            addPostFrameCallback(() => _scrollToBottom(isJump: true));
+          }
         }
-
-        // InAppLogger.instance.logInfoMessage('receiveMessage', allMessages);
       },
     );
+
+    _scrollController.addListener(() {
+      if (totalMessages > _messages.length) {
+        if (_scrollController.position.pixels == 0) {
+          _page++;
+          start();
+        }
+      }
+    });
+  }
+
+  void addHistoryMessages() {
+    final start = {
+      "auth": {"token": widget.token},
+      "page": _page,
+    };
+
+    final startOrder = {
+      "auth": {"token": widget.token},
+      "page": _page,
+      "id_order": widget.idOrder,
+    };
+
+    final jsonString = jsonEncode(widget.idOrder != null ? startOrder : start);
+    channel.sink.add(jsonString);
   }
 
   Future<void> start() async {
     changeLoaing(true);
-    _scrollController = ScrollController();
-    debugPrint('start token ${widget.token}');
-    final jsonString = jsonEncode(lastMess);
+
+    final start = {
+      "auth": {"token": widget.token},
+      "page": _page,
+    };
+
+    final startOrder = {
+      "auth": {"token": widget.token},
+      "page": _page,
+      "id_order": widget.idOrder,
+    };
+
+    final jsonString = jsonEncode(widget.idOrder != null ? startOrder : start);
+
     channel.sink.add(jsonString);
   }
 
   void _sendMessage() {
     final map = {
-      "auth": {"token": widget.token},
       "messages": [
-        {"text": _controller.text}
-      ],
+        {
+          "order_id": widget.idOrder,
+          "text": _controller.text,
+        }
+      ]
     };
     final jsonString = jsonEncode(map);
     debugPrint('jsonString $jsonString');
@@ -135,6 +182,7 @@ class __ChatScreenState extends State<_ChatScreen> {
           curve: Curves.easeOut,
         );
       }
+      debugPrint('position.pixels ${_scrollController.position.pixels}');
     }
   }
 
@@ -144,22 +192,39 @@ class __ChatScreenState extends State<_ChatScreen> {
     });
   }
 
+  Map<DateTime, List<Message>> groupMenssagesByDate(
+    List<Message> messages,
+  ) {
+    final groupedMessages = <DateTime, List<Message>>{};
+
+    for (final message in messages) {
+      final date = DateFormat('yyyy-MM-dd')
+          .parse(DateFormat('yyyy-MM-dd').format(message.timestamp));
+      if (!groupedMessages.containsKey(date)) {
+        groupedMessages[date] = [];
+      }
+      groupedMessages[date]!.add(message);
+    }
+
+    return groupedMessages;
+  }
+
   @override
   void dispose() {
-    debugPrint('dispose');
     _messages.clear();
     channel.sink.close();
     _scrollController.dispose();
+    _debouncer.cancel();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    debugPrint('isLoading $isLoading');
+    final messagesByDate = groupMenssagesByDate(_messages);
     return Scaffold(
       backgroundColor: const Color(0xFFFFCDCD),
       appBar: SimpleAppBar(
-        title: 'Chat App',
+        title: widget.title,
         onLeadingTap: () {
           Navigator.pop(context);
         },
@@ -171,10 +236,13 @@ class __ChatScreenState extends State<_ChatScreen> {
           : Column(
               children: <Widget>[
                 12.sbHeight,
-                if (isLoading)
-                  const Expanded(
+                if (isLoading && _messages.isEmpty)
+                  Expanded(
                     child: Center(
-                      child: CircularProgressIndicator(),
+                      child: CircularProgressIndicator(
+                        strokeWidth: 3,
+                        color: AppColors.grayBtn,
+                      ),
                     ),
                   )
                 else if (_messages.isEmpty)
@@ -185,24 +253,60 @@ class __ChatScreenState extends State<_ChatScreen> {
                   )
                 else
                   Expanded(
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      controller: _scrollController,
-                      padding: const EdgeInsets.symmetric(horizontal: 12),
-                      itemCount: _messages.length,
-                      itemBuilder: (context, index) {
-                        final message = _messages[index];
+                    child: Stack(
+                      children: [
+                        ListView.builder(
+                          shrinkWrap: true,
+                          controller: _scrollController,
+                          physics: ClampingScrollPhysics(),
+                          padding: const EdgeInsets.symmetric(horizontal: 12),
+                          itemCount: messagesByDate.length,
+                          itemBuilder: (context, index) {
+                            final date = messagesByDate.keys.elementAt(index);
+                            final menssageForDate = messagesByDate[date]!;
 
-                        if (_messages.isEmpty) {
-                          return Center(
-                            child: AppText.bold24('No messages yet'),
-                          );
-                        }
-                        return _ChatBubble(
-                          message: message,
-                        );
-                      },
-                      // separatorBuilder: (context, index) => 12.sbHeight,
+                            final isToday = now.difference(date).inDays == 0;
+
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                // Заголовок с датой
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: 8),
+                                  child: Center(
+                                    child: AppText.medium14(
+                                      isToday
+                                          ? 'Сегодня'.hardcoded
+                                          : date.stringFromDateTime,
+                                      color: AppColors.grayBtn,
+                                    ),
+                                  ),
+                                ),
+                                if (isLoading)
+                                  SizedBox(
+                                    height: 20,
+                                    width: 20,
+                                    child: Center(
+                                      child: CircularProgressIndicator(
+                                        strokeWidth: 2,
+                                        color: AppColors.grayBtn,
+                                      ),
+                                    ),
+                                  ),
+                                // Список транзакций для этой даты
+                                ...menssageForDate.map(
+                                  (t) {
+                                    return _ChatBubble(
+                                      message: t,
+                                    );
+                                  },
+                                ),
+                              ],
+                            );
+                          },
+                          // separatorBuilder: (context, index) => 12.sbHeight,
+                        ),
+                      ],
                     ),
                   ),
                 Container(

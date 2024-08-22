@@ -193,6 +193,7 @@ UnseenDto _$UnseenDtoFromJson(Map<String, dynamic> json) {
 mixin _$UnseenDto {
   int? get count => throw _privateConstructorUsedError;
   List<MessageDto>? get messages => throw _privateConstructorUsedError;
+  MetaDto? get meta => throw _privateConstructorUsedError;
 
   /// Serializes this UnseenDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -209,7 +210,9 @@ abstract class $UnseenDtoCopyWith<$Res> {
   factory $UnseenDtoCopyWith(UnseenDto value, $Res Function(UnseenDto) then) =
       _$UnseenDtoCopyWithImpl<$Res, UnseenDto>;
   @useResult
-  $Res call({int? count, List<MessageDto>? messages});
+  $Res call({int? count, List<MessageDto>? messages, MetaDto? meta});
+
+  $MetaDtoCopyWith<$Res>? get meta;
 }
 
 /// @nodoc
@@ -229,6 +232,7 @@ class _$UnseenDtoCopyWithImpl<$Res, $Val extends UnseenDto>
   $Res call({
     Object? count = freezed,
     Object? messages = freezed,
+    Object? meta = freezed,
   }) {
     return _then(_value.copyWith(
       count: freezed == count
@@ -239,7 +243,25 @@ class _$UnseenDtoCopyWithImpl<$Res, $Val extends UnseenDto>
           ? _value.messages
           : messages // ignore: cast_nullable_to_non_nullable
               as List<MessageDto>?,
+      meta: freezed == meta
+          ? _value.meta
+          : meta // ignore: cast_nullable_to_non_nullable
+              as MetaDto?,
     ) as $Val);
+  }
+
+  /// Create a copy of UnseenDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $MetaDtoCopyWith<$Res>? get meta {
+    if (_value.meta == null) {
+      return null;
+    }
+
+    return $MetaDtoCopyWith<$Res>(_value.meta!, (value) {
+      return _then(_value.copyWith(meta: value) as $Val);
+    });
   }
 }
 
@@ -251,7 +273,10 @@ abstract class _$$UnseenDtoImplCopyWith<$Res>
       __$$UnseenDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? count, List<MessageDto>? messages});
+  $Res call({int? count, List<MessageDto>? messages, MetaDto? meta});
+
+  @override
+  $MetaDtoCopyWith<$Res>? get meta;
 }
 
 /// @nodoc
@@ -269,6 +294,7 @@ class __$$UnseenDtoImplCopyWithImpl<$Res>
   $Res call({
     Object? count = freezed,
     Object? messages = freezed,
+    Object? meta = freezed,
   }) {
     return _then(_$UnseenDtoImpl(
       count: freezed == count
@@ -279,6 +305,10 @@ class __$$UnseenDtoImplCopyWithImpl<$Res>
           ? _value._messages
           : messages // ignore: cast_nullable_to_non_nullable
               as List<MessageDto>?,
+      meta: freezed == meta
+          ? _value.meta
+          : meta // ignore: cast_nullable_to_non_nullable
+              as MetaDto?,
     ));
   }
 }
@@ -286,7 +316,8 @@ class __$$UnseenDtoImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$UnseenDtoImpl extends _UnseenDto {
-  const _$UnseenDtoImpl({this.count, final List<MessageDto>? messages})
+  const _$UnseenDtoImpl(
+      {this.count, final List<MessageDto>? messages, this.meta})
       : _messages = messages,
         super._();
 
@@ -306,8 +337,11 @@ class _$UnseenDtoImpl extends _UnseenDto {
   }
 
   @override
+  final MetaDto? meta;
+
+  @override
   String toString() {
-    return 'UnseenDto(count: $count, messages: $messages)';
+    return 'UnseenDto(count: $count, messages: $messages, meta: $meta)';
   }
 
   @override
@@ -316,13 +350,14 @@ class _$UnseenDtoImpl extends _UnseenDto {
         (other.runtimeType == runtimeType &&
             other is _$UnseenDtoImpl &&
             (identical(other.count, count) || other.count == count) &&
-            const DeepCollectionEquality().equals(other._messages, _messages));
+            const DeepCollectionEquality().equals(other._messages, _messages) &&
+            (identical(other.meta, meta) || other.meta == meta));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, count, const DeepCollectionEquality().hash(_messages));
+      runtimeType, count, const DeepCollectionEquality().hash(_messages), meta);
 
   /// Create a copy of UnseenDto
   /// with the given fields replaced by the non-null parameter values.
@@ -342,7 +377,9 @@ class _$UnseenDtoImpl extends _UnseenDto {
 
 abstract class _UnseenDto extends UnseenDto {
   const factory _UnseenDto(
-      {final int? count, final List<MessageDto>? messages}) = _$UnseenDtoImpl;
+      {final int? count,
+      final List<MessageDto>? messages,
+      final MetaDto? meta}) = _$UnseenDtoImpl;
   const _UnseenDto._() : super._();
 
   factory _UnseenDto.fromJson(Map<String, dynamic> json) =
@@ -352,6 +389,8 @@ abstract class _UnseenDto extends UnseenDto {
   int? get count;
   @override
   List<MessageDto>? get messages;
+  @override
+  MetaDto? get meta;
 
   /// Create a copy of UnseenDto
   /// with the given fields replaced by the non-null parameter values.

@@ -1,7 +1,7 @@
 name: sdk_chat_remarked
-description: "A new Flutter package project."
-version: 0.0.15+12
-homepage: https://github.com/flutter/packages
+description: "Chat SDK for Remarked"
+version: 0.0.16+13
+homepage: https://github.com/zorro112233/sdk_chat_remarked
 repository: https://github.com/zorro112233/sdk_chat_remarked
 
 environment:
@@ -15,6 +15,7 @@ dependencies:
   intl: ^0.19.0
   logging: ^1.2.0
   web_socket_channel: ^3.0.1
+  json_annotation: ^4.9.0
 
 dev_dependencies:
   flutter_test:
@@ -23,9 +24,6 @@ dev_dependencies:
   freezed: ^2.4.7
   json_serializable: ^6.7.1
   build_runner: ^2.4.8
-# /Users/nsvetlakov/.pub-cache/git/sdk_chat_remarked-972d99e917a714510b695521d4ba82e2b7658cae/lib/assets/images/chat.png
-# For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
 flutter:
@@ -33,9 +31,6 @@ flutter:
   # To add assets to your package, add an assets section, like this:
   uses-material-design: true
   assets:
-    - assets/
-    - assets/fonts/
-    - assets/images/
     - packages/sdk_chat_remarked/assets/images/arrow-left.png
     - packages/sdk_chat_remarked/assets/images/chat.png
     - packages/sdk_chat_remarked/assets/images/readed.png

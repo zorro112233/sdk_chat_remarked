@@ -40,6 +40,11 @@ _$UnseenDtoImpl _$$UnseenDtoImplFromJson(Map<String, dynamic> json) =>
               (v) => (v as List<dynamic>?)
                   ?.map((e) => MessageDto.fromJson(e as Map<String, dynamic>))
                   .toList()),
+          meta: $checkedConvert(
+              'meta',
+              (v) => v == null
+                  ? null
+                  : MetaDto.fromJson(v as Map<String, dynamic>)),
         );
         return val;
       },
@@ -49,4 +54,5 @@ Map<String, dynamic> _$$UnseenDtoImplToJson(_$UnseenDtoImpl instance) =>
     <String, dynamic>{
       'count': instance.count,
       'messages': instance.messages?.map((e) => e.toJson()).toList(),
+      'meta': instance.meta?.toJson(),
     };

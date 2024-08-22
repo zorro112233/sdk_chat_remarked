@@ -37,3 +37,34 @@ double findTextWidth({TextStyle? style, required String text}) {
   )..layout();
   return t.width;
 }
+
+/// From GetX package
+/// This "function" class is the implementation of `debouncer()` Worker.
+/// It calls the function passed after specified [delay] parameter.
+/// Example:
+/// ```dart
+/// final delayed = Debouncer( delay: Duration( seconds: 1 )) ;
+/// print( 'the next function will be called after 1 sec' );
+/// delayed( () => print( 'called after 1 sec' ));
+/// ```
+
+class Debouncer {
+  // ignore: public_member_api_docs
+  Debouncer({this.delay});
+
+  /// Задержка отработки
+  final Duration? delay;
+  Timer? _timer;
+
+  /// Какие действия мы выполняем после истечения задержки
+  void call(void Function() action) {
+    _timer?.cancel();
+    _timer = Timer(delay!, action);
+  }
+
+  /// Notifies if the delayed call is active.
+  bool get isRunning => _timer?.isActive ?? false;
+
+  /// Cancel the current delayed call.
+  void cancel() => _timer?.cancel();
+}
