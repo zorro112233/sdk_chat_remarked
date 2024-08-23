@@ -19,7 +19,6 @@ class _ChatScreen extends StatefulWidget {
 class __ChatScreenState extends State<_ChatScreen> {
   int _page = 0;
   int totalMessages = 0;
-
   final _controller = TextEditingController();
 
   late ScrollController _scrollController;
@@ -36,21 +35,17 @@ class __ChatScreenState extends State<_ChatScreen> {
   final List<Message> _messages = [];
   var _unauthorized = '';
 
-  Debouncer _debouncer = Debouncer(delay: const Duration(seconds: 1));
+  final Debouncer _debouncer = Debouncer(delay: const Duration(seconds: 1));
 
   @override
   void initState() {
     super.initState();
     _scrollController = ScrollController();
 
-    debugPrint('chat token ${widget.token}');
-    debugPrint('chat idOrder ${widget.idOrder}');
     start();
     channel.stream.listen(
       (message) {
         final map = jsonDecode(message) as Map<String, dynamic>;
-
-        InAppLogger.instance.logInfoMessage('STREAM MESSAGE', map);
 
         /// Сообщение об ошибке
         if (map.containsKey('status')) {
@@ -150,7 +145,7 @@ class __ChatScreenState extends State<_ChatScreen> {
       ]
     };
     final jsonString = jsonEncode(map);
-    debugPrint('jsonString $jsonString');
+
     if (_controller.text.isNotEmpty) {
       channel.sink.add(jsonString);
 
@@ -182,7 +177,6 @@ class __ChatScreenState extends State<_ChatScreen> {
           curve: Curves.easeOut,
         );
       }
-      debugPrint('position.pixels ${_scrollController.position.pixels}');
     }
   }
 
@@ -258,7 +252,7 @@ class __ChatScreenState extends State<_ChatScreen> {
                         ListView.builder(
                           shrinkWrap: true,
                           controller: _scrollController,
-                          physics: ClampingScrollPhysics(),
+                          physics: const ClampingScrollPhysics(),
                           padding: const EdgeInsets.symmetric(horizontal: 12),
                           itemCount: messagesByDate.length,
                           itemBuilder: (context, index) {
@@ -319,14 +313,14 @@ class __ChatScreenState extends State<_ChatScreen> {
                   ),
                   child: Row(
                     children: <Widget>[
-                      IconButton(
-                        icon: const Icon(Icons.add),
-                        onPressed: () {},
-                      ),
+                      // IconButton(
+                      //   icon: const Icon(Icons.add),
+                      //   onPressed: () {},
+                      // ),
                       Expanded(
                         child: AppInput(
                           controller: _controller,
-                          hintText: 'Type a message',
+                          hintText: 'Напишите сообщение',
                         ),
                       ),
                       12.sbWidth,
