@@ -27,6 +27,9 @@ class __ChatScreenState extends State<_ChatScreen> {
 
   bool isLoading = false;
 
+  Uint8List? image;
+  String? base64image;
+
   /// Замените на ваш WebSocket сервер
   final channel = WebSocketChannel.connect(
     Uri.parse(url),
@@ -72,7 +75,7 @@ class __ChatScreenState extends State<_ChatScreen> {
         /// UNSEEN
         if (map.containsKey('unseen')) {
           final allMessages = AllMessagesDto.fromJson(map).toDomain();
-
+          debugModePrint('MESSAGES: ${allMessages.unseen.messages}');
           setState(() {
             totalMessages = allMessages.unseen.meta.total;
             if (_page == 0) {
@@ -141,6 +144,7 @@ class __ChatScreenState extends State<_ChatScreen> {
         {
           "order_id": widget.idOrder,
           "text": _controller.text,
+          "attachment": base64image,
         }
       ]
     };
@@ -164,6 +168,15 @@ class __ChatScreenState extends State<_ChatScreen> {
 
       addPostFrameCallback(_scrollToBottom);
     }
+  }
+
+  void _handleImageSelection() async {
+    final res = await pickImageToBase64();
+
+    setState(() {
+      base64image = res.base64image;
+      image = res.image;
+    });
   }
 
   void _scrollToBottom({bool isJump = false}) {
@@ -311,41 +324,55 @@ class __ChatScreenState extends State<_ChatScreen> {
                   decoration: const BoxDecoration(
                     color: Color(0xFFF8F9FC),
                   ),
-                  child: Row(
-                    children: <Widget>[
-                      // IconButton(
-                      //   icon: const Icon(Icons.add),
-                      //   onPressed: () {},
-                      // ),
-                      Expanded(
-                        child: AppInput(
-                          controller: _controller,
-                          hintText: 'Напишите сообщение',
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (image != null) ...[
+                        Image.memory(
+                          image!,
+                          width: 50,
+                          height: 50,
+                          fit: BoxFit.contain,
                         ),
-                      ),
-                      12.sbWidth,
-                      Material(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(40)),
-                        child: InkWell(
-                          onTap: _sendMessage,
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(40)),
-                          child: Ink(
-                            height: 40,
-                            width: 40,
-                            decoration: const BoxDecoration(
-                              color: Colors.red,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(40)),
-                            ),
-                            child: Icon(
-                              Icons.north,
-                              size: 20,
-                              color: AppColors.white,
+                        4.sbHeight,
+                      ],
+                      Row(
+                        children: <Widget>[
+                          IconButton(
+                            icon: const Icon(Icons.add),
+                            onPressed: _handleImageSelection,
+                          ),
+                          Expanded(
+                            child: AppInput(
+                              controller: _controller,
+                              hintText: 'Напишите сообщение',
                             ),
                           ),
-                        ),
+                          12.sbWidth,
+                          Material(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(40)),
+                            child: InkWell(
+                              onTap: _sendMessage,
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(40)),
+                              child: Ink(
+                                height: 40,
+                                width: 40,
+                                decoration: const BoxDecoration(
+                                  color: Colors.red,
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(40)),
+                                ),
+                                child: Icon(
+                                  Icons.north,
+                                  size: 20,
+                                  color: AppColors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),

@@ -1,6 +1,7 @@
 library sdk_chat_remarked;
 
 import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -8,7 +9,6 @@ import 'package:intl/intl.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 import 'src/core/consts.dart';
-import 'src/core/inapp_logger.dart';
 import 'src/core/utils.dart';
 import 'src/core/ext.dart';
 import 'src/domain/message.cg.dart';

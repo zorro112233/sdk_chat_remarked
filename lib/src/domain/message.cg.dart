@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../core/consts.dart';
@@ -13,6 +15,7 @@ class Message with _$Message {
     required String text,
     required bool isOutgoing,
     required int to,
+    Uint8List? image,
   }) = _Message;
 
   /// Заглушка
