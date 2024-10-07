@@ -343,8 +343,8 @@ class __ChatScreenState extends State<_ChatScreen> {
                       if (imagePath != null)
                         Row(
                           children: [
-                            Image.asset(
-                              imagePath!,
+                            Image.file(
+                              File(imagePath!),
                               width: 50,
                               height: 50,
                               fit: BoxFit.contain,
