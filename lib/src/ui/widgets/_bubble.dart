@@ -37,6 +37,7 @@ class _ChatBubble extends StatelessWidget {
             AppText.reqular14(message.text),
             6.sbHeight,
             _Image(message.attachment),
+
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [

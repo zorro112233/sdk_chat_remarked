@@ -5,6 +5,8 @@ class _ChatScreen extends StatefulWidget {
     required this.title,
     required this.token,
     this.idOrder,
+    this.colorIcon,
+    this.colorBg,
   });
 
   final String title;
@@ -12,6 +14,8 @@ class _ChatScreen extends StatefulWidget {
   final String token;
   final int? idOrder;
 
+  final Color? colorIcon;
+  final Color? colorBg;
   @override
   State<_ChatScreen> createState() => __ChatScreenState();
 }
@@ -152,9 +156,9 @@ class __ChatScreenState extends State<_ChatScreen> {
       ]
     };
     final jsonString = jsonEncode(map);
+    final hasImg = imagePath?.isNotEmpty ?? false;
 
-    if (_controller.text.isNotEmpty) {
-      debugModePrint('jsonString $jsonString');
+    if (hasImg || _controller.text.isNotEmpty) {
       channel.sink.add(jsonString);
 
       setState(() {
@@ -379,15 +383,16 @@ class __ChatScreenState extends State<_ChatScreen> {
                               child: Ink(
                                 height: 40,
                                 width: 40,
-                                decoration: const BoxDecoration(
-                                  color: Colors.red,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(40)),
+                                decoration: BoxDecoration(
+                                  color: widget.colorBg ?? Colors.red,
+                                  borderRadius: const BorderRadius.all(
+                                    Radius.circular(40),
+                                  ),
                                 ),
                                 child: Icon(
                                   Icons.north,
                                   size: 20,
-                                  color: AppColors.white,
+                                  color: widget.colorIcon ?? AppColors.white,
                                 ),
                               ),
                             ),
