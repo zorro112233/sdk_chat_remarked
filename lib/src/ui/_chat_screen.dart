@@ -50,6 +50,7 @@ class __ChatScreenState extends State<_ChatScreen> {
     _scrollController = ScrollController();
 
     start();
+
     channel.stream.listen(
       (message) {
         final map = jsonDecode(message) as Map<String, dynamic>;
@@ -57,7 +58,7 @@ class __ChatScreenState extends State<_ChatScreen> {
         /// Сообщение об ошибке
         if (map.containsKey('status')) {
           final m = ReceiveMessageDto.fromJson(map).toDomain();
-          changeLoaing(false);
+          changeLoading(false);
           setState(() {
             _unauthorized = m.message;
           });
@@ -70,7 +71,7 @@ class __ChatScreenState extends State<_ChatScreen> {
           setState(() {
             _messages.add(message.messages.firstOrNull ?? Message.empty);
           });
-          changeLoaing(false);
+          changeLoading(false);
           if (_page <= 0) {
             addPostFrameCallback(() => _scrollToBottom(isJump: true));
           }
@@ -79,20 +80,18 @@ class __ChatScreenState extends State<_ChatScreen> {
         /// UNSEEN
         if (map.containsKey('unseen')) {
           final allMessages = AllMessagesDto.fromJson(map).toDomain();
-          debugModePrint('MESSAGES: ${allMessages.unseen.messages}');
+
           setState(() {
             totalMessages = allMessages.unseen.meta.total;
             if (_page == 0) {
+              debugModePrint('UNSEEN::: ${allMessages.unseen.messages.length}');
               _messages.addAll(allMessages.unseen.messages);
+              addPostFrameCallback(() => _scrollToBottom(isJump: true));
             } else {
               _messages.insertAll(0, allMessages.unseen.messages);
             }
           });
-          changeLoaing(false);
-
-          if (_page <= 0) {
-            addPostFrameCallback(() => _scrollToBottom(isJump: true));
-          }
+          changeLoading(false);
         }
       },
     );
@@ -107,24 +106,8 @@ class __ChatScreenState extends State<_ChatScreen> {
     });
   }
 
-  void addHistoryMessages() {
-    final start = {
-      "auth": {"token": widget.token},
-      "page": _page,
-    };
-
-    final startOrder = {
-      "auth": {"token": widget.token},
-      "page": _page,
-      "id_order": widget.idOrder,
-    };
-
-    final jsonString = jsonEncode(widget.idOrder != null ? startOrder : start);
-    channel.sink.add(jsonString);
-  }
-
   Future<void> start() async {
-    changeLoaing(true);
+    changeLoading(true);
 
     final start = {
       "auth": {"token": widget.token},
@@ -189,10 +172,11 @@ class __ChatScreenState extends State<_ChatScreen> {
     });
   }
 
-  void _scrollToBottom({bool isJump = false}) {
+  Future<void> _scrollToBottom({bool isJump = false}) async {
     if (!isLoading && _messages.isNotEmpty && _scrollController.hasClients) {
       if (isJump) {
-        _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
+        final maxScrollExtent = _scrollController.position.maxScrollExtent;
+        _scrollController.jumpTo(maxScrollExtent * 3);
       } else {
         _scrollController.animateTo(
           _scrollController.position.maxScrollExtent,
@@ -203,7 +187,7 @@ class __ChatScreenState extends State<_ChatScreen> {
     }
   }
 
-  void changeLoaing(bool b) {
+  void changeLoading(bool b) {
     setState(() {
       isLoading = b;
     });
@@ -245,165 +229,171 @@ class __ChatScreenState extends State<_ChatScreen> {
   @override
   Widget build(BuildContext context) {
     final messagesByDate = groupMenssagesByDate(_messages);
-    return Scaffold(
-      backgroundColor: const Color(0xFFFFCDCD),
-      appBar: SimpleAppBar(
-        title: widget.title,
-        onLeadingTap: () {
-          Navigator.pop(context);
-        },
-      ),
-      body: _unauthorized.isNotEmpty
-          ? Center(
-              child: AppText.bold24(_unauthorized),
-            )
-          : Column(
-              children: <Widget>[
-                12.sbHeight,
-                if (isLoading && _messages.isEmpty)
-                  Expanded(
-                    child: Center(
-                      child: CircularProgressIndicator(
-                        strokeWidth: 3,
-                        color: AppColors.grayBtn,
+    return Material(
+      color: Colors.white,
+      child: Scaffold(
+        backgroundColor:
+            widget.colorBg?.withOpacity(.4) ?? const Color(0xFFFFCDCD),
+        appBar: SimpleAppBar(
+          title: widget.title,
+          onLeadingTap: () {
+            Navigator.pop(context);
+          },
+        ),
+        body: _unauthorized.isNotEmpty
+            ? Center(
+                child: AppText.bold24(_unauthorized),
+              )
+            : Column(
+                children: <Widget>[
+                  12.sbHeight,
+                  if (isLoading && _messages.isEmpty)
+                    Expanded(
+                      child: Center(
+                        child: CircularProgressIndicator(
+                          strokeWidth: 3,
+                          color: AppColors.grayBtn,
+                        ),
                       ),
-                    ),
-                  )
-                else if (_messages.isEmpty)
-                  Expanded(
-                    child: Center(
-                      child: AppText.bold24('Переписка пуста'),
-                    ),
-                  )
-                else
-                  Expanded(
-                    child: Stack(
-                      children: [
-                        ListView.builder(
-                          shrinkWrap: true,
-                          controller: _scrollController,
-                          physics: const ClampingScrollPhysics(),
-                          padding: const EdgeInsets.symmetric(horizontal: 12),
-                          itemCount: messagesByDate.length,
-                          itemBuilder: (context, index) {
-                            final date = messagesByDate.keys.elementAt(index);
-                            final menssageForDate = messagesByDate[date]!;
+                    )
+                  else if (_messages.isEmpty)
+                    Expanded(
+                      child: Center(
+                        child: AppText.bold24('Переписка пуста'),
+                      ),
+                    )
+                  else
+                    Expanded(
+                      child: Stack(
+                        children: [
+                          ListView.builder(
+                            shrinkWrap: true,
+                            controller: _scrollController,
+                            physics: const ClampingScrollPhysics(),
+                            padding: const EdgeInsets.symmetric(horizontal: 12),
+                            itemCount: messagesByDate.length,
+                            itemBuilder: (context, index) {
+                              final date = messagesByDate.keys.elementAt(index);
+                              final menssageForDate = messagesByDate[date]!;
 
-                            final isToday = now.difference(date).inDays == 0;
+                              final isToday = now.difference(date).inDays == 0;
 
-                            return Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                // Заголовок с датой
-                                Padding(
-                                  padding: const EdgeInsets.only(bottom: 8),
-                                  child: Center(
-                                    child: AppText.medium14(
-                                      isToday
-                                          ? 'Сегодня'.hardcoded
-                                          : date.stringFromDateTime,
-                                      color: AppColors.grayBtn,
-                                    ),
-                                  ),
-                                ),
-                                if (isLoading)
-                                  SizedBox(
-                                    height: 20,
-                                    width: 20,
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  // Заголовок с датой
+                                  Padding(
+                                    padding: const EdgeInsets.only(bottom: 8),
                                     child: Center(
-                                      child: CircularProgressIndicator(
-                                        strokeWidth: 2,
+                                      child: AppText.medium14(
+                                        isToday
+                                            ? 'Сегодня'.hardcoded
+                                            : date.stringFromDateTime,
                                         color: AppColors.grayBtn,
                                       ),
                                     ),
                                   ),
-                                // Список транзакций для этой даты
-                                ...menssageForDate.map(
-                                  (t) {
-                                    return _ChatBubble(
-                                      message: t,
-                                    );
-                                  },
+                                  if (isLoading)
+                                    SizedBox(
+                                      height: 20,
+                                      width: 20,
+                                      child: Center(
+                                        child: CircularProgressIndicator(
+                                          strokeWidth: 2,
+                                          color: AppColors.grayBtn,
+                                        ),
+                                      ),
+                                    ),
+                                  // Список транзакций для этой даты
+                                  ...menssageForDate.map(
+                                    (t) {
+                                      return _ChatBubble(
+                                        message: t,
+                                        colorBg:
+                                            widget.colorBg?.withOpacity(.3),
+                                      );
+                                    },
+                                  ),
+                                ],
+                              );
+                            },
+                            // separatorBuilder: (context, index) => 12.sbHeight,
+                          ),
+                        ],
+                      ),
+                    ),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 16,
+                    ),
+                    decoration: const BoxDecoration(
+                      color: Color(0xFFF8F9FC),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        if (imagePath != null)
+                          Row(
+                            children: [
+                              Image.file(
+                                File(imagePath!),
+                                width: 50,
+                                height: 50,
+                                fit: BoxFit.contain,
+                              ),
+                              4.sbHeight,
+                              IconButton(
+                                icon: const Icon(Icons.close),
+                                onPressed: _clear,
+                              ),
+                            ],
+                          ),
+                        Row(
+                          children: <Widget>[
+                            IconButton(
+                              icon: const Icon(Icons.add),
+                              onPressed: _handleImageSelection,
+                            ),
+                            Expanded(
+                              child: AppInput(
+                                controller: _controller,
+                                hintText: 'Напишите сообщение',
+                              ),
+                            ),
+                            12.sbWidth,
+                            Material(
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(40)),
+                              child: InkWell(
+                                onTap: _sendMessage,
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(40)),
+                                child: Ink(
+                                  height: 40,
+                                  width: 40,
+                                  decoration: BoxDecoration(
+                                    color: widget.colorBg ?? Colors.red,
+                                    borderRadius: const BorderRadius.all(
+                                      Radius.circular(40),
+                                    ),
+                                  ),
+                                  child: Icon(
+                                    Icons.north,
+                                    size: 20,
+                                    color: widget.colorIcon ?? AppColors.white,
+                                  ),
                                 ),
-                              ],
-                            );
-                          },
-                          // separatorBuilder: (context, index) => 12.sbHeight,
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
                   ),
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 16,
-                  ),
-                  decoration: const BoxDecoration(
-                    color: Color(0xFFF8F9FC),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      if (imagePath != null)
-                        Row(
-                          children: [
-                            Image.file(
-                              File(imagePath!),
-                              width: 50,
-                              height: 50,
-                              fit: BoxFit.contain,
-                            ),
-                            4.sbHeight,
-                            IconButton(
-                              icon: const Icon(Icons.close),
-                              onPressed: _clear,
-                            ),
-                          ],
-                        ),
-                      Row(
-                        children: <Widget>[
-                          IconButton(
-                            icon: const Icon(Icons.add),
-                            onPressed: _handleImageSelection,
-                          ),
-                          Expanded(
-                            child: AppInput(
-                              controller: _controller,
-                              hintText: 'Напишите сообщение',
-                            ),
-                          ),
-                          12.sbWidth,
-                          Material(
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(40)),
-                            child: InkWell(
-                              onTap: _sendMessage,
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(40)),
-                              child: Ink(
-                                height: 40,
-                                width: 40,
-                                decoration: BoxDecoration(
-                                  color: widget.colorBg ?? Colors.red,
-                                  borderRadius: const BorderRadius.all(
-                                    Radius.circular(40),
-                                  ),
-                                ),
-                                child: Icon(
-                                  Icons.north,
-                                  size: 20,
-                                  color: widget.colorIcon ?? AppColors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+                ],
+              ),
+      ),
     );
   }
 }

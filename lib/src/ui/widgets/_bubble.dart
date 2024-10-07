@@ -1,9 +1,13 @@
 part of '../../../sdk_chat_remarked.dart';
 
 class _ChatBubble extends StatelessWidget {
-  const _ChatBubble({required this.message});
+  const _ChatBubble({
+    required this.message,
+    this.colorBg,
+  });
 
   final Message message;
+  final Color? colorBg;
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +22,9 @@ class _ChatBubble extends StatelessWidget {
         constraints:
             BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.75),
         decoration: BoxDecoration(
-          color:
-              message.isOutgoing ? AppColors.bgWhite : const Color(0xFFFFF0F0),
+          color: message.isOutgoing
+              ? AppColors.bgWhite
+              : colorBg ?? const Color(0xFFFFF0F0),
           borderRadius: BorderRadius.only(
             topLeft: const Radius.circular(16),
             topRight: const Radius.circular(16),
@@ -34,8 +39,11 @@ class _ChatBubble extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            AppText.reqular14(message.text),
-            6.sbHeight,
+            if (message.text.isNotEmpty) ...[
+              AppText.reqular14(message.text),
+              6.sbHeight,
+            ],
+
             _Image(message.attachment),
 
             Row(
