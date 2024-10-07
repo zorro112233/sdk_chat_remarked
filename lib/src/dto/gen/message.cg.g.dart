@@ -18,6 +18,7 @@ _$MessageDtoImpl _$$MessageDtoImplFromJson(Map<String, dynamic> json) =>
           text: $checkedConvert('text', (v) => v as String?),
           direction: $checkedConvert('direction', (v) => v as String?),
           to: $checkedConvert('to', (v) => (v as num?)?.toInt()),
+          attachment: $checkedConvert('attachment', (v) => v as String?),
         );
         return val;
       },
@@ -31,4 +32,5 @@ Map<String, dynamic> _$$MessageDtoImplToJson(_$MessageDtoImpl instance) =>
       'text': instance.text,
       'direction': instance.direction,
       'to': instance.to,
+      'attachment': instance.attachment,
     };

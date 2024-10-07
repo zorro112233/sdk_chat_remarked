@@ -14,6 +14,7 @@ class MessageDto with _$MessageDto {
     String? text,
     String? direction,
     int? to,
+    String? attachment,
   }) = _MessageDto;
 
   /// конструктор
@@ -32,6 +33,7 @@ class MessageDto with _$MessageDto {
       text: text ?? '',
       isOutgoing: (direction ?? '') == 'out',
       to: to ?? 0,
+      attachment: attachment ?? '',
     );
   }
 }

@@ -36,6 +36,7 @@ class _ChatBubble extends StatelessWidget {
           children: [
             AppText.reqular14(message.text),
             6.sbHeight,
+            _Image(message.attachment),
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -57,6 +58,41 @@ class _ChatBubble extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class _Image extends StatelessWidget {
+  const _Image(this.image);
+
+  final String image;
+  @override
+  Widget build(BuildContext context) {
+    final isNetworkImage = image.contains('https');
+    return Column(
+      children: isNetworkImage
+          ? [
+              ImgNetwork(
+                pathImg: image,
+                height: 150,
+                fit: BoxFit.contain,
+                borderRadius: const BorderRadius.all(Radius.circular(6)),
+              ),
+              6.sbHeight,
+            ]
+          : image.isNotEmpty
+              ? [
+                  ClipRRect(
+                    borderRadius: const BorderRadius.all(Radius.circular(6)),
+                    child: Image.asset(
+                      image,
+                      height: 150,
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                  6.sbHeight,
+                ]
+              : [const SizedBox.shrink()],
     );
   }
 }

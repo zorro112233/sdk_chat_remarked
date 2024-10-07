@@ -27,7 +27,7 @@ class __ChatScreenState extends State<_ChatScreen> {
 
   bool isLoading = false;
 
-  Uint8List? image;
+  String? imagePath;
   String? base64image;
 
   /// Замените на ваш WebSocket сервер
@@ -144,13 +144,17 @@ class __ChatScreenState extends State<_ChatScreen> {
         {
           "order_id": widget.idOrder,
           "text": _controller.text,
-          "attachment": base64image,
+          "attachment": {
+            "name_orig": "file_name_${_messages.length + 1}.jpg",
+            "raw": base64image,
+          },
         }
       ]
     };
     final jsonString = jsonEncode(map);
 
     if (_controller.text.isNotEmpty) {
+      debugModePrint('jsonString $jsonString');
       channel.sink.add(jsonString);
 
       setState(() {
@@ -161,10 +165,12 @@ class __ChatScreenState extends State<_ChatScreen> {
           id: _messages.length + 1,
           uuid: '',
           to: 0,
+          attachment: imagePath ?? '',
         ));
       });
 
       _controller.clear();
+      _clear();
 
       addPostFrameCallback(_scrollToBottom);
     }
@@ -175,7 +181,7 @@ class __ChatScreenState extends State<_ChatScreen> {
 
     setState(() {
       base64image = res.base64image;
-      image = res.image;
+      imagePath = res.imagePath;
     });
   }
 
@@ -196,6 +202,13 @@ class __ChatScreenState extends State<_ChatScreen> {
   void changeLoaing(bool b) {
     setState(() {
       isLoading = b;
+    });
+  }
+
+  void _clear() {
+    setState(() {
+      base64image = null;
+      imagePath = null;
     });
   }
 
@@ -327,15 +340,22 @@ class __ChatScreenState extends State<_ChatScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      if (image != null) ...[
-                        Image.memory(
-                          image!,
-                          width: 50,
-                          height: 50,
-                          fit: BoxFit.contain,
+                      if (imagePath != null)
+                        Row(
+                          children: [
+                            Image.asset(
+                              imagePath!,
+                              width: 50,
+                              height: 50,
+                              fit: BoxFit.contain,
+                            ),
+                            4.sbHeight,
+                            IconButton(
+                              icon: const Icon(Icons.close),
+                              onPressed: _clear,
+                            ),
+                          ],
                         ),
-                        4.sbHeight,
-                      ],
                       Row(
                         children: <Widget>[
                           IconButton(

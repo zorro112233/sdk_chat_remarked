@@ -81,7 +81,7 @@ Image base64ToImage(String base64String) {
 }
 
 // Пример использования image_picker для выбора изображения и конвертации его в base64
-Future<({String base64image, Uint8List image})> pickImageToBase64() async {
+Future<({String base64image, String imagePath})> pickImageToBase64() async {
   final picker = ImagePicker();
   final XFile? image = await picker.pickImage(source: ImageSource.gallery);
 
@@ -92,7 +92,7 @@ Future<({String base64image, Uint8List image})> pickImageToBase64() async {
 
     // Преобразуем байты в base64
     String base64String = base64Encode(imageBytes);
-    return (base64image: base64String, image: imageBytes);
+    return (base64image: base64String, imagePath: imageFile.path);
   } else {
     throw Exception("Изображение не выбрано");
   }

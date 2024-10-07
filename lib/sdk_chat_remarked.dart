@@ -1,10 +1,10 @@
 library sdk_chat_remarked;
 
 import 'dart:convert';
-import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:sdk_chat_remarked/src/shared/widgets/img_network.dart';
 
 import 'package:web_socket_channel/web_socket_channel.dart';
 
