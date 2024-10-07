@@ -1,8 +1,11 @@
 import 'dart:async';
+import 'dart:convert';
+import 'dart:io';
 import 'dart:ui' as ui;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:image_picker/image_picker.dart';
 
 /// Геттер текущего времени.
 DateTime get now => DateTime.now();
@@ -67,4 +70,30 @@ class Debouncer {
 
   /// Cancel the current delayed call.
   void cancel() => _timer?.cancel();
+}
+
+Image base64ToImage(String base64String) {
+  // Декодируем base64 строку в байты
+  Uint8List decodedBytes = base64Decode(base64String);
+
+  // Преобразуем байты в Image
+  return Image.memory(decodedBytes);
+}
+
+// Пример использования image_picker для выбора изображения и конвертации его в base64
+Future<({String base64image, String imagePath})> pickImageToBase64() async {
+  final picker = ImagePicker();
+  final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+
+  if (image != null) {
+    // Читаем изображение как байты
+    File imageFile = File(image.path);
+    Uint8List imageBytes = await imageFile.readAsBytes();
+
+    // Преобразуем байты в base64
+    String base64String = base64Encode(imageBytes);
+    return (base64image: base64String, imagePath: imageFile.path);
+  } else {
+    throw Exception("Изображение не выбрано");
+  }
 }

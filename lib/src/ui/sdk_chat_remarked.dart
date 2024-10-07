@@ -7,12 +7,16 @@ class SdkChatRemarked extends StatelessWidget {
     required this.title,
     required this.token,
     this.idOrder,
+    this.colorIcon,
+    this.colorBg,
   });
 
   final String title;
   final String token;
   final int? idOrder;
   final Widget child;
+  final Color? colorIcon;
+  final Color? colorBg;
 
   @override
   Widget build(BuildContext context) {
@@ -44,10 +48,15 @@ class SdkChatRemarked extends StatelessWidget {
                   height: 44,
                   width: 44,
                   decoration: BoxDecoration(
-                    color: AppColors.pink,
+                    color: colorBg ?? AppColors.pink,
                     borderRadius: Consts.borderRadius44,
                   ),
-                  child: Center(child: AppIcons.icon(AppIcons.chat)),
+                  child: Center(
+                    child: AppIcons.icon(
+                      AppIcons.chat,
+                      color: colorIcon ?? AppColors.white,
+                    ),
+                  ),
                 ),
               ),
             ),

@@ -13,6 +13,7 @@ class Message with _$Message {
     required String text,
     required bool isOutgoing,
     required int to,
+    required String attachment,
   }) = _Message;
 
   /// Заглушка
@@ -23,5 +24,6 @@ class Message with _$Message {
     text: '',
     isOutgoing: false,
     to: 0,
+    attachment: '',
   );
 }

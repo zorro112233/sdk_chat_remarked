@@ -4,11 +4,11 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:sdk_chat_remarked/src/shared/widgets/img_network.dart';
 
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 import 'src/core/consts.dart';
-import 'src/core/inapp_logger.dart';
 import 'src/core/utils.dart';
 import 'src/core/ext.dart';
 import 'src/domain/message.cg.dart';

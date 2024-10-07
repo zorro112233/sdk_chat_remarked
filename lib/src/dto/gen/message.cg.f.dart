@@ -26,6 +26,7 @@ mixin _$MessageDto {
   String? get text => throw _privateConstructorUsedError;
   String? get direction => throw _privateConstructorUsedError;
   int? get to => throw _privateConstructorUsedError;
+  String? get attachment => throw _privateConstructorUsedError;
 
   /// Serializes this MessageDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -49,7 +50,8 @@ abstract class $MessageDtoCopyWith<$Res> {
       int? timestamp,
       String? text,
       String? direction,
-      int? to});
+      int? to,
+      String? attachment});
 }
 
 /// @nodoc
@@ -73,6 +75,7 @@ class _$MessageDtoCopyWithImpl<$Res, $Val extends MessageDto>
     Object? text = freezed,
     Object? direction = freezed,
     Object? to = freezed,
+    Object? attachment = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -99,6 +102,10 @@ class _$MessageDtoCopyWithImpl<$Res, $Val extends MessageDto>
           ? _value.to
           : to // ignore: cast_nullable_to_non_nullable
               as int?,
+      attachment: freezed == attachment
+          ? _value.attachment
+          : attachment // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -117,7 +124,8 @@ abstract class _$$MessageDtoImplCopyWith<$Res>
       int? timestamp,
       String? text,
       String? direction,
-      int? to});
+      int? to,
+      String? attachment});
 }
 
 /// @nodoc
@@ -139,6 +147,7 @@ class __$$MessageDtoImplCopyWithImpl<$Res>
     Object? text = freezed,
     Object? direction = freezed,
     Object? to = freezed,
+    Object? attachment = freezed,
   }) {
     return _then(_$MessageDtoImpl(
       id: freezed == id
@@ -165,6 +174,10 @@ class __$$MessageDtoImplCopyWithImpl<$Res>
           ? _value.to
           : to // ignore: cast_nullable_to_non_nullable
               as int?,
+      attachment: freezed == attachment
+          ? _value.attachment
+          : attachment // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -173,7 +186,13 @@ class __$$MessageDtoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$MessageDtoImpl extends _MessageDto {
   const _$MessageDtoImpl(
-      {this.id, this.uuid, this.timestamp, this.text, this.direction, this.to})
+      {this.id,
+      this.uuid,
+      this.timestamp,
+      this.text,
+      this.direction,
+      this.to,
+      this.attachment})
       : super._();
 
   factory _$MessageDtoImpl.fromJson(Map<String, dynamic> json) =>
@@ -191,10 +210,12 @@ class _$MessageDtoImpl extends _MessageDto {
   final String? direction;
   @override
   final int? to;
+  @override
+  final String? attachment;
 
   @override
   String toString() {
-    return 'MessageDto(id: $id, uuid: $uuid, timestamp: $timestamp, text: $text, direction: $direction, to: $to)';
+    return 'MessageDto(id: $id, uuid: $uuid, timestamp: $timestamp, text: $text, direction: $direction, to: $to, attachment: $attachment)';
   }
 
   @override
@@ -209,13 +230,15 @@ class _$MessageDtoImpl extends _MessageDto {
             (identical(other.text, text) || other.text == text) &&
             (identical(other.direction, direction) ||
                 other.direction == direction) &&
-            (identical(other.to, to) || other.to == to));
+            (identical(other.to, to) || other.to == to) &&
+            (identical(other.attachment, attachment) ||
+                other.attachment == attachment));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, uuid, timestamp, text, direction, to);
+  int get hashCode => Object.hash(
+      runtimeType, id, uuid, timestamp, text, direction, to, attachment);
 
   /// Create a copy of MessageDto
   /// with the given fields replaced by the non-null parameter values.
@@ -240,7 +263,8 @@ abstract class _MessageDto extends MessageDto {
       final int? timestamp,
       final String? text,
       final String? direction,
-      final int? to}) = _$MessageDtoImpl;
+      final int? to,
+      final String? attachment}) = _$MessageDtoImpl;
   const _MessageDto._() : super._();
 
   factory _MessageDto.fromJson(Map<String, dynamic> json) =
@@ -258,6 +282,8 @@ abstract class _MessageDto extends MessageDto {
   String? get direction;
   @override
   int? get to;
+  @override
+  String? get attachment;
 
   /// Create a copy of MessageDto
   /// with the given fields replaced by the non-null parameter values.

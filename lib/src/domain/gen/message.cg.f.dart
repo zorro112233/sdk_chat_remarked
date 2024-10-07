@@ -22,6 +22,7 @@ mixin _$Message {
   String get text => throw _privateConstructorUsedError;
   bool get isOutgoing => throw _privateConstructorUsedError;
   int get to => throw _privateConstructorUsedError;
+  String get attachment => throw _privateConstructorUsedError;
 
   /// Create a copy of Message
   /// with the given fields replaced by the non-null parameter values.
@@ -40,7 +41,8 @@ abstract class $MessageCopyWith<$Res> {
       DateTime timestamp,
       String text,
       bool isOutgoing,
-      int to});
+      int to,
+      String attachment});
 }
 
 /// @nodoc
@@ -64,6 +66,7 @@ class _$MessageCopyWithImpl<$Res, $Val extends Message>
     Object? text = null,
     Object? isOutgoing = null,
     Object? to = null,
+    Object? attachment = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -90,6 +93,10 @@ class _$MessageCopyWithImpl<$Res, $Val extends Message>
           ? _value.to
           : to // ignore: cast_nullable_to_non_nullable
               as int,
+      attachment: null == attachment
+          ? _value.attachment
+          : attachment // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -107,7 +114,8 @@ abstract class _$$MessageImplCopyWith<$Res> implements $MessageCopyWith<$Res> {
       DateTime timestamp,
       String text,
       bool isOutgoing,
-      int to});
+      int to,
+      String attachment});
 }
 
 /// @nodoc
@@ -129,6 +137,7 @@ class __$$MessageImplCopyWithImpl<$Res>
     Object? text = null,
     Object? isOutgoing = null,
     Object? to = null,
+    Object? attachment = null,
   }) {
     return _then(_$MessageImpl(
       id: null == id
@@ -155,6 +164,10 @@ class __$$MessageImplCopyWithImpl<$Res>
           ? _value.to
           : to // ignore: cast_nullable_to_non_nullable
               as int,
+      attachment: null == attachment
+          ? _value.attachment
+          : attachment // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -168,7 +181,8 @@ class _$MessageImpl implements _Message {
       required this.timestamp,
       required this.text,
       required this.isOutgoing,
-      required this.to});
+      required this.to,
+      required this.attachment});
 
   @override
   final int id;
@@ -182,10 +196,12 @@ class _$MessageImpl implements _Message {
   final bool isOutgoing;
   @override
   final int to;
+  @override
+  final String attachment;
 
   @override
   String toString() {
-    return 'Message(id: $id, uuid: $uuid, timestamp: $timestamp, text: $text, isOutgoing: $isOutgoing, to: $to)';
+    return 'Message(id: $id, uuid: $uuid, timestamp: $timestamp, text: $text, isOutgoing: $isOutgoing, to: $to, attachment: $attachment)';
   }
 
   @override
@@ -200,12 +216,14 @@ class _$MessageImpl implements _Message {
             (identical(other.text, text) || other.text == text) &&
             (identical(other.isOutgoing, isOutgoing) ||
                 other.isOutgoing == isOutgoing) &&
-            (identical(other.to, to) || other.to == to));
+            (identical(other.to, to) || other.to == to) &&
+            (identical(other.attachment, attachment) ||
+                other.attachment == attachment));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, uuid, timestamp, text, isOutgoing, to);
+  int get hashCode => Object.hash(
+      runtimeType, id, uuid, timestamp, text, isOutgoing, to, attachment);
 
   /// Create a copy of Message
   /// with the given fields replaced by the non-null parameter values.
@@ -223,7 +241,8 @@ abstract class _Message implements Message {
       required final DateTime timestamp,
       required final String text,
       required final bool isOutgoing,
-      required final int to}) = _$MessageImpl;
+      required final int to,
+      required final String attachment}) = _$MessageImpl;
 
   @override
   int get id;
@@ -237,6 +256,8 @@ abstract class _Message implements Message {
   bool get isOutgoing;
   @override
   int get to;
+  @override
+  String get attachment;
 
   /// Create a copy of Message
   /// with the given fields replaced by the non-null parameter values.

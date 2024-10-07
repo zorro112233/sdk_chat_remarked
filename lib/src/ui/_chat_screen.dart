@@ -27,6 +27,9 @@ class __ChatScreenState extends State<_ChatScreen> {
 
   bool isLoading = false;
 
+  String? imagePath;
+  String? base64image;
+
   /// Замените на ваш WebSocket сервер
   final channel = WebSocketChannel.connect(
     Uri.parse(url),
@@ -72,7 +75,7 @@ class __ChatScreenState extends State<_ChatScreen> {
         /// UNSEEN
         if (map.containsKey('unseen')) {
           final allMessages = AllMessagesDto.fromJson(map).toDomain();
-
+          debugModePrint('MESSAGES: ${allMessages.unseen.messages}');
           setState(() {
             totalMessages = allMessages.unseen.meta.total;
             if (_page == 0) {
@@ -141,12 +144,17 @@ class __ChatScreenState extends State<_ChatScreen> {
         {
           "order_id": widget.idOrder,
           "text": _controller.text,
+          "attachment": {
+            "name_orig": "file_name_${_messages.length + 1}.jpg",
+            "raw": base64image,
+          },
         }
       ]
     };
     final jsonString = jsonEncode(map);
 
     if (_controller.text.isNotEmpty) {
+      debugModePrint('jsonString $jsonString');
       channel.sink.add(jsonString);
 
       setState(() {
@@ -157,13 +165,24 @@ class __ChatScreenState extends State<_ChatScreen> {
           id: _messages.length + 1,
           uuid: '',
           to: 0,
+          attachment: imagePath ?? '',
         ));
       });
 
       _controller.clear();
+      _clear();
 
       addPostFrameCallback(_scrollToBottom);
     }
+  }
+
+  void _handleImageSelection() async {
+    final res = await pickImageToBase64();
+
+    setState(() {
+      base64image = res.base64image;
+      imagePath = res.imagePath;
+    });
   }
 
   void _scrollToBottom({bool isJump = false}) {
@@ -183,6 +202,13 @@ class __ChatScreenState extends State<_ChatScreen> {
   void changeLoaing(bool b) {
     setState(() {
       isLoading = b;
+    });
+  }
+
+  void _clear() {
+    setState(() {
+      base64image = null;
+      imagePath = null;
     });
   }
 
@@ -311,41 +337,62 @@ class __ChatScreenState extends State<_ChatScreen> {
                   decoration: const BoxDecoration(
                     color: Color(0xFFF8F9FC),
                   ),
-                  child: Row(
-                    children: <Widget>[
-                      // IconButton(
-                      //   icon: const Icon(Icons.add),
-                      //   onPressed: () {},
-                      // ),
-                      Expanded(
-                        child: AppInput(
-                          controller: _controller,
-                          hintText: 'Напишите сообщение',
-                        ),
-                      ),
-                      12.sbWidth,
-                      Material(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(40)),
-                        child: InkWell(
-                          onTap: _sendMessage,
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(40)),
-                          child: Ink(
-                            height: 40,
-                            width: 40,
-                            decoration: const BoxDecoration(
-                              color: Colors.red,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(40)),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (imagePath != null)
+                        Row(
+                          children: [
+                            Image.asset(
+                              imagePath!,
+                              width: 50,
+                              height: 50,
+                              fit: BoxFit.contain,
                             ),
-                            child: Icon(
-                              Icons.north,
-                              size: 20,
-                              color: AppColors.white,
+                            4.sbHeight,
+                            IconButton(
+                              icon: const Icon(Icons.close),
+                              onPressed: _clear,
+                            ),
+                          ],
+                        ),
+                      Row(
+                        children: <Widget>[
+                          IconButton(
+                            icon: const Icon(Icons.add),
+                            onPressed: _handleImageSelection,
+                          ),
+                          Expanded(
+                            child: AppInput(
+                              controller: _controller,
+                              hintText: 'Напишите сообщение',
                             ),
                           ),
-                        ),
+                          12.sbWidth,
+                          Material(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(40)),
+                            child: InkWell(
+                              onTap: _sendMessage,
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(40)),
+                              child: Ink(
+                                height: 40,
+                                width: 40,
+                                decoration: const BoxDecoration(
+                                  color: Colors.red,
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(40)),
+                                ),
+                                child: Icon(
+                                  Icons.north,
+                                  size: 20,
+                                  color: AppColors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
