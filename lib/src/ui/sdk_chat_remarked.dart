@@ -39,6 +39,8 @@ class SdkChatRemarked extends StatelessWidget {
                         title: title,
                         token: token,
                         idOrder: idOrder,
+                        colorBg: colorBg,
+                        colorIcon: colorIcon,
                       ),
                     ),
                   );
