@@ -6,7 +6,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:sdk_chat_remarked/src/shared/widgets/img_network.dart';
-
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 import 'src/core/consts.dart';

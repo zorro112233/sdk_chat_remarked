@@ -2,10 +2,15 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'dart:ui' as ui;
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
+import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart' as path;
+import 'package:path_provider/path_provider.dart';
 
 /// Геттер текущего времени.
 DateTime get now => DateTime.now();
@@ -90,10 +95,50 @@ Future<({String base64image, String imagePath})> pickImageToBase64() async {
     File imageFile = File(image.path);
     Uint8List imageBytes = await imageFile.readAsBytes();
 
+    // Сжатие изображения
+    final compressedImageData = await FlutterImageCompress.compressWithList(
+      imageBytes,
+      format: CompressFormat.png,
+      minWidth: 500,
+      quality: 70,
+    );
+
     // Преобразуем байты в base64
-    String base64String = base64Encode(imageBytes);
+    String base64String = base64Encode(compressedImageData);
     return (base64image: base64String, imagePath: imageFile.path);
   } else {
     throw Exception("Изображение не выбрано");
+  }
+}
+
+Future<File> downloadAndCompressImage(String url) async {
+  final filename = path.basename(url);
+  final tempDir = await getTemporaryDirectory();
+  final tempFile = File('${tempDir.path}/$filename');
+
+  // Проверка, существует ли файл
+  if (await tempFile.exists()) {
+    return tempFile;
+  }
+
+  // Скачивание изображения
+  final response = await http.get(Uri.parse(url));
+  if (response.statusCode == 200) {
+    final imageData = response.bodyBytes;
+
+    // Сжатие изображения
+    final Uint8List compressedImageData =
+        await FlutterImageCompress.compressWithList(
+      imageData,
+      format: CompressFormat.png,
+      minWidth: 600,
+      quality: 70,
+    );
+
+    // Сохранение сжатого изображения в кэш
+    await tempFile.writeAsBytes(compressedImageData);
+    return tempFile;
+  } else {
+    throw Exception('Failed to download image');
   }
 }

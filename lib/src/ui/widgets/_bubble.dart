@@ -93,8 +93,8 @@ class _Image extends StatelessWidget {
               ? [
                   ClipRRect(
                     borderRadius: const BorderRadius.all(Radius.circular(6)),
-                    child: Image.asset(
-                      image,
+                    child: Image.file(
+                      File(image),
                       height: 150,
                       fit: BoxFit.contain,
                     ),
