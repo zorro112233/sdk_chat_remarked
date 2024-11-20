@@ -34,6 +34,42 @@ SdkChatRemarked(
   child: const Text('Ваши виджеты тут'),
 );
 ```
+### Добавлено кастомная кнопка по переходу на чат и позиционирование этой кнопки
+
+```
+SdkChatRemarked(
+  /// Заголовок чата
+  title: 'CHAT WITH US',
+  /// Токен авторизованного пользователя
+  token: token,
+
+  /// параметр НЕ обязательный, только для передачи id заказа, для того чтоб создался чат чисто по данному заказу. 
+  idOrder: idOrder,
+  /// Здесь виджеты
+  child: const Text('Ваши виджеты тут'),
+
+   ### если нужно указать позицию кнопки нужно right и bottom сделать null или указать свои значения
+  /// по умолчанию 12
+  right: null,
+  bottom: null,
+  left: 12,
+  top: 12,
+  /// кастомная кнопка (пример)
+  buttonIcon: Container(
+    width: 40,
+    height: 40,
+    decoration: BoxDecoration(
+      borderRadius: const BorderRadius.all(Radius.circular(50)),
+      color: Colors.black54,
+    ),
+    alignment: Alignment.center,
+    child: const Icon(
+      Icons.chat,
+      color: Colors.white,
+    ),
+  ),
+);
+```
 
 ## Настройка SSH-ключа на GitHub если пакет не подтягивается и выдает ошибку
 
