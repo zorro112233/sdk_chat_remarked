@@ -29,6 +29,7 @@ class CustomCacheImage extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return SizedBox(
               height: height,
+              width: 40,
               child: const PreLoader(),
             );
           } else if (snapshot.hasError) {

@@ -9,6 +9,12 @@ class SdkChatRemarked extends StatelessWidget {
     this.idOrder,
     this.colorIcon,
     this.colorBg,
+    this.buttonIcon,
+    this.borderRadius,
+    this.left,
+    this.top,
+    this.right = 12,
+    this.bottom = 12,
   });
 
   final String title;
@@ -17,50 +23,56 @@ class SdkChatRemarked extends StatelessWidget {
   final Widget child;
   final Color? colorIcon;
   final Color? colorBg;
+  final Widget? buttonIcon;
+  final BorderRadius? borderRadius;
+  final double? left;
+  final double? top;
+  final double? right;
+  final double? bottom;
 
   @override
   Widget build(BuildContext context) {
+    final radius = buttonIcon == null ? Consts.borderRadius44 : borderRadius;
     return Stack(
       fit: StackFit.expand,
       children: [
         child,
         if (token.isNotEmpty)
           Positioned(
-            bottom: 12,
-            right: 12,
-            child: Material(
-              borderRadius: Consts.borderRadius44,
-              child: InkWell(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => _ChatScreen(
-                        title: title,
-                        token: token,
-                        idOrder: idOrder,
-                        colorBg: colorBg,
-                        colorIcon: colorIcon,
+            bottom: bottom,
+            right: right,
+            left: left,
+            top: top,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => _ChatScreen(
+                      title: title,
+                      token: token,
+                      idOrder: idOrder,
+                      colorBg: colorBg,
+                      colorIcon: colorIcon,
+                    ),
+                  ),
+                );
+              },
+              child: buttonIcon ??
+                  Container(
+                    height: 44,
+                    width: 44,
+                    decoration: BoxDecoration(
+                      color: colorBg ?? AppColors.pink,
+                      borderRadius: Consts.borderRadius44,
+                    ),
+                    child: Center(
+                      child: AppIcons.icon(
+                        AppIcons.chat,
+                        color: colorIcon ?? AppColors.white,
                       ),
                     ),
-                  );
-                },
-                borderRadius: Consts.borderRadius44,
-                child: Ink(
-                  height: 44,
-                  width: 44,
-                  decoration: BoxDecoration(
-                    color: colorBg ?? AppColors.pink,
-                    borderRadius: Consts.borderRadius44,
                   ),
-                  child: Center(
-                    child: AppIcons.icon(
-                      AppIcons.chat,
-                      color: colorIcon ?? AppColors.white,
-                    ),
-                  ),
-                ),
-              ),
             ),
           )
       ],
