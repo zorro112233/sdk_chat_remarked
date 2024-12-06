@@ -64,7 +64,7 @@ class SdkChatRemarked extends StatelessWidget {
                     width: 44,
                     decoration: BoxDecoration(
                       color: colorBg ?? AppColors.pink,
-                      borderRadius: Consts.borderRadius44,
+                      borderRadius: radius,
                     ),
                     child: Center(
                       child: AppIcons.icon(

@@ -21,6 +21,8 @@ class _ChatScreen extends StatefulWidget {
 }
 
 class __ChatScreenState extends State<_ChatScreen> {
+  static const unauthorized = 'Unauthorized';
+
   int _page = 0;
   int totalMessages = 0;
   final _controller = TextEditingController();
@@ -53,14 +55,14 @@ class __ChatScreenState extends State<_ChatScreen> {
 
     channel.stream.listen(
       (message) {
+        // debugModePrint('message $message');
         final map = jsonDecode(message) as Map<String, dynamic>;
 
         /// Сообщение об ошибке
-        if (map.containsKey('status')) {
-          final m = ReceiveMessageDto.fromJson(map).toDomain();
+        if (map['status'] != null && !map['status']) {
           changeLoading(false);
           setState(() {
-            _unauthorized = m.message;
+            _unauthorized = map['message'];
           });
           return;
         }
@@ -71,20 +73,20 @@ class __ChatScreenState extends State<_ChatScreen> {
           setState(() {
             _messages.add(message.messages.firstOrNull ?? Message.empty);
           });
-          changeLoading(false);
           if (_page <= 0) {
-            addPostFrameCallback(() => _scrollToBottom(isJump: true));
+            addPostFrameCallback(() => _scrollToBottom());
           }
         }
 
         /// UNSEEN
         if (map.containsKey('unseen')) {
+          // debugModePrint('UNSEEN::: ${map['unseen']}');
           final allMessages = AllMessagesDto.fromJson(map).toDomain();
 
           setState(() {
             totalMessages = allMessages.unseen.meta.total;
             if (_page == 0) {
-              debugModePrint('UNSEEN::: ${allMessages.unseen.messages.length}');
+              // debugModePrint('UNSEEN::: ${allMessages.unseen.messages.length}');
               _messages.addAll(allMessages.unseen.messages);
               addPostFrameCallback(() => _scrollToBottom(isJump: true));
             } else {
@@ -121,7 +123,6 @@ class __ChatScreenState extends State<_ChatScreen> {
     };
 
     final jsonString = jsonEncode(widget.idOrder != null ? startOrder : start);
-
     channel.sink.add(jsonString);
   }
 
@@ -229,6 +230,10 @@ class __ChatScreenState extends State<_ChatScreen> {
   @override
   Widget build(BuildContext context) {
     final messagesByDate = groupMenssagesByDate(_messages);
+
+    debugModePrint('isLoading $isLoading');
+    debugModePrint('_messages $_messages');
+
     return Material(
       color: Colors.white,
       child: Scaffold(
@@ -254,6 +259,12 @@ class __ChatScreenState extends State<_ChatScreen> {
                           strokeWidth: 3,
                           color: AppColors.grayBtn,
                         ),
+                      ),
+                    )
+                  else if (!isLoading && _unauthorized.isNotEmpty)
+                    Expanded(
+                      child: Center(
+                        child: AppText.bold24(_unauthorized),
                       ),
                     )
                   else if (_messages.isEmpty)
