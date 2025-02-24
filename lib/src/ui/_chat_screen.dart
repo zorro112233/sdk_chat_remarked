@@ -7,11 +7,13 @@ class _ChatScreen extends StatefulWidget {
     this.idOrder,
     this.colorIcon,
     this.colorBg,
+    this.point,
   });
 
   final String title;
 
   final String token;
+  final String? point;
   final int? idOrder;
 
   final Color? colorIcon;
@@ -21,8 +23,6 @@ class _ChatScreen extends StatefulWidget {
 }
 
 class __ChatScreenState extends State<_ChatScreen> {
-  static const unauthorized = 'Unauthorized';
-
   int _page = 0;
   int totalMessages = 0;
   final _controller = TextEditingController();
@@ -112,12 +112,12 @@ class __ChatScreenState extends State<_ChatScreen> {
     changeLoading(true);
 
     final start = {
-      "auth": {"token": widget.token},
+      "auth": {"token": widget.token, "point": widget.point},
       "page": _page,
     };
 
     final startOrder = {
-      "auth": {"token": widget.token},
+      "auth": {"token": widget.token, "point": widget.point},
       "page": _page,
       "id_order": widget.idOrder,
     };
@@ -231,14 +231,11 @@ class __ChatScreenState extends State<_ChatScreen> {
   Widget build(BuildContext context) {
     final messagesByDate = groupMenssagesByDate(_messages);
 
-    debugModePrint('isLoading $isLoading');
-    debugModePrint('_messages $_messages');
-
     return Material(
       color: Colors.white,
       child: Scaffold(
         backgroundColor:
-            widget.colorBg?.withOpacity(.4) ?? const Color(0xFFFFCDCD),
+            widget.colorBg?.withValues(alpha: .4) ?? const Color(0xFFFFCDCD),
         appBar: SimpleAppBar(
           title: widget.title,
           onLeadingTap: () {
@@ -320,8 +317,8 @@ class __ChatScreenState extends State<_ChatScreen> {
                                     (t) {
                                       return _ChatBubble(
                                         message: t,
-                                        colorBg:
-                                            widget.colorBg?.withOpacity(.3),
+                                        colorBg: widget.colorBg
+                                            ?.withValues(alpha: .3),
                                       );
                                     },
                                   ),

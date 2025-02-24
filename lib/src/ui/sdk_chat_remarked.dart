@@ -13,6 +13,7 @@ class SdkChatRemarked extends StatelessWidget {
     this.borderRadius,
     this.left,
     this.top,
+    this.point,
     this.right = 12,
     this.bottom = 12,
   });
@@ -29,6 +30,7 @@ class SdkChatRemarked extends StatelessWidget {
   final double? top;
   final double? right;
   final double? bottom;
+  final String? point;
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +56,7 @@ class SdkChatRemarked extends StatelessWidget {
                       idOrder: idOrder,
                       colorBg: colorBg,
                       colorIcon: colorIcon,
+                      point: point,
                     ),
                   ),
                 );
