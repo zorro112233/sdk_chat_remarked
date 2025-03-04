@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,94 +10,63 @@ part of '../receive_message.cg.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-ReceiveMessageDto _$ReceiveMessageDtoFromJson(Map<String, dynamic> json) {
-  return _ReceiveMessageDto.fromJson(json);
-}
 
 /// @nodoc
 mixin _$ReceiveMessageDto {
-  String? get status => throw _privateConstructorUsedError;
-  String? get message => throw _privateConstructorUsedError;
-  List<MessageDto>? get messages => throw _privateConstructorUsedError;
-
-  /// Serializes this ReceiveMessageDto to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  String? get status;
+  String? get message;
+  List<MessageDto>? get messages;
 
   /// Create a copy of ReceiveMessageDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ReceiveMessageDtoCopyWith<ReceiveMessageDto> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ReceiveMessageDtoCopyWith<$Res> {
-  factory $ReceiveMessageDtoCopyWith(
-          ReceiveMessageDto value, $Res Function(ReceiveMessageDto) then) =
-      _$ReceiveMessageDtoCopyWithImpl<$Res, ReceiveMessageDto>;
-  @useResult
-  $Res call({String? status, String? message, List<MessageDto>? messages});
-}
-
-/// @nodoc
-class _$ReceiveMessageDtoCopyWithImpl<$Res, $Val extends ReceiveMessageDto>
-    implements $ReceiveMessageDtoCopyWith<$Res> {
-  _$ReceiveMessageDtoCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of ReceiveMessageDto
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $ReceiveMessageDtoCopyWith<ReceiveMessageDto> get copyWith =>
+      _$ReceiveMessageDtoCopyWithImpl<ReceiveMessageDto>(
+          this as ReceiveMessageDto, _$identity);
+
+  /// Serializes this ReceiveMessageDto to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? status = freezed,
-    Object? message = freezed,
-    Object? messages = freezed,
-  }) {
-    return _then(_value.copyWith(
-      status: freezed == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String?,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-      messages: freezed == messages
-          ? _value.messages
-          : messages // ignore: cast_nullable_to_non_nullable
-              as List<MessageDto>?,
-    ) as $Val);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ReceiveMessageDto &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.message, message) || other.message == message) &&
+            const DeepCollectionEquality().equals(other.messages, messages));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, status, message,
+      const DeepCollectionEquality().hash(messages));
+
+  @override
+  String toString() {
+    return 'ReceiveMessageDto(status: $status, message: $message, messages: $messages)';
   }
 }
 
 /// @nodoc
-abstract class _$$ReceiveMessageDtoImplCopyWith<$Res>
-    implements $ReceiveMessageDtoCopyWith<$Res> {
-  factory _$$ReceiveMessageDtoImplCopyWith(_$ReceiveMessageDtoImpl value,
-          $Res Function(_$ReceiveMessageDtoImpl) then) =
-      __$$ReceiveMessageDtoImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $ReceiveMessageDtoCopyWith<$Res> {
+  factory $ReceiveMessageDtoCopyWith(
+          ReceiveMessageDto value, $Res Function(ReceiveMessageDto) _then) =
+      _$ReceiveMessageDtoCopyWithImpl;
   @useResult
   $Res call({String? status, String? message, List<MessageDto>? messages});
 }
 
 /// @nodoc
-class __$$ReceiveMessageDtoImplCopyWithImpl<$Res>
-    extends _$ReceiveMessageDtoCopyWithImpl<$Res, _$ReceiveMessageDtoImpl>
-    implements _$$ReceiveMessageDtoImplCopyWith<$Res> {
-  __$$ReceiveMessageDtoImplCopyWithImpl(_$ReceiveMessageDtoImpl _value,
-      $Res Function(_$ReceiveMessageDtoImpl) _then)
-      : super(_value, _then);
+class _$ReceiveMessageDtoCopyWithImpl<$Res>
+    implements $ReceiveMessageDtoCopyWith<$Res> {
+  _$ReceiveMessageDtoCopyWithImpl(this._self, this._then);
+
+  final ReceiveMessageDto _self;
+  final $Res Function(ReceiveMessageDto) _then;
 
   /// Create a copy of ReceiveMessageDto
   /// with the given fields replaced by the non-null parameter values.
@@ -107,17 +77,17 @@ class __$$ReceiveMessageDtoImplCopyWithImpl<$Res>
     Object? message = freezed,
     Object? messages = freezed,
   }) {
-    return _then(_$ReceiveMessageDtoImpl(
+    return _then(_self.copyWith(
       status: freezed == status
-          ? _value.status
+          ? _self.status
           : status // ignore: cast_nullable_to_non_nullable
               as String?,
       message: freezed == message
-          ? _value.message
+          ? _self.message
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
       messages: freezed == messages
-          ? _value._messages
+          ? _self.messages
           : messages // ignore: cast_nullable_to_non_nullable
               as List<MessageDto>?,
     ));
@@ -126,14 +96,13 @@ class __$$ReceiveMessageDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ReceiveMessageDtoImpl extends _ReceiveMessageDto {
-  const _$ReceiveMessageDtoImpl(
+class _ReceiveMessageDto extends ReceiveMessageDto {
+  const _ReceiveMessageDto(
       {this.status, this.message, final List<MessageDto>? messages})
       : _messages = messages,
         super._();
-
-  factory _$ReceiveMessageDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ReceiveMessageDtoImplFromJson(json);
+  factory _ReceiveMessageDto.fromJson(Map<String, dynamic> json) =>
+      _$ReceiveMessageDtoFromJson(json);
 
   @override
   final String? status;
@@ -149,16 +118,26 @@ class _$ReceiveMessageDtoImpl extends _ReceiveMessageDto {
     return EqualUnmodifiableListView(value);
   }
 
+  /// Create a copy of ReceiveMessageDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'ReceiveMessageDto(status: $status, message: $message, messages: $messages)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ReceiveMessageDtoCopyWith<_ReceiveMessageDto> get copyWith =>
+      __$ReceiveMessageDtoCopyWithImpl<_ReceiveMessageDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ReceiveMessageDtoToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ReceiveMessageDtoImpl &&
+            other is _ReceiveMessageDto &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.message, message) || other.message == message) &&
             const DeepCollectionEquality().equals(other._messages, _messages));
@@ -169,44 +148,55 @@ class _$ReceiveMessageDtoImpl extends _ReceiveMessageDto {
   int get hashCode => Object.hash(runtimeType, status, message,
       const DeepCollectionEquality().hash(_messages));
 
-  /// Create a copy of ReceiveMessageDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$ReceiveMessageDtoImplCopyWith<_$ReceiveMessageDtoImpl> get copyWith =>
-      __$$ReceiveMessageDtoImplCopyWithImpl<_$ReceiveMessageDtoImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ReceiveMessageDtoImplToJson(
-      this,
-    );
+  String toString() {
+    return 'ReceiveMessageDto(status: $status, message: $message, messages: $messages)';
   }
 }
 
-abstract class _ReceiveMessageDto extends ReceiveMessageDto {
-  const factory _ReceiveMessageDto(
-      {final String? status,
-      final String? message,
-      final List<MessageDto>? messages}) = _$ReceiveMessageDtoImpl;
-  const _ReceiveMessageDto._() : super._();
+/// @nodoc
+abstract mixin class _$ReceiveMessageDtoCopyWith<$Res>
+    implements $ReceiveMessageDtoCopyWith<$Res> {
+  factory _$ReceiveMessageDtoCopyWith(
+          _ReceiveMessageDto value, $Res Function(_ReceiveMessageDto) _then) =
+      __$ReceiveMessageDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call({String? status, String? message, List<MessageDto>? messages});
+}
 
-  factory _ReceiveMessageDto.fromJson(Map<String, dynamic> json) =
-      _$ReceiveMessageDtoImpl.fromJson;
+/// @nodoc
+class __$ReceiveMessageDtoCopyWithImpl<$Res>
+    implements _$ReceiveMessageDtoCopyWith<$Res> {
+  __$ReceiveMessageDtoCopyWithImpl(this._self, this._then);
 
-  @override
-  String? get status;
-  @override
-  String? get message;
-  @override
-  List<MessageDto>? get messages;
+  final _ReceiveMessageDto _self;
+  final $Res Function(_ReceiveMessageDto) _then;
 
   /// Create a copy of ReceiveMessageDto
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ReceiveMessageDtoImplCopyWith<_$ReceiveMessageDtoImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? status = freezed,
+    Object? message = freezed,
+    Object? messages = freezed,
+  }) {
+    return _then(_ReceiveMessageDto(
+      status: freezed == status
+          ? _self.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+      messages: freezed == messages
+          ? _self._messages
+          : messages // ignore: cast_nullable_to_non_nullable
+              as List<MessageDto>?,
+    ));
+  }
 }
+
+// dart format on

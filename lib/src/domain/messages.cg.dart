@@ -6,7 +6,7 @@ import 'message.cg.dart';
 part 'gen/messages.cg.f.dart';
 
 @freezed
-class AllMessages with _$AllMessages {
+abstract class AllMessages with _$AllMessages {
   const factory AllMessages({
     required Unseen unseen,
   }) = _AllMessages;
@@ -18,7 +18,7 @@ class AllMessages with _$AllMessages {
 }
 
 @freezed
-class Unseen with _$Unseen {
+abstract class Unseen with _$Unseen {
   const factory Unseen({
     required int count,
     required List<Message> messages,

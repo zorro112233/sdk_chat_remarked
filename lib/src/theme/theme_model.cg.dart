@@ -9,7 +9,7 @@ part 'gen/theme_model.cg.f.dart';
 
 /// Модель текущей темы приложения
 @freezed
-class ThemeModel with _$ThemeModel {
+abstract class ThemeModel with _$ThemeModel {
   /// factory текущей темы приложения
   const factory ThemeModel({
     required ThemeData data,

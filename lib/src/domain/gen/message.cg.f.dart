@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,104 +10,57 @@ part of '../message.cg.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$Message {
-  int get id => throw _privateConstructorUsedError;
-  String get uuid => throw _privateConstructorUsedError;
-  DateTime get timestamp => throw _privateConstructorUsedError;
-  String get text => throw _privateConstructorUsedError;
-  bool get isOutgoing => throw _privateConstructorUsedError;
-  int get to => throw _privateConstructorUsedError;
-  String get attachment => throw _privateConstructorUsedError;
+  int get id;
+  String get uuid;
+  DateTime get timestamp;
+  String get text;
+  bool get isOutgoing;
+  int get to;
+  String get attachment;
 
   /// Create a copy of Message
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $MessageCopyWith<Message> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $MessageCopyWith<$Res> {
-  factory $MessageCopyWith(Message value, $Res Function(Message) then) =
-      _$MessageCopyWithImpl<$Res, Message>;
-  @useResult
-  $Res call(
-      {int id,
-      String uuid,
-      DateTime timestamp,
-      String text,
-      bool isOutgoing,
-      int to,
-      String attachment});
-}
-
-/// @nodoc
-class _$MessageCopyWithImpl<$Res, $Val extends Message>
-    implements $MessageCopyWith<$Res> {
-  _$MessageCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of Message
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $MessageCopyWith<Message> get copyWith =>
+      _$MessageCopyWithImpl<Message>(this as Message, _$identity);
+
   @override
-  $Res call({
-    Object? id = null,
-    Object? uuid = null,
-    Object? timestamp = null,
-    Object? text = null,
-    Object? isOutgoing = null,
-    Object? to = null,
-    Object? attachment = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      uuid: null == uuid
-          ? _value.uuid
-          : uuid // ignore: cast_nullable_to_non_nullable
-              as String,
-      timestamp: null == timestamp
-          ? _value.timestamp
-          : timestamp // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      text: null == text
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String,
-      isOutgoing: null == isOutgoing
-          ? _value.isOutgoing
-          : isOutgoing // ignore: cast_nullable_to_non_nullable
-              as bool,
-      to: null == to
-          ? _value.to
-          : to // ignore: cast_nullable_to_non_nullable
-              as int,
-      attachment: null == attachment
-          ? _value.attachment
-          : attachment // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is Message &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.uuid, uuid) || other.uuid == uuid) &&
+            (identical(other.timestamp, timestamp) ||
+                other.timestamp == timestamp) &&
+            (identical(other.text, text) || other.text == text) &&
+            (identical(other.isOutgoing, isOutgoing) ||
+                other.isOutgoing == isOutgoing) &&
+            (identical(other.to, to) || other.to == to) &&
+            (identical(other.attachment, attachment) ||
+                other.attachment == attachment));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, id, uuid, timestamp, text, isOutgoing, to, attachment);
+
+  @override
+  String toString() {
+    return 'Message(id: $id, uuid: $uuid, timestamp: $timestamp, text: $text, isOutgoing: $isOutgoing, to: $to, attachment: $attachment)';
   }
 }
 
 /// @nodoc
-abstract class _$$MessageImplCopyWith<$Res> implements $MessageCopyWith<$Res> {
-  factory _$$MessageImplCopyWith(
-          _$MessageImpl value, $Res Function(_$MessageImpl) then) =
-      __$$MessageImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $MessageCopyWith<$Res> {
+  factory $MessageCopyWith(Message value, $Res Function(Message) _then) =
+      _$MessageCopyWithImpl;
   @useResult
   $Res call(
       {int id,
@@ -119,12 +73,11 @@ abstract class _$$MessageImplCopyWith<$Res> implements $MessageCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$MessageImplCopyWithImpl<$Res>
-    extends _$MessageCopyWithImpl<$Res, _$MessageImpl>
-    implements _$$MessageImplCopyWith<$Res> {
-  __$$MessageImplCopyWithImpl(
-      _$MessageImpl _value, $Res Function(_$MessageImpl) _then)
-      : super(_value, _then);
+class _$MessageCopyWithImpl<$Res> implements $MessageCopyWith<$Res> {
+  _$MessageCopyWithImpl(this._self, this._then);
+
+  final Message _self;
+  final $Res Function(Message) _then;
 
   /// Create a copy of Message
   /// with the given fields replaced by the non-null parameter values.
@@ -139,33 +92,33 @@ class __$$MessageImplCopyWithImpl<$Res>
     Object? to = null,
     Object? attachment = null,
   }) {
-    return _then(_$MessageImpl(
+    return _then(_self.copyWith(
       id: null == id
-          ? _value.id
+          ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
       uuid: null == uuid
-          ? _value.uuid
+          ? _self.uuid
           : uuid // ignore: cast_nullable_to_non_nullable
               as String,
       timestamp: null == timestamp
-          ? _value.timestamp
+          ? _self.timestamp
           : timestamp // ignore: cast_nullable_to_non_nullable
               as DateTime,
       text: null == text
-          ? _value.text
+          ? _self.text
           : text // ignore: cast_nullable_to_non_nullable
               as String,
       isOutgoing: null == isOutgoing
-          ? _value.isOutgoing
+          ? _self.isOutgoing
           : isOutgoing // ignore: cast_nullable_to_non_nullable
               as bool,
       to: null == to
-          ? _value.to
+          ? _self.to
           : to // ignore: cast_nullable_to_non_nullable
               as int,
       attachment: null == attachment
-          ? _value.attachment
+          ? _self.attachment
           : attachment // ignore: cast_nullable_to_non_nullable
               as String,
     ));
@@ -174,8 +127,8 @@ class __$$MessageImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$MessageImpl implements _Message {
-  const _$MessageImpl(
+class _Message implements Message {
+  const _Message(
       {required this.id,
       required this.uuid,
       required this.timestamp,
@@ -199,16 +152,19 @@ class _$MessageImpl implements _Message {
   @override
   final String attachment;
 
+  /// Create a copy of Message
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'Message(id: $id, uuid: $uuid, timestamp: $timestamp, text: $text, isOutgoing: $isOutgoing, to: $to, attachment: $attachment)';
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$MessageCopyWith<_Message> get copyWith =>
+      __$MessageCopyWithImpl<_Message>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$MessageImpl &&
+            other is _Message &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.uuid, uuid) || other.uuid == uuid) &&
             (identical(other.timestamp, timestamp) ||
@@ -225,44 +181,79 @@ class _$MessageImpl implements _Message {
   int get hashCode => Object.hash(
       runtimeType, id, uuid, timestamp, text, isOutgoing, to, attachment);
 
+  @override
+  String toString() {
+    return 'Message(id: $id, uuid: $uuid, timestamp: $timestamp, text: $text, isOutgoing: $isOutgoing, to: $to, attachment: $attachment)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$MessageCopyWith<$Res> implements $MessageCopyWith<$Res> {
+  factory _$MessageCopyWith(_Message value, $Res Function(_Message) _then) =
+      __$MessageCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {int id,
+      String uuid,
+      DateTime timestamp,
+      String text,
+      bool isOutgoing,
+      int to,
+      String attachment});
+}
+
+/// @nodoc
+class __$MessageCopyWithImpl<$Res> implements _$MessageCopyWith<$Res> {
+  __$MessageCopyWithImpl(this._self, this._then);
+
+  final _Message _self;
+  final $Res Function(_Message) _then;
+
   /// Create a copy of Message
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$MessageImplCopyWith<_$MessageImpl> get copyWith =>
-      __$$MessageImplCopyWithImpl<_$MessageImpl>(this, _$identity);
+  $Res call({
+    Object? id = null,
+    Object? uuid = null,
+    Object? timestamp = null,
+    Object? text = null,
+    Object? isOutgoing = null,
+    Object? to = null,
+    Object? attachment = null,
+  }) {
+    return _then(_Message(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      uuid: null == uuid
+          ? _self.uuid
+          : uuid // ignore: cast_nullable_to_non_nullable
+              as String,
+      timestamp: null == timestamp
+          ? _self.timestamp
+          : timestamp // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      text: null == text
+          ? _self.text
+          : text // ignore: cast_nullable_to_non_nullable
+              as String,
+      isOutgoing: null == isOutgoing
+          ? _self.isOutgoing
+          : isOutgoing // ignore: cast_nullable_to_non_nullable
+              as bool,
+      to: null == to
+          ? _self.to
+          : to // ignore: cast_nullable_to_non_nullable
+              as int,
+      attachment: null == attachment
+          ? _self.attachment
+          : attachment // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
-abstract class _Message implements Message {
-  const factory _Message(
-      {required final int id,
-      required final String uuid,
-      required final DateTime timestamp,
-      required final String text,
-      required final bool isOutgoing,
-      required final int to,
-      required final String attachment}) = _$MessageImpl;
-
-  @override
-  int get id;
-  @override
-  String get uuid;
-  @override
-  DateTime get timestamp;
-  @override
-  String get text;
-  @override
-  bool get isOutgoing;
-  @override
-  int get to;
-  @override
-  String get attachment;
-
-  /// Create a copy of Message
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$MessageImplCopyWith<_$MessageImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+// dart format on

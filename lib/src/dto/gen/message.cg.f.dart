@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,220 +10,34 @@ part of '../message.cg.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-MessageDto _$MessageDtoFromJson(Map<String, dynamic> json) {
-  return _MessageDto.fromJson(json);
-}
 
 /// @nodoc
 mixin _$MessageDto {
-  int? get id => throw _privateConstructorUsedError;
-  String? get uuid => throw _privateConstructorUsedError;
-  int? get timestamp => throw _privateConstructorUsedError;
-  String? get text => throw _privateConstructorUsedError;
-  String? get direction => throw _privateConstructorUsedError;
-  int? get to => throw _privateConstructorUsedError;
-  String? get attachment => throw _privateConstructorUsedError;
-
-  /// Serializes this MessageDto to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  int? get id;
+  String? get uuid;
+  int? get timestamp;
+  String? get text;
+  String? get direction;
+  int? get to;
+  String? get attachment;
 
   /// Create a copy of MessageDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $MessageDtoCopyWith<MessageDto> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+      _$MessageDtoCopyWithImpl<MessageDto>(this as MessageDto, _$identity);
 
-/// @nodoc
-abstract class $MessageDtoCopyWith<$Res> {
-  factory $MessageDtoCopyWith(
-          MessageDto value, $Res Function(MessageDto) then) =
-      _$MessageDtoCopyWithImpl<$Res, MessageDto>;
-  @useResult
-  $Res call(
-      {int? id,
-      String? uuid,
-      int? timestamp,
-      String? text,
-      String? direction,
-      int? to,
-      String? attachment});
-}
-
-/// @nodoc
-class _$MessageDtoCopyWithImpl<$Res, $Val extends MessageDto>
-    implements $MessageDtoCopyWith<$Res> {
-  _$MessageDtoCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of MessageDto
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = freezed,
-    Object? uuid = freezed,
-    Object? timestamp = freezed,
-    Object? text = freezed,
-    Object? direction = freezed,
-    Object? to = freezed,
-    Object? attachment = freezed,
-  }) {
-    return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      uuid: freezed == uuid
-          ? _value.uuid
-          : uuid // ignore: cast_nullable_to_non_nullable
-              as String?,
-      timestamp: freezed == timestamp
-          ? _value.timestamp
-          : timestamp // ignore: cast_nullable_to_non_nullable
-              as int?,
-      text: freezed == text
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String?,
-      direction: freezed == direction
-          ? _value.direction
-          : direction // ignore: cast_nullable_to_non_nullable
-              as String?,
-      to: freezed == to
-          ? _value.to
-          : to // ignore: cast_nullable_to_non_nullable
-              as int?,
-      attachment: freezed == attachment
-          ? _value.attachment
-          : attachment // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$MessageDtoImplCopyWith<$Res>
-    implements $MessageDtoCopyWith<$Res> {
-  factory _$$MessageDtoImplCopyWith(
-          _$MessageDtoImpl value, $Res Function(_$MessageDtoImpl) then) =
-      __$$MessageDtoImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {int? id,
-      String? uuid,
-      int? timestamp,
-      String? text,
-      String? direction,
-      int? to,
-      String? attachment});
-}
-
-/// @nodoc
-class __$$MessageDtoImplCopyWithImpl<$Res>
-    extends _$MessageDtoCopyWithImpl<$Res, _$MessageDtoImpl>
-    implements _$$MessageDtoImplCopyWith<$Res> {
-  __$$MessageDtoImplCopyWithImpl(
-      _$MessageDtoImpl _value, $Res Function(_$MessageDtoImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of MessageDto
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = freezed,
-    Object? uuid = freezed,
-    Object? timestamp = freezed,
-    Object? text = freezed,
-    Object? direction = freezed,
-    Object? to = freezed,
-    Object? attachment = freezed,
-  }) {
-    return _then(_$MessageDtoImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      uuid: freezed == uuid
-          ? _value.uuid
-          : uuid // ignore: cast_nullable_to_non_nullable
-              as String?,
-      timestamp: freezed == timestamp
-          ? _value.timestamp
-          : timestamp // ignore: cast_nullable_to_non_nullable
-              as int?,
-      text: freezed == text
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String?,
-      direction: freezed == direction
-          ? _value.direction
-          : direction // ignore: cast_nullable_to_non_nullable
-              as String?,
-      to: freezed == to
-          ? _value.to
-          : to // ignore: cast_nullable_to_non_nullable
-              as int?,
-      attachment: freezed == attachment
-          ? _value.attachment
-          : attachment // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$MessageDtoImpl extends _MessageDto {
-  const _$MessageDtoImpl(
-      {this.id,
-      this.uuid,
-      this.timestamp,
-      this.text,
-      this.direction,
-      this.to,
-      this.attachment})
-      : super._();
-
-  factory _$MessageDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$MessageDtoImplFromJson(json);
-
-  @override
-  final int? id;
-  @override
-  final String? uuid;
-  @override
-  final int? timestamp;
-  @override
-  final String? text;
-  @override
-  final String? direction;
-  @override
-  final int? to;
-  @override
-  final String? attachment;
-
-  @override
-  String toString() {
-    return 'MessageDto(id: $id, uuid: $uuid, timestamp: $timestamp, text: $text, direction: $direction, to: $to, attachment: $attachment)';
-  }
+  /// Serializes this MessageDto to a JSON map.
+  Map<String, dynamic> toJson();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$MessageDtoImpl &&
+            other is MessageDto &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.uuid, uuid) || other.uuid == uuid) &&
             (identical(other.timestamp, timestamp) ||
@@ -240,55 +55,223 @@ class _$MessageDtoImpl extends _MessageDto {
   int get hashCode => Object.hash(
       runtimeType, id, uuid, timestamp, text, direction, to, attachment);
 
-  /// Create a copy of MessageDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$MessageDtoImplCopyWith<_$MessageDtoImpl> get copyWith =>
-      __$$MessageDtoImplCopyWithImpl<_$MessageDtoImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$MessageDtoImplToJson(
-      this,
-    );
+  String toString() {
+    return 'MessageDto(id: $id, uuid: $uuid, timestamp: $timestamp, text: $text, direction: $direction, to: $to, attachment: $attachment)';
   }
 }
 
-abstract class _MessageDto extends MessageDto {
-  const factory _MessageDto(
-      {final int? id,
-      final String? uuid,
-      final int? timestamp,
-      final String? text,
-      final String? direction,
-      final int? to,
-      final String? attachment}) = _$MessageDtoImpl;
-  const _MessageDto._() : super._();
+/// @nodoc
+abstract mixin class $MessageDtoCopyWith<$Res> {
+  factory $MessageDtoCopyWith(
+          MessageDto value, $Res Function(MessageDto) _then) =
+      _$MessageDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {int? id,
+      String? uuid,
+      int? timestamp,
+      String? text,
+      String? direction,
+      int? to,
+      String? attachment});
+}
 
-  factory _MessageDto.fromJson(Map<String, dynamic> json) =
-      _$MessageDtoImpl.fromJson;
+/// @nodoc
+class _$MessageDtoCopyWithImpl<$Res> implements $MessageDtoCopyWith<$Res> {
+  _$MessageDtoCopyWithImpl(this._self, this._then);
+
+  final MessageDto _self;
+  final $Res Function(MessageDto) _then;
+
+  /// Create a copy of MessageDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? uuid = freezed,
+    Object? timestamp = freezed,
+    Object? text = freezed,
+    Object? direction = freezed,
+    Object? to = freezed,
+    Object? attachment = freezed,
+  }) {
+    return _then(_self.copyWith(
+      id: freezed == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      uuid: freezed == uuid
+          ? _self.uuid
+          : uuid // ignore: cast_nullable_to_non_nullable
+              as String?,
+      timestamp: freezed == timestamp
+          ? _self.timestamp
+          : timestamp // ignore: cast_nullable_to_non_nullable
+              as int?,
+      text: freezed == text
+          ? _self.text
+          : text // ignore: cast_nullable_to_non_nullable
+              as String?,
+      direction: freezed == direction
+          ? _self.direction
+          : direction // ignore: cast_nullable_to_non_nullable
+              as String?,
+      to: freezed == to
+          ? _self.to
+          : to // ignore: cast_nullable_to_non_nullable
+              as int?,
+      attachment: freezed == attachment
+          ? _self.attachment
+          : attachment // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _MessageDto extends MessageDto {
+  const _MessageDto(
+      {this.id,
+      this.uuid,
+      this.timestamp,
+      this.text,
+      this.direction,
+      this.to,
+      this.attachment})
+      : super._();
+  factory _MessageDto.fromJson(Map<String, dynamic> json) =>
+      _$MessageDtoFromJson(json);
 
   @override
-  int? get id;
+  final int? id;
   @override
-  String? get uuid;
+  final String? uuid;
   @override
-  int? get timestamp;
+  final int? timestamp;
   @override
-  String? get text;
+  final String? text;
   @override
-  String? get direction;
+  final String? direction;
   @override
-  int? get to;
+  final int? to;
   @override
-  String? get attachment;
+  final String? attachment;
 
   /// Create a copy of MessageDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$MessageDtoImplCopyWith<_$MessageDtoImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  _$MessageDtoCopyWith<_MessageDto> get copyWith =>
+      __$MessageDtoCopyWithImpl<_MessageDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$MessageDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _MessageDto &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.uuid, uuid) || other.uuid == uuid) &&
+            (identical(other.timestamp, timestamp) ||
+                other.timestamp == timestamp) &&
+            (identical(other.text, text) || other.text == text) &&
+            (identical(other.direction, direction) ||
+                other.direction == direction) &&
+            (identical(other.to, to) || other.to == to) &&
+            (identical(other.attachment, attachment) ||
+                other.attachment == attachment));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, id, uuid, timestamp, text, direction, to, attachment);
+
+  @override
+  String toString() {
+    return 'MessageDto(id: $id, uuid: $uuid, timestamp: $timestamp, text: $text, direction: $direction, to: $to, attachment: $attachment)';
+  }
 }
+
+/// @nodoc
+abstract mixin class _$MessageDtoCopyWith<$Res>
+    implements $MessageDtoCopyWith<$Res> {
+  factory _$MessageDtoCopyWith(
+          _MessageDto value, $Res Function(_MessageDto) _then) =
+      __$MessageDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {int? id,
+      String? uuid,
+      int? timestamp,
+      String? text,
+      String? direction,
+      int? to,
+      String? attachment});
+}
+
+/// @nodoc
+class __$MessageDtoCopyWithImpl<$Res> implements _$MessageDtoCopyWith<$Res> {
+  __$MessageDtoCopyWithImpl(this._self, this._then);
+
+  final _MessageDto _self;
+  final $Res Function(_MessageDto) _then;
+
+  /// Create a copy of MessageDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? id = freezed,
+    Object? uuid = freezed,
+    Object? timestamp = freezed,
+    Object? text = freezed,
+    Object? direction = freezed,
+    Object? to = freezed,
+    Object? attachment = freezed,
+  }) {
+    return _then(_MessageDto(
+      id: freezed == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      uuid: freezed == uuid
+          ? _self.uuid
+          : uuid // ignore: cast_nullable_to_non_nullable
+              as String?,
+      timestamp: freezed == timestamp
+          ? _self.timestamp
+          : timestamp // ignore: cast_nullable_to_non_nullable
+              as int?,
+      text: freezed == text
+          ? _self.text
+          : text // ignore: cast_nullable_to_non_nullable
+              as String?,
+      direction: freezed == direction
+          ? _self.direction
+          : direction // ignore: cast_nullable_to_non_nullable
+              as String?,
+      to: freezed == to
+          ? _self.to
+          : to // ignore: cast_nullable_to_non_nullable
+              as int?,
+      attachment: freezed == attachment
+          ? _self.attachment
+          : attachment // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+// dart format on

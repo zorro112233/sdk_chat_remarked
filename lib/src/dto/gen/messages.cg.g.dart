@@ -6,12 +6,12 @@ part of '../messages.cg.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$AllMessagesDtoImpl _$$AllMessagesDtoImplFromJson(Map<String, dynamic> json) =>
+_AllMessagesDto _$AllMessagesDtoFromJson(Map<String, dynamic> json) =>
     $checkedCreate(
-      r'_$AllMessagesDtoImpl',
+      '_AllMessagesDto',
       json,
       ($checkedConvert) {
-        final val = _$AllMessagesDtoImpl(
+        final val = _AllMessagesDto(
           unseen: $checkedConvert(
               'unseen',
               (v) => v == null
@@ -22,18 +22,16 @@ _$AllMessagesDtoImpl _$$AllMessagesDtoImplFromJson(Map<String, dynamic> json) =>
       },
     );
 
-Map<String, dynamic> _$$AllMessagesDtoImplToJson(
-        _$AllMessagesDtoImpl instance) =>
+Map<String, dynamic> _$AllMessagesDtoToJson(_AllMessagesDto instance) =>
     <String, dynamic>{
       'unseen': instance.unseen?.toJson(),
     };
 
-_$UnseenDtoImpl _$$UnseenDtoImplFromJson(Map<String, dynamic> json) =>
-    $checkedCreate(
-      r'_$UnseenDtoImpl',
+_UnseenDto _$UnseenDtoFromJson(Map<String, dynamic> json) => $checkedCreate(
+      '_UnseenDto',
       json,
       ($checkedConvert) {
-        final val = _$UnseenDtoImpl(
+        final val = _UnseenDto(
           count: $checkedConvert('count', (v) => (v as num?)?.toInt()),
           messages: $checkedConvert(
               'messages',
@@ -50,7 +48,7 @@ _$UnseenDtoImpl _$$UnseenDtoImplFromJson(Map<String, dynamic> json) =>
       },
     );
 
-Map<String, dynamic> _$$UnseenDtoImplToJson(_$UnseenDtoImpl instance) =>
+Map<String, dynamic> _$UnseenDtoToJson(_UnseenDto instance) =>
     <String, dynamic>{
       'count': instance.count,
       'messages': instance.messages?.map((e) => e.toJson()).toList(),

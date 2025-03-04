@@ -6,7 +6,7 @@ part 'gen/message.cg.f.dart';
 part 'gen/message.cg.g.dart';
 
 @freezed
-class MessageDto with _$MessageDto {
+abstract class MessageDto with _$MessageDto {
   const factory MessageDto({
     int? id,
     String? uuid,

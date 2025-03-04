@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,87 +10,59 @@ part of '../receive_message.cg.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$ReceiveMessage {
-  String get status => throw _privateConstructorUsedError;
-  String get message => throw _privateConstructorUsedError;
-  List<Message> get messages => throw _privateConstructorUsedError;
+  String get status;
+  String get message;
+  List<Message> get messages;
 
   /// Create a copy of ReceiveMessage
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ReceiveMessageCopyWith<ReceiveMessage> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ReceiveMessageCopyWith<$Res> {
-  factory $ReceiveMessageCopyWith(
-          ReceiveMessage value, $Res Function(ReceiveMessage) then) =
-      _$ReceiveMessageCopyWithImpl<$Res, ReceiveMessage>;
-  @useResult
-  $Res call({String status, String message, List<Message> messages});
-}
-
-/// @nodoc
-class _$ReceiveMessageCopyWithImpl<$Res, $Val extends ReceiveMessage>
-    implements $ReceiveMessageCopyWith<$Res> {
-  _$ReceiveMessageCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of ReceiveMessage
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $ReceiveMessageCopyWith<ReceiveMessage> get copyWith =>
+      _$ReceiveMessageCopyWithImpl<ReceiveMessage>(
+          this as ReceiveMessage, _$identity);
+
   @override
-  $Res call({
-    Object? status = null,
-    Object? message = null,
-    Object? messages = null,
-  }) {
-    return _then(_value.copyWith(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-      messages: null == messages
-          ? _value.messages
-          : messages // ignore: cast_nullable_to_non_nullable
-              as List<Message>,
-    ) as $Val);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ReceiveMessage &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.message, message) || other.message == message) &&
+            const DeepCollectionEquality().equals(other.messages, messages));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, status, message,
+      const DeepCollectionEquality().hash(messages));
+
+  @override
+  String toString() {
+    return 'ReceiveMessage(status: $status, message: $message, messages: $messages)';
   }
 }
 
 /// @nodoc
-abstract class _$$ReceiveMessageImplCopyWith<$Res>
-    implements $ReceiveMessageCopyWith<$Res> {
-  factory _$$ReceiveMessageImplCopyWith(_$ReceiveMessageImpl value,
-          $Res Function(_$ReceiveMessageImpl) then) =
-      __$$ReceiveMessageImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $ReceiveMessageCopyWith<$Res> {
+  factory $ReceiveMessageCopyWith(
+          ReceiveMessage value, $Res Function(ReceiveMessage) _then) =
+      _$ReceiveMessageCopyWithImpl;
   @useResult
   $Res call({String status, String message, List<Message> messages});
 }
 
 /// @nodoc
-class __$$ReceiveMessageImplCopyWithImpl<$Res>
-    extends _$ReceiveMessageCopyWithImpl<$Res, _$ReceiveMessageImpl>
-    implements _$$ReceiveMessageImplCopyWith<$Res> {
-  __$$ReceiveMessageImplCopyWithImpl(
-      _$ReceiveMessageImpl _value, $Res Function(_$ReceiveMessageImpl) _then)
-      : super(_value, _then);
+class _$ReceiveMessageCopyWithImpl<$Res>
+    implements $ReceiveMessageCopyWith<$Res> {
+  _$ReceiveMessageCopyWithImpl(this._self, this._then);
+
+  final ReceiveMessage _self;
+  final $Res Function(ReceiveMessage) _then;
 
   /// Create a copy of ReceiveMessage
   /// with the given fields replaced by the non-null parameter values.
@@ -100,17 +73,17 @@ class __$$ReceiveMessageImplCopyWithImpl<$Res>
     Object? message = null,
     Object? messages = null,
   }) {
-    return _then(_$ReceiveMessageImpl(
+    return _then(_self.copyWith(
       status: null == status
-          ? _value.status
+          ? _self.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
       message: null == message
-          ? _value.message
+          ? _self.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
       messages: null == messages
-          ? _value._messages
+          ? _self.messages
           : messages // ignore: cast_nullable_to_non_nullable
               as List<Message>,
     ));
@@ -119,8 +92,8 @@ class __$$ReceiveMessageImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ReceiveMessageImpl implements _ReceiveMessage {
-  const _$ReceiveMessageImpl(
+class _ReceiveMessage implements ReceiveMessage {
+  const _ReceiveMessage(
       {required this.status,
       required this.message,
       required final List<Message> messages})
@@ -138,16 +111,19 @@ class _$ReceiveMessageImpl implements _ReceiveMessage {
     return EqualUnmodifiableListView(_messages);
   }
 
+  /// Create a copy of ReceiveMessage
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'ReceiveMessage(status: $status, message: $message, messages: $messages)';
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ReceiveMessageCopyWith<_ReceiveMessage> get copyWith =>
+      __$ReceiveMessageCopyWithImpl<_ReceiveMessage>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ReceiveMessageImpl &&
+            other is _ReceiveMessage &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.message, message) || other.message == message) &&
             const DeepCollectionEquality().equals(other._messages, _messages));
@@ -157,33 +133,55 @@ class _$ReceiveMessageImpl implements _ReceiveMessage {
   int get hashCode => Object.hash(runtimeType, status, message,
       const DeepCollectionEquality().hash(_messages));
 
+  @override
+  String toString() {
+    return 'ReceiveMessage(status: $status, message: $message, messages: $messages)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$ReceiveMessageCopyWith<$Res>
+    implements $ReceiveMessageCopyWith<$Res> {
+  factory _$ReceiveMessageCopyWith(
+          _ReceiveMessage value, $Res Function(_ReceiveMessage) _then) =
+      __$ReceiveMessageCopyWithImpl;
+  @override
+  @useResult
+  $Res call({String status, String message, List<Message> messages});
+}
+
+/// @nodoc
+class __$ReceiveMessageCopyWithImpl<$Res>
+    implements _$ReceiveMessageCopyWith<$Res> {
+  __$ReceiveMessageCopyWithImpl(this._self, this._then);
+
+  final _ReceiveMessage _self;
+  final $Res Function(_ReceiveMessage) _then;
+
   /// Create a copy of ReceiveMessage
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ReceiveMessageImplCopyWith<_$ReceiveMessageImpl> get copyWith =>
-      __$$ReceiveMessageImplCopyWithImpl<_$ReceiveMessageImpl>(
-          this, _$identity);
+  $Res call({
+    Object? status = null,
+    Object? message = null,
+    Object? messages = null,
+  }) {
+    return _then(_ReceiveMessage(
+      status: null == status
+          ? _self.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
+      message: null == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+      messages: null == messages
+          ? _self._messages
+          : messages // ignore: cast_nullable_to_non_nullable
+              as List<Message>,
+    ));
+  }
 }
 
-abstract class _ReceiveMessage implements ReceiveMessage {
-  const factory _ReceiveMessage(
-      {required final String status,
-      required final String message,
-      required final List<Message> messages}) = _$ReceiveMessageImpl;
-
-  @override
-  String get status;
-  @override
-  String get message;
-  @override
-  List<Message> get messages;
-
-  /// Create a copy of ReceiveMessage
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ReceiveMessageImplCopyWith<_$ReceiveMessageImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+// dart format on

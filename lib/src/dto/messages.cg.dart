@@ -9,7 +9,7 @@ part 'gen/messages.cg.f.dart';
 part 'gen/messages.cg.g.dart';
 
 @freezed
-class AllMessagesDto with _$AllMessagesDto {
+abstract class AllMessagesDto with _$AllMessagesDto {
   const factory AllMessagesDto({
     UnseenDto? unseen,
   }) = _AllMessagesDto;
@@ -29,7 +29,7 @@ class AllMessagesDto with _$AllMessagesDto {
 }
 
 @freezed
-class UnseenDto with _$UnseenDto {
+abstract class UnseenDto with _$UnseenDto {
   const factory UnseenDto({
     int? count,
     List<MessageDto>? messages,

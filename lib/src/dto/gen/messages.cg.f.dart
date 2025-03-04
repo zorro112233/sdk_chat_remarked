@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,139 +10,29 @@ part of '../messages.cg.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-AllMessagesDto _$AllMessagesDtoFromJson(Map<String, dynamic> json) {
-  return _AllMessagesDto.fromJson(json);
-}
 
 /// @nodoc
 mixin _$AllMessagesDto {
-  UnseenDto? get unseen => throw _privateConstructorUsedError;
-
-  /// Serializes this AllMessagesDto to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  UnseenDto? get unseen;
 
   /// Create a copy of AllMessagesDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $AllMessagesDtoCopyWith<AllMessagesDto> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+      _$AllMessagesDtoCopyWithImpl<AllMessagesDto>(
+          this as AllMessagesDto, _$identity);
 
-/// @nodoc
-abstract class $AllMessagesDtoCopyWith<$Res> {
-  factory $AllMessagesDtoCopyWith(
-          AllMessagesDto value, $Res Function(AllMessagesDto) then) =
-      _$AllMessagesDtoCopyWithImpl<$Res, AllMessagesDto>;
-  @useResult
-  $Res call({UnseenDto? unseen});
-
-  $UnseenDtoCopyWith<$Res>? get unseen;
-}
-
-/// @nodoc
-class _$AllMessagesDtoCopyWithImpl<$Res, $Val extends AllMessagesDto>
-    implements $AllMessagesDtoCopyWith<$Res> {
-  _$AllMessagesDtoCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of AllMessagesDto
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? unseen = freezed,
-  }) {
-    return _then(_value.copyWith(
-      unseen: freezed == unseen
-          ? _value.unseen
-          : unseen // ignore: cast_nullable_to_non_nullable
-              as UnseenDto?,
-    ) as $Val);
-  }
-
-  /// Create a copy of AllMessagesDto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $UnseenDtoCopyWith<$Res>? get unseen {
-    if (_value.unseen == null) {
-      return null;
-    }
-
-    return $UnseenDtoCopyWith<$Res>(_value.unseen!, (value) {
-      return _then(_value.copyWith(unseen: value) as $Val);
-    });
-  }
-}
-
-/// @nodoc
-abstract class _$$AllMessagesDtoImplCopyWith<$Res>
-    implements $AllMessagesDtoCopyWith<$Res> {
-  factory _$$AllMessagesDtoImplCopyWith(_$AllMessagesDtoImpl value,
-          $Res Function(_$AllMessagesDtoImpl) then) =
-      __$$AllMessagesDtoImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({UnseenDto? unseen});
-
-  @override
-  $UnseenDtoCopyWith<$Res>? get unseen;
-}
-
-/// @nodoc
-class __$$AllMessagesDtoImplCopyWithImpl<$Res>
-    extends _$AllMessagesDtoCopyWithImpl<$Res, _$AllMessagesDtoImpl>
-    implements _$$AllMessagesDtoImplCopyWith<$Res> {
-  __$$AllMessagesDtoImplCopyWithImpl(
-      _$AllMessagesDtoImpl _value, $Res Function(_$AllMessagesDtoImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of AllMessagesDto
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? unseen = freezed,
-  }) {
-    return _then(_$AllMessagesDtoImpl(
-      unseen: freezed == unseen
-          ? _value.unseen
-          : unseen // ignore: cast_nullable_to_non_nullable
-              as UnseenDto?,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$AllMessagesDtoImpl extends _AllMessagesDto {
-  const _$AllMessagesDtoImpl({this.unseen}) : super._();
-
-  factory _$AllMessagesDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$AllMessagesDtoImplFromJson(json);
-
-  @override
-  final UnseenDto? unseen;
-
-  @override
-  String toString() {
-    return 'AllMessagesDto(unseen: $unseen)';
-  }
+  /// Serializes this AllMessagesDto to a JSON map.
+  Map<String, dynamic> toJson();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AllMessagesDtoImpl &&
+            other is AllMessagesDto &&
             (identical(other.unseen, unseen) || other.unseen == unseen));
   }
 
@@ -149,66 +40,197 @@ class _$AllMessagesDtoImpl extends _AllMessagesDto {
   @override
   int get hashCode => Object.hash(runtimeType, unseen);
 
-  /// Create a copy of AllMessagesDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$AllMessagesDtoImplCopyWith<_$AllMessagesDtoImpl> get copyWith =>
-      __$$AllMessagesDtoImplCopyWithImpl<_$AllMessagesDtoImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$AllMessagesDtoImplToJson(
-      this,
-    );
+  String toString() {
+    return 'AllMessagesDto(unseen: $unseen)';
   }
 }
 
-abstract class _AllMessagesDto extends AllMessagesDto {
-  const factory _AllMessagesDto({final UnseenDto? unseen}) =
-      _$AllMessagesDtoImpl;
-  const _AllMessagesDto._() : super._();
+/// @nodoc
+abstract mixin class $AllMessagesDtoCopyWith<$Res> {
+  factory $AllMessagesDtoCopyWith(
+          AllMessagesDto value, $Res Function(AllMessagesDto) _then) =
+      _$AllMessagesDtoCopyWithImpl;
+  @useResult
+  $Res call({UnseenDto? unseen});
 
-  factory _AllMessagesDto.fromJson(Map<String, dynamic> json) =
-      _$AllMessagesDtoImpl.fromJson;
+  $UnseenDtoCopyWith<$Res>? get unseen;
+}
+
+/// @nodoc
+class _$AllMessagesDtoCopyWithImpl<$Res>
+    implements $AllMessagesDtoCopyWith<$Res> {
+  _$AllMessagesDtoCopyWithImpl(this._self, this._then);
+
+  final AllMessagesDto _self;
+  final $Res Function(AllMessagesDto) _then;
+
+  /// Create a copy of AllMessagesDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? unseen = freezed,
+  }) {
+    return _then(_self.copyWith(
+      unseen: freezed == unseen
+          ? _self.unseen
+          : unseen // ignore: cast_nullable_to_non_nullable
+              as UnseenDto?,
+    ));
+  }
+
+  /// Create a copy of AllMessagesDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UnseenDtoCopyWith<$Res>? get unseen {
+    if (_self.unseen == null) {
+      return null;
+    }
+
+    return $UnseenDtoCopyWith<$Res>(_self.unseen!, (value) {
+      return _then(_self.copyWith(unseen: value));
+    });
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _AllMessagesDto extends AllMessagesDto {
+  const _AllMessagesDto({this.unseen}) : super._();
+  factory _AllMessagesDto.fromJson(Map<String, dynamic> json) =>
+      _$AllMessagesDtoFromJson(json);
 
   @override
-  UnseenDto? get unseen;
+  final UnseenDto? unseen;
 
   /// Create a copy of AllMessagesDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AllMessagesDtoImplCopyWith<_$AllMessagesDtoImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  _$AllMessagesDtoCopyWith<_AllMessagesDto> get copyWith =>
+      __$AllMessagesDtoCopyWithImpl<_AllMessagesDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$AllMessagesDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _AllMessagesDto &&
+            (identical(other.unseen, unseen) || other.unseen == unseen));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, unseen);
+
+  @override
+  String toString() {
+    return 'AllMessagesDto(unseen: $unseen)';
+  }
 }
 
-UnseenDto _$UnseenDtoFromJson(Map<String, dynamic> json) {
-  return _UnseenDto.fromJson(json);
+/// @nodoc
+abstract mixin class _$AllMessagesDtoCopyWith<$Res>
+    implements $AllMessagesDtoCopyWith<$Res> {
+  factory _$AllMessagesDtoCopyWith(
+          _AllMessagesDto value, $Res Function(_AllMessagesDto) _then) =
+      __$AllMessagesDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call({UnseenDto? unseen});
+
+  @override
+  $UnseenDtoCopyWith<$Res>? get unseen;
+}
+
+/// @nodoc
+class __$AllMessagesDtoCopyWithImpl<$Res>
+    implements _$AllMessagesDtoCopyWith<$Res> {
+  __$AllMessagesDtoCopyWithImpl(this._self, this._then);
+
+  final _AllMessagesDto _self;
+  final $Res Function(_AllMessagesDto) _then;
+
+  /// Create a copy of AllMessagesDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? unseen = freezed,
+  }) {
+    return _then(_AllMessagesDto(
+      unseen: freezed == unseen
+          ? _self.unseen
+          : unseen // ignore: cast_nullable_to_non_nullable
+              as UnseenDto?,
+    ));
+  }
+
+  /// Create a copy of AllMessagesDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UnseenDtoCopyWith<$Res>? get unseen {
+    if (_self.unseen == null) {
+      return null;
+    }
+
+    return $UnseenDtoCopyWith<$Res>(_self.unseen!, (value) {
+      return _then(_self.copyWith(unseen: value));
+    });
+  }
 }
 
 /// @nodoc
 mixin _$UnseenDto {
-  int? get count => throw _privateConstructorUsedError;
-  List<MessageDto>? get messages => throw _privateConstructorUsedError;
-  MetaDto? get meta => throw _privateConstructorUsedError;
-
-  /// Serializes this UnseenDto to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  int? get count;
+  List<MessageDto>? get messages;
+  MetaDto? get meta;
 
   /// Create a copy of UnseenDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $UnseenDtoCopyWith<UnseenDto> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$UnseenDtoCopyWithImpl<UnseenDto>(this as UnseenDto, _$identity);
+
+  /// Serializes this UnseenDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is UnseenDto &&
+            (identical(other.count, count) || other.count == count) &&
+            const DeepCollectionEquality().equals(other.messages, messages) &&
+            (identical(other.meta, meta) || other.meta == meta));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, count, const DeepCollectionEquality().hash(messages), meta);
+
+  @override
+  String toString() {
+    return 'UnseenDto(count: $count, messages: $messages, meta: $meta)';
+  }
 }
 
 /// @nodoc
-abstract class $UnseenDtoCopyWith<$Res> {
-  factory $UnseenDtoCopyWith(UnseenDto value, $Res Function(UnseenDto) then) =
-      _$UnseenDtoCopyWithImpl<$Res, UnseenDto>;
+abstract mixin class $UnseenDtoCopyWith<$Res> {
+  factory $UnseenDtoCopyWith(UnseenDto value, $Res Function(UnseenDto) _then) =
+      _$UnseenDtoCopyWithImpl;
   @useResult
   $Res call({int? count, List<MessageDto>? messages, MetaDto? meta});
 
@@ -216,14 +238,11 @@ abstract class $UnseenDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$UnseenDtoCopyWithImpl<$Res, $Val extends UnseenDto>
-    implements $UnseenDtoCopyWith<$Res> {
-  _$UnseenDtoCopyWithImpl(this._value, this._then);
+class _$UnseenDtoCopyWithImpl<$Res> implements $UnseenDtoCopyWith<$Res> {
+  _$UnseenDtoCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final UnseenDto _self;
+  final $Res Function(UnseenDto) _then;
 
   /// Create a copy of UnseenDto
   /// with the given fields replaced by the non-null parameter values.
@@ -234,20 +253,20 @@ class _$UnseenDtoCopyWithImpl<$Res, $Val extends UnseenDto>
     Object? messages = freezed,
     Object? meta = freezed,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       count: freezed == count
-          ? _value.count
+          ? _self.count
           : count // ignore: cast_nullable_to_non_nullable
               as int?,
       messages: freezed == messages
-          ? _value.messages
+          ? _self.messages
           : messages // ignore: cast_nullable_to_non_nullable
               as List<MessageDto>?,
       meta: freezed == meta
-          ? _value.meta
+          ? _self.meta
           : meta // ignore: cast_nullable_to_non_nullable
               as MetaDto?,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of UnseenDto
@@ -255,74 +274,24 @@ class _$UnseenDtoCopyWithImpl<$Res, $Val extends UnseenDto>
   @override
   @pragma('vm:prefer-inline')
   $MetaDtoCopyWith<$Res>? get meta {
-    if (_value.meta == null) {
+    if (_self.meta == null) {
       return null;
     }
 
-    return $MetaDtoCopyWith<$Res>(_value.meta!, (value) {
-      return _then(_value.copyWith(meta: value) as $Val);
+    return $MetaDtoCopyWith<$Res>(_self.meta!, (value) {
+      return _then(_self.copyWith(meta: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$UnseenDtoImplCopyWith<$Res>
-    implements $UnseenDtoCopyWith<$Res> {
-  factory _$$UnseenDtoImplCopyWith(
-          _$UnseenDtoImpl value, $Res Function(_$UnseenDtoImpl) then) =
-      __$$UnseenDtoImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({int? count, List<MessageDto>? messages, MetaDto? meta});
-
-  @override
-  $MetaDtoCopyWith<$Res>? get meta;
-}
-
-/// @nodoc
-class __$$UnseenDtoImplCopyWithImpl<$Res>
-    extends _$UnseenDtoCopyWithImpl<$Res, _$UnseenDtoImpl>
-    implements _$$UnseenDtoImplCopyWith<$Res> {
-  __$$UnseenDtoImplCopyWithImpl(
-      _$UnseenDtoImpl _value, $Res Function(_$UnseenDtoImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of UnseenDto
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? count = freezed,
-    Object? messages = freezed,
-    Object? meta = freezed,
-  }) {
-    return _then(_$UnseenDtoImpl(
-      count: freezed == count
-          ? _value.count
-          : count // ignore: cast_nullable_to_non_nullable
-              as int?,
-      messages: freezed == messages
-          ? _value._messages
-          : messages // ignore: cast_nullable_to_non_nullable
-              as List<MessageDto>?,
-      meta: freezed == meta
-          ? _value.meta
-          : meta // ignore: cast_nullable_to_non_nullable
-              as MetaDto?,
-    ));
-  }
-}
-
-/// @nodoc
 @JsonSerializable()
-class _$UnseenDtoImpl extends _UnseenDto {
-  const _$UnseenDtoImpl(
-      {this.count, final List<MessageDto>? messages, this.meta})
+class _UnseenDto extends UnseenDto {
+  const _UnseenDto({this.count, final List<MessageDto>? messages, this.meta})
       : _messages = messages,
         super._();
-
-  factory _$UnseenDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$UnseenDtoImplFromJson(json);
+  factory _UnseenDto.fromJson(Map<String, dynamic> json) =>
+      _$UnseenDtoFromJson(json);
 
   @override
   final int? count;
@@ -339,16 +308,26 @@ class _$UnseenDtoImpl extends _UnseenDto {
   @override
   final MetaDto? meta;
 
+  /// Create a copy of UnseenDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'UnseenDto(count: $count, messages: $messages, meta: $meta)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$UnseenDtoCopyWith<_UnseenDto> get copyWith =>
+      __$UnseenDtoCopyWithImpl<_UnseenDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$UnseenDtoToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UnseenDtoImpl &&
+            other is _UnseenDto &&
             (identical(other.count, count) || other.count == count) &&
             const DeepCollectionEquality().equals(other._messages, _messages) &&
             (identical(other.meta, meta) || other.meta == meta));
@@ -359,43 +338,71 @@ class _$UnseenDtoImpl extends _UnseenDto {
   int get hashCode => Object.hash(
       runtimeType, count, const DeepCollectionEquality().hash(_messages), meta);
 
-  /// Create a copy of UnseenDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$UnseenDtoImplCopyWith<_$UnseenDtoImpl> get copyWith =>
-      __$$UnseenDtoImplCopyWithImpl<_$UnseenDtoImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$UnseenDtoImplToJson(
-      this,
-    );
+  String toString() {
+    return 'UnseenDto(count: $count, messages: $messages, meta: $meta)';
   }
 }
 
-abstract class _UnseenDto extends UnseenDto {
-  const factory _UnseenDto(
-      {final int? count,
-      final List<MessageDto>? messages,
-      final MetaDto? meta}) = _$UnseenDtoImpl;
-  const _UnseenDto._() : super._();
+/// @nodoc
+abstract mixin class _$UnseenDtoCopyWith<$Res>
+    implements $UnseenDtoCopyWith<$Res> {
+  factory _$UnseenDtoCopyWith(
+          _UnseenDto value, $Res Function(_UnseenDto) _then) =
+      __$UnseenDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call({int? count, List<MessageDto>? messages, MetaDto? meta});
 
-  factory _UnseenDto.fromJson(Map<String, dynamic> json) =
-      _$UnseenDtoImpl.fromJson;
+  @override
+  $MetaDtoCopyWith<$Res>? get meta;
+}
 
-  @override
-  int? get count;
-  @override
-  List<MessageDto>? get messages;
-  @override
-  MetaDto? get meta;
+/// @nodoc
+class __$UnseenDtoCopyWithImpl<$Res> implements _$UnseenDtoCopyWith<$Res> {
+  __$UnseenDtoCopyWithImpl(this._self, this._then);
+
+  final _UnseenDto _self;
+  final $Res Function(_UnseenDto) _then;
 
   /// Create a copy of UnseenDto
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$UnseenDtoImplCopyWith<_$UnseenDtoImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? count = freezed,
+    Object? messages = freezed,
+    Object? meta = freezed,
+  }) {
+    return _then(_UnseenDto(
+      count: freezed == count
+          ? _self.count
+          : count // ignore: cast_nullable_to_non_nullable
+              as int?,
+      messages: freezed == messages
+          ? _self._messages
+          : messages // ignore: cast_nullable_to_non_nullable
+              as List<MessageDto>?,
+      meta: freezed == meta
+          ? _self.meta
+          : meta // ignore: cast_nullable_to_non_nullable
+              as MetaDto?,
+    ));
+  }
+
+  /// Create a copy of UnseenDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $MetaDtoCopyWith<$Res>? get meta {
+    if (_self.meta == null) {
+      return null;
+    }
+
+    return $MetaDtoCopyWith<$Res>(_self.meta!, (value) {
+      return _then(_self.copyWith(meta: value));
+    });
+  }
 }
+
+// dart format on

@@ -6,12 +6,11 @@ part of '../message.cg.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$MessageDtoImpl _$$MessageDtoImplFromJson(Map<String, dynamic> json) =>
-    $checkedCreate(
-      r'_$MessageDtoImpl',
+_MessageDto _$MessageDtoFromJson(Map<String, dynamic> json) => $checkedCreate(
+      '_MessageDto',
       json,
       ($checkedConvert) {
-        final val = _$MessageDtoImpl(
+        final val = _MessageDto(
           id: $checkedConvert('id', (v) => (v as num?)?.toInt()),
           uuid: $checkedConvert('uuid', (v) => v as String?),
           timestamp: $checkedConvert('timestamp', (v) => (v as num?)?.toInt()),
@@ -24,7 +23,7 @@ _$MessageDtoImpl _$$MessageDtoImplFromJson(Map<String, dynamic> json) =>
       },
     );
 
-Map<String, dynamic> _$$MessageDtoImplToJson(_$MessageDtoImpl instance) =>
+Map<String, dynamic> _$MessageDtoToJson(_MessageDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'uuid': instance.uuid,

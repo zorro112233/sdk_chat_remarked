@@ -7,7 +7,7 @@ part 'gen/receive_message.cg.f.dart';
 part 'gen/receive_message.cg.g.dart';
 
 @freezed
-class ReceiveMessageDto with _$ReceiveMessageDto {
+abstract class ReceiveMessageDto with _$ReceiveMessageDto {
   const factory ReceiveMessageDto({
     String? status,
     String? message,

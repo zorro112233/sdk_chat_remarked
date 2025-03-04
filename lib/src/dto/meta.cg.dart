@@ -6,7 +6,7 @@ part 'gen/meta.cg.g.dart';
 
 /// Meta данные
 @freezed
-class MetaDto with _$MetaDto {
+abstract class MetaDto with _$MetaDto {
   /// Meta данные
   const factory MetaDto({
     int? page,

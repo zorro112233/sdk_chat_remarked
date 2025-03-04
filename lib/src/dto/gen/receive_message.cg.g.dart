@@ -6,13 +6,12 @@ part of '../receive_message.cg.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ReceiveMessageDtoImpl _$$ReceiveMessageDtoImplFromJson(
-        Map<String, dynamic> json) =>
+_ReceiveMessageDto _$ReceiveMessageDtoFromJson(Map<String, dynamic> json) =>
     $checkedCreate(
-      r'_$ReceiveMessageDtoImpl',
+      '_ReceiveMessageDto',
       json,
       ($checkedConvert) {
-        final val = _$ReceiveMessageDtoImpl(
+        final val = _ReceiveMessageDto(
           status: $checkedConvert('status', (v) => v as String?),
           message: $checkedConvert('message', (v) => v as String?),
           messages: $checkedConvert(
@@ -25,8 +24,7 @@ _$ReceiveMessageDtoImpl _$$ReceiveMessageDtoImplFromJson(
       },
     );
 
-Map<String, dynamic> _$$ReceiveMessageDtoImplToJson(
-        _$ReceiveMessageDtoImpl instance) =>
+Map<String, dynamic> _$ReceiveMessageDtoToJson(_ReceiveMessageDto instance) =>
     <String, dynamic>{
       'status': instance.status,
       'message': instance.message,

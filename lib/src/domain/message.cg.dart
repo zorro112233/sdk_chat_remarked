@@ -5,7 +5,7 @@ import '../core/consts.dart';
 part 'gen/message.cg.f.dart';
 
 @freezed
-class Message with _$Message {
+abstract class Message with _$Message {
   const factory Message({
     required int id,
     required String uuid,

@@ -4,7 +4,7 @@ part 'gen/meta.cg.f.dart';
 
 /// Meta данные
 @freezed
-class Meta with _$Meta {
+abstract class Meta with _$Meta {
   /// Meta данные
   const factory Meta({
     required int page,

@@ -6,12 +6,11 @@ part of '../meta.cg.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$MetaDtoImpl _$$MetaDtoImplFromJson(Map<String, dynamic> json) =>
-    $checkedCreate(
-      r'_$MetaDtoImpl',
+_MetaDto _$MetaDtoFromJson(Map<String, dynamic> json) => $checkedCreate(
+      '_MetaDto',
       json,
       ($checkedConvert) {
-        final val = _$MetaDtoImpl(
+        final val = _MetaDto(
           page: $checkedConvert('page', (v) => (v as num?)?.toInt()),
           perPage: $checkedConvert('per_page', (v) => (v as num?)?.toInt()),
           count: $checkedConvert('count', (v) => (v as num?)?.toInt()),
@@ -23,8 +22,7 @@ _$MetaDtoImpl _$$MetaDtoImplFromJson(Map<String, dynamic> json) =>
       fieldKeyMap: const {'perPage': 'per_page', 'idOrder': 'id_order'},
     );
 
-Map<String, dynamic> _$$MetaDtoImplToJson(_$MetaDtoImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$MetaDtoToJson(_MetaDto instance) => <String, dynamic>{
       'page': instance.page,
       'per_page': instance.perPage,
       'count': instance.count,
