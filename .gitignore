@@ -27,5 +27,5 @@ migrate_working_dir/
 **/doc/api/
 .dart_tool/
 build/
-**/*.cg.f.dart
-**/*.cg.g.dart
+#**/*.cg.f.dart
+#**/*.cg.g.dart
