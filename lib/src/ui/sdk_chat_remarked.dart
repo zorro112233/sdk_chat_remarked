@@ -14,11 +14,15 @@ class SdkChatRemarked extends StatelessWidget {
     this.left,
     this.top,
     this.point,
+    this.hint,
+    this.emptyListPlaceholder,
     this.right = 12,
     this.bottom = 12,
   });
 
   final String title;
+  final String? hint;
+  final String? emptyListPlaceholder;
   final String token;
   final int? idOrder;
   final Widget child;
@@ -52,6 +56,8 @@ class SdkChatRemarked extends StatelessWidget {
                   MaterialPageRoute(
                     builder: (context) => _ChatScreen(
                       title: title,
+                      hint: hint,
+                      emptyListPlaceholder: emptyListPlaceholder,
                       token: token,
                       idOrder: idOrder,
                       colorBg: colorBg,

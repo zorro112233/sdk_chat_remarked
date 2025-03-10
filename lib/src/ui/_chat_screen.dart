@@ -8,9 +8,13 @@ class _ChatScreen extends StatefulWidget {
     this.colorIcon,
     this.colorBg,
     this.point,
+    this.hint,
+    this.emptyListPlaceholder,
   });
 
   final String title;
+  final String? hint;
+  final String? emptyListPlaceholder;
 
   final String token;
   final String? point;
@@ -264,10 +268,11 @@ class __ChatScreenState extends State<_ChatScreen> {
                         child: AppText.bold24(_unauthorized),
                       ),
                     )
-                  else if (_messages.isEmpty)
+                  else if (_messages.isEmpty &&
+                      widget.emptyListPlaceholder != null)
                     Expanded(
                       child: Center(
-                        child: AppText.bold24('Переписка пуста'),
+                        child: AppText.bold24(widget.emptyListPlaceholder),
                       ),
                     )
                   else
@@ -366,7 +371,7 @@ class __ChatScreenState extends State<_ChatScreen> {
                             Expanded(
                               child: AppInput(
                                 controller: _controller,
-                                hintText: 'Напишите сообщение',
+                                hintText: widget.hint,
                               ),
                             ),
                             12.sbWidth,
