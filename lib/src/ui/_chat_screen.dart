@@ -7,11 +7,17 @@ class _ChatScreen extends StatefulWidget {
     this.idOrder,
     this.colorIcon,
     this.colorBg,
+    this.point,
+    this.hint,
+    this.emptyListPlaceholder,
   });
 
   final String title;
+  final String? hint;
+  final String? emptyListPlaceholder;
 
   final String token;
+  final String? point;
   final int? idOrder;
 
   final Color? colorIcon;
@@ -21,8 +27,6 @@ class _ChatScreen extends StatefulWidget {
 }
 
 class __ChatScreenState extends State<_ChatScreen> {
-  static const unauthorized = 'Unauthorized';
-
   int _page = 0;
   int totalMessages = 0;
   final _controller = TextEditingController();
@@ -112,12 +116,12 @@ class __ChatScreenState extends State<_ChatScreen> {
     changeLoading(true);
 
     final start = {
-      "auth": {"token": widget.token},
+      "auth": {"token": widget.token, "point": widget.point},
       "page": _page,
     };
 
     final startOrder = {
-      "auth": {"token": widget.token},
+      "auth": {"token": widget.token, "point": widget.point},
       "page": _page,
       "id_order": widget.idOrder,
     };
@@ -231,14 +235,11 @@ class __ChatScreenState extends State<_ChatScreen> {
   Widget build(BuildContext context) {
     final messagesByDate = groupMenssagesByDate(_messages);
 
-    debugModePrint('isLoading $isLoading');
-    debugModePrint('_messages $_messages');
-
     return Material(
       color: Colors.white,
       child: Scaffold(
         backgroundColor:
-            widget.colorBg?.withOpacity(.4) ?? const Color(0xFFFFCDCD),
+            widget.colorBg?.withValues(alpha: .4) ?? const Color(0xFFFFCDCD),
         appBar: SimpleAppBar(
           title: widget.title,
           onLeadingTap: () {
@@ -267,10 +268,11 @@ class __ChatScreenState extends State<_ChatScreen> {
                         child: AppText.bold24(_unauthorized),
                       ),
                     )
-                  else if (_messages.isEmpty)
+                  else if (_messages.isEmpty &&
+                      widget.emptyListPlaceholder != null)
                     Expanded(
                       child: Center(
-                        child: AppText.bold24('Переписка пуста'),
+                        child: AppText.bold24(widget.emptyListPlaceholder),
                       ),
                     )
                   else
@@ -320,8 +322,8 @@ class __ChatScreenState extends State<_ChatScreen> {
                                     (t) {
                                       return _ChatBubble(
                                         message: t,
-                                        colorBg:
-                                            widget.colorBg?.withOpacity(.3),
+                                        colorBg: widget.colorBg
+                                            ?.withValues(alpha: .3),
                                       );
                                     },
                                   ),
@@ -369,7 +371,7 @@ class __ChatScreenState extends State<_ChatScreen> {
                             Expanded(
                               child: AppInput(
                                 controller: _controller,
-                                hintText: 'Напишите сообщение',
+                                hintText: widget.hint,
                               ),
                             ),
                             12.sbWidth,

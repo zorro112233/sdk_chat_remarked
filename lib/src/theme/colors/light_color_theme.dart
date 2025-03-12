@@ -31,17 +31,17 @@ abstract final class LightColorTheme {
     BoxShadow(
       blurRadius: 6,
       offset: const Offset(0, 23),
-      color: shadow.withOpacity(.03),
+      color: shadow.withValues(alpha: .03),
     ),
     BoxShadow(
       blurRadius: 8,
       offset: const Offset(0, 41),
-      color: shadow.withOpacity(.01),
+      color: shadow.withValues(alpha: .01),
     ),
     BoxShadow(
       blurRadius: 10,
       offset: const Offset(0, 64),
-      color: shadow.withOpacity(0),
+      color: shadow.withValues(alpha: 0),
     ),
     const BoxShadow(
       blurRadius: 10,
@@ -54,57 +54,57 @@ abstract final class LightColorTheme {
     BoxShadow(
       blurRadius: 6,
       offset: const Offset(0, 3),
-      color: shadow.withOpacity(.05),
+      color: shadow.withValues(alpha: .05),
     ),
     BoxShadow(
       blurRadius: 10,
       offset: const Offset(0, 10),
-      color: shadow.withOpacity(.04),
+      color: shadow.withValues(alpha: .04),
     ),
     BoxShadow(
       blurRadius: 13,
       offset: const Offset(0, 23),
-      color: shadow.withOpacity(0.03),
+      color: shadow.withValues(alpha: 0.03),
     ),
     BoxShadow(
       blurRadius: 16,
       offset: const Offset(0, 41),
-      color: shadow.withOpacity(0.01),
+      color: shadow.withValues(alpha: 0.01),
     ),
     BoxShadow(
       blurRadius: 18,
       offset: const Offset(0, 64),
-      color: shadow.withOpacity(0),
+      color: shadow.withValues(alpha: 0),
     ),
   ];
 
   static final centerShadow = [
     BoxShadow(
       blurRadius: 7,
-      color: shadowUp.withOpacity(.05),
+      color: shadowUp.withValues(alpha: .05),
     ),
     BoxShadow(
       blurRadius: 13,
-      color: shadowUp.withOpacity(.04),
+      color: shadowUp.withValues(alpha: .04),
     ),
     BoxShadow(
       blurRadius: 17,
-      color: shadowUp.withOpacity(0.03),
+      color: shadowUp.withValues(alpha: 0.03),
     ),
     BoxShadow(
       blurRadius: 20,
-      color: shadowUp.withOpacity(0.01),
+      color: shadowUp.withValues(alpha: 0.01),
     ),
     BoxShadow(
       blurRadius: 22,
-      color: shadowUp.withOpacity(0),
+      color: shadowUp.withValues(alpha: 0),
     ),
   ];
 
   static final dropShadowAppBar = [
     BoxShadow(
       blurRadius: 10,
-      color: shadowAppBar.withOpacity(.05),
+      color: shadowAppBar.withValues(alpha: .05),
     ),
   ];
 
@@ -112,27 +112,27 @@ abstract final class LightColorTheme {
     BoxShadow(
       blurRadius: 7,
       offset: const Offset(0, -3),
-      color: shadowUp.withOpacity(.05),
+      color: shadowUp.withValues(alpha: .05),
     ),
     BoxShadow(
       blurRadius: 13,
       offset: const Offset(0, -13),
-      color: shadowUp.withOpacity(.04),
+      color: shadowUp.withValues(alpha: .04),
     ),
     BoxShadow(
       blurRadius: 17,
       offset: const Offset(0, -28),
-      color: shadowUp.withOpacity(0.03),
+      color: shadowUp.withValues(alpha: 0.03),
     ),
     BoxShadow(
       blurRadius: 20,
       offset: const Offset(0, -51),
-      color: shadowUp.withOpacity(0.01),
+      color: shadowUp.withValues(alpha: 0.01),
     ),
     BoxShadow(
       blurRadius: 22,
       offset: const Offset(0, -79),
-      color: shadowUp.withOpacity(0),
+      color: shadowUp.withValues(alpha: 0),
     ),
   ];
 
@@ -140,27 +140,27 @@ abstract final class LightColorTheme {
     BoxShadow(
       blurRadius: 6,
       offset: const Offset(0, -3),
-      color: pinkShadow.withOpacity(.05),
+      color: pinkShadow.withValues(alpha: .05),
     ),
     BoxShadow(
       blurRadius: 10,
       offset: const Offset(0, -10),
-      color: pinkShadow.withOpacity(.04),
+      color: pinkShadow.withValues(alpha: .04),
     ),
     BoxShadow(
       blurRadius: 14,
       offset: const Offset(0, -23),
-      color: pinkShadow.withOpacity(0.03),
+      color: pinkShadow.withValues(alpha: 0.03),
     ),
     BoxShadow(
       blurRadius: 16,
       offset: const Offset(0, -41),
-      color: pinkShadow.withOpacity(0.01),
+      color: pinkShadow.withValues(alpha: 0.01),
     ),
     BoxShadow(
       blurRadius: 18,
       offset: const Offset(0, -64),
-      color: pinkShadow.withOpacity(0),
+      color: pinkShadow.withValues(alpha: 0),
     ),
   ];
 

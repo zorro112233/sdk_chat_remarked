@@ -381,7 +381,7 @@ class _AppInputState extends State<AppInput> {
                     (isError
                         ? AppColors.red
                         : widget.readOnly
-                            ? AppColors.paleVioletTxt.withOpacity(.3)
+                            ? AppColors.paleVioletTxt.withValues(alpha: .3)
                             : AppColors.white),
 
                 enabledBorder: OutlineInputBorder(
