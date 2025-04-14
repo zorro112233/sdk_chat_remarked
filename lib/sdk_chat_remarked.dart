@@ -5,6 +5,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:sdk_chat_remarked/src/dto/message.cg.dart';
 import 'package:sdk_chat_remarked/src/shared/widgets/img_network.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
@@ -23,3 +24,5 @@ import 'src/theme/theme_provider.dart';
 part 'src/ui/sdk_chat_remarked.dart';
 part 'src/ui/_chat_screen.dart';
 part 'src/ui/widgets/_bubble.dart';
+part 'src/ui/widgets/_btn.dart';
+part 'src/ui/widgets/_typing_indicator.dart';

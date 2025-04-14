@@ -27,18 +27,28 @@ class _ChatScreen extends StatefulWidget {
 }
 
 class __ChatScreenState extends State<_ChatScreen> {
+  // String get token => token;
+  // String? get point => point;
+  // String? get order =>  widget.idOrder;
+  String get token => '37531255-58af-6af7-1029-2210fea3a570';
+  String? get point => '118000';
+  String? get idOrder => '1';
+
   int _page = 0;
   int totalMessages = 0;
   final _controller = TextEditingController();
 
   late ScrollController _scrollController;
 
-  static const url = 'wss://whatsapp.clientomer.ru:3004/chat';
+  static const url = 'wss://whatsapp1.clientomer.ru:3003/chat';
 
   bool isLoading = false;
 
   String? imagePath;
   String? base64image;
+
+  bool isPushedButtons = false;
+  bool isLoadingAfterOrderReview = false;
 
   /// Замените на ваш WebSocket сервер
   final channel = WebSocketChannel.connect(
@@ -73,6 +83,7 @@ class __ChatScreenState extends State<_ChatScreen> {
 
         /// MESSAGES
         if (map.containsKey('messages')) {
+          // debugModePrint('MESSAGES::: ${map['messages']}');
           final message = ReceiveMessageDto.fromJson(map).toDomain();
           setState(() {
             _messages.add(message.messages.firstOrNull ?? Message.empty);
@@ -90,7 +101,6 @@ class __ChatScreenState extends State<_ChatScreen> {
           setState(() {
             totalMessages = allMessages.unseen.meta.total;
             if (_page == 0) {
-              // debugModePrint('UNSEEN::: ${allMessages.unseen.messages.length}');
               _messages.addAll(allMessages.unseen.messages);
               addPostFrameCallback(() => _scrollToBottom(isJump: true));
             } else {
@@ -98,6 +108,14 @@ class __ChatScreenState extends State<_ChatScreen> {
             }
           });
           changeLoading(false);
+        }
+
+        final mapMessageDto = MessageDto.fromJson(map);
+        final mapMessage = mapMessageDto.toDomain();
+        if (mapMessage != Message.empty && mapMessage.text.isNotEmpty) {
+          _messages.add(mapMessage);
+          _changeLoadingAfterOrderReview(false);
+          addPostFrameCallback(() => _scrollToBottom());
         }
       },
     );
@@ -116,17 +134,17 @@ class __ChatScreenState extends State<_ChatScreen> {
     changeLoading(true);
 
     final start = {
-      "auth": {"token": widget.token, "point": widget.point},
+      "auth": {"token": token, "point": point},
       "page": _page,
     };
 
     final startOrder = {
-      "auth": {"token": widget.token, "point": widget.point},
+      "auth": {"token": token, "point": point},
       "page": _page,
       "id_order": widget.idOrder,
     };
 
-    final jsonString = jsonEncode(widget.idOrder != null ? startOrder : start);
+    final jsonString = jsonEncode(idOrder != null ? startOrder : start);
     channel.sink.add(jsonString);
   }
 
@@ -134,7 +152,7 @@ class __ChatScreenState extends State<_ChatScreen> {
     final map = {
       "messages": [
         {
-          "order_id": widget.idOrder,
+          "order_id": idOrder,
           "text": _controller.text,
           "attachment": {
             "name_orig": "file_name_${_messages.length + 1}.jpg",
@@ -156,7 +174,8 @@ class __ChatScreenState extends State<_ChatScreen> {
           timestamp: DateTime.now(),
           id: _messages.length + 1,
           uuid: '',
-          to: 0,
+          direction: 'in',
+          to: '0',
           attachment: imagePath ?? '',
         ));
       });
@@ -222,6 +241,119 @@ class __ChatScreenState extends State<_ChatScreen> {
     return groupedMessages;
   }
 
+  void _order() {
+    _changeLoadingAfterOrderReview(true);
+    final map = {
+      "auth": {"token": token, "point": point},
+      "messages": [
+        {
+          "order_id": '1',
+          "collback": "start_orders",
+          "text": "Заказ",
+          "extra": {"message_type": "close_chain"},
+          "id": generateLargeNumber()
+        }
+      ]
+    };
+    final jsonString = jsonEncode(map);
+    debugModePrint('_order jsonString $jsonString');
+    channel.sink.add(jsonString);
+
+    setState(() {
+      _messages.add(Message(
+        text: "Заказ",
+        isOutgoing: false,
+        timestamp: DateTime.now(),
+        direction: 'in',
+        id: _messages.length + 1,
+        uuid: '',
+        to: '0',
+        attachment: '',
+      ));
+    });
+
+    _controller.clear();
+    _clear();
+
+    addPostFrameCallback(_scrollToBottom);
+    _changePushedButtons(true);
+  }
+
+  void _orderBtn({required Button btn, required String chainId}) {
+    _changeLoadingAfterOrderReview(true);
+    final map = {
+      "auth": {"token": token, "point": point},
+      "messages": [
+        {
+          "order_id": chainId,
+          "collback": btn.callbackData,
+          "text": btn.text,
+          "extra": {"message_type": "close_chain"},
+          "id": generateLargeNumber()
+        }
+      ]
+    };
+    final jsonString = jsonEncode(map);
+    channel.sink.add(jsonString);
+    debugModePrint('_orderBtn jsonString $jsonString');
+    setState(() {
+      _messages.add(Message(
+        text: btn.text,
+        isOutgoing: false,
+        timestamp: DateTime.now(),
+        direction: 'in',
+        id: _messages.length + 1,
+        uuid: '',
+        to: '0',
+        attachment: '',
+      ));
+    });
+
+    _controller.clear();
+    _clear();
+
+    addPostFrameCallback(_scrollToBottom);
+    _changePushedButtons(true);
+  }
+
+  void _leaveReview() {
+    _changeLoadingAfterOrderReview(true);
+    final map = {
+      "auth": {"token": token, "point": point},
+      "messages": [
+        {
+          "order_id": '1',
+          "collback": "start_feedback",
+          "text": "Оставить отзыв",
+          "extra": {"message_type": "close_chain"},
+          "id": generateLargeNumber()
+        }
+      ]
+    };
+    final jsonString = jsonEncode(map);
+    debugModePrint('_order jsonString $jsonString');
+    channel.sink.add(jsonString);
+
+    setState(() {
+      _messages.add(Message(
+        text: "Оставить отзыв",
+        isOutgoing: false,
+        timestamp: DateTime.now(),
+        direction: 'in',
+        id: _messages.length + 1,
+        uuid: '',
+        to: '0',
+        attachment: '',
+      ));
+    });
+
+    _controller.clear();
+    _clear();
+
+    addPostFrameCallback(_scrollToBottom);
+    _changePushedButtons(true);
+  }
+
   @override
   void dispose() {
     _messages.clear();
@@ -231,10 +363,21 @@ class __ChatScreenState extends State<_ChatScreen> {
     super.dispose();
   }
 
+  void _changePushedButtons(bool b) {
+    setState(() {
+      isPushedButtons = b;
+    });
+  }
+
+  void _changeLoadingAfterOrderReview(bool b) {
+    setState(() {
+      isLoadingAfterOrderReview = b;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final messagesByDate = groupMenssagesByDate(_messages);
-
     return Material(
       color: Colors.white,
       child: Scaffold(
@@ -324,6 +467,7 @@ class __ChatScreenState extends State<_ChatScreen> {
                                         message: t,
                                         colorBg: widget.colorBg
                                             ?.withValues(alpha: .3),
+                                        callbackData: _orderBtn,
                                       );
                                     },
                                   ),
@@ -335,6 +479,29 @@ class __ChatScreenState extends State<_ChatScreen> {
                         ],
                       ),
                     ),
+                  if (isLoadingAfterOrderReview) const _TypingIndicator(),
+                  if (!isPushedButtons)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 4,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          _Btn(
+                            title: 'Заказ',
+                            onTap: _order,
+                          ),
+                          12.sbWidth,
+                          _Btn(
+                            title: 'Оставить отзыв',
+                            onTap: _leaveReview,
+                          )
+                        ],
+                      ),
+                    ),
+                  12.sbHeight,
                   Container(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 12,

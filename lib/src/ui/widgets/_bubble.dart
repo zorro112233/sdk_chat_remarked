@@ -4,15 +4,18 @@ class _ChatBubble extends StatelessWidget {
   const _ChatBubble({
     required this.message,
     this.colorBg,
+    this.callbackData,
   });
 
   final Message message;
   final Color? colorBg;
+  final void Function({required Button btn, required String chainId})?
+      callbackData;
 
   @override
   Widget build(BuildContext context) {
     final time = DateFormat('HH:mm').format(message.timestamp);
-
+    final hasExtra = message.extra != null;
     return Align(
       alignment:
           message.isOutgoing ? Alignment.centerLeft : Alignment.centerRight,
@@ -37,7 +40,9 @@ class _ChatBubble extends StatelessWidget {
           ),
         ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
+          crossAxisAlignment: message.isOutgoing
+              ? CrossAxisAlignment.start
+              : CrossAxisAlignment.end,
           children: [
             if (message.text.isNotEmpty) ...[
               AppText.reqular14(message.text),
@@ -45,6 +50,33 @@ class _ChatBubble extends StatelessWidget {
             ],
 
             _Image(message.attachment),
+            if (hasExtra)
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    for (final btn in message.extra!.buttons) ...[
+                      _Btn(
+                        title: btn.text,
+                        onTap: () {
+                          callbackData?.call(
+                            btn: btn,
+                            chainId: message.extra!.chainId,
+                          );
+                        },
+                        colorText: AppColors.white,
+                        decoration: BoxDecoration(
+                          color: AppColors.grayBtn,
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(8)),
+                        ),
+                      ),
+                      6.sbHeight,
+                    ]
+                  ],
+                ),
+              ),
 
             Row(
               mainAxisSize: MainAxisSize.min,
@@ -60,6 +92,7 @@ class _ChatBubble extends StatelessWidget {
                 ],
               ],
             ),
+
             // Align(
             //   alignment: Alignment.centerRight,
             //   child: AppText.reqular10(time),

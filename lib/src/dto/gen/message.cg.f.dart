@@ -20,13 +20,14 @@ MessageDto _$MessageDtoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MessageDto {
-  int? get id => throw _privateConstructorUsedError;
+  dynamic get id => throw _privateConstructorUsedError;
   String? get uuid => throw _privateConstructorUsedError;
-  int? get timestamp => throw _privateConstructorUsedError;
+  dynamic get timestamp => throw _privateConstructorUsedError;
   String? get text => throw _privateConstructorUsedError;
   String? get direction => throw _privateConstructorUsedError;
-  int? get to => throw _privateConstructorUsedError;
+  String? get to => throw _privateConstructorUsedError;
   String? get attachment => throw _privateConstructorUsedError;
+  ExtraDto? get extra => throw _privateConstructorUsedError;
 
   /// Serializes this MessageDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -45,13 +46,16 @@ abstract class $MessageDtoCopyWith<$Res> {
       _$MessageDtoCopyWithImpl<$Res, MessageDto>;
   @useResult
   $Res call(
-      {int? id,
+      {dynamic id,
       String? uuid,
-      int? timestamp,
+      dynamic timestamp,
       String? text,
       String? direction,
-      int? to,
-      String? attachment});
+      String? to,
+      String? attachment,
+      ExtraDto? extra});
+
+  $ExtraDtoCopyWith<$Res>? get extra;
 }
 
 /// @nodoc
@@ -76,12 +80,13 @@ class _$MessageDtoCopyWithImpl<$Res, $Val extends MessageDto>
     Object? direction = freezed,
     Object? to = freezed,
     Object? attachment = freezed,
+    Object? extra = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as dynamic,
       uuid: freezed == uuid
           ? _value.uuid
           : uuid // ignore: cast_nullable_to_non_nullable
@@ -89,7 +94,7 @@ class _$MessageDtoCopyWithImpl<$Res, $Val extends MessageDto>
       timestamp: freezed == timestamp
           ? _value.timestamp
           : timestamp // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as dynamic,
       text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -101,12 +106,30 @@ class _$MessageDtoCopyWithImpl<$Res, $Val extends MessageDto>
       to: freezed == to
           ? _value.to
           : to // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       attachment: freezed == attachment
           ? _value.attachment
           : attachment // ignore: cast_nullable_to_non_nullable
               as String?,
+      extra: freezed == extra
+          ? _value.extra
+          : extra // ignore: cast_nullable_to_non_nullable
+              as ExtraDto?,
     ) as $Val);
+  }
+
+  /// Create a copy of MessageDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ExtraDtoCopyWith<$Res>? get extra {
+    if (_value.extra == null) {
+      return null;
+    }
+
+    return $ExtraDtoCopyWith<$Res>(_value.extra!, (value) {
+      return _then(_value.copyWith(extra: value) as $Val);
+    });
   }
 }
 
@@ -119,13 +142,17 @@ abstract class _$$MessageDtoImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int? id,
+      {dynamic id,
       String? uuid,
-      int? timestamp,
+      dynamic timestamp,
       String? text,
       String? direction,
-      int? to,
-      String? attachment});
+      String? to,
+      String? attachment,
+      ExtraDto? extra});
+
+  @override
+  $ExtraDtoCopyWith<$Res>? get extra;
 }
 
 /// @nodoc
@@ -148,12 +175,13 @@ class __$$MessageDtoImplCopyWithImpl<$Res>
     Object? direction = freezed,
     Object? to = freezed,
     Object? attachment = freezed,
+    Object? extra = freezed,
   }) {
     return _then(_$MessageDtoImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as dynamic,
       uuid: freezed == uuid
           ? _value.uuid
           : uuid // ignore: cast_nullable_to_non_nullable
@@ -161,7 +189,7 @@ class __$$MessageDtoImplCopyWithImpl<$Res>
       timestamp: freezed == timestamp
           ? _value.timestamp
           : timestamp // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as dynamic,
       text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -173,11 +201,15 @@ class __$$MessageDtoImplCopyWithImpl<$Res>
       to: freezed == to
           ? _value.to
           : to // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       attachment: freezed == attachment
           ? _value.attachment
           : attachment // ignore: cast_nullable_to_non_nullable
               as String?,
+      extra: freezed == extra
+          ? _value.extra
+          : extra // ignore: cast_nullable_to_non_nullable
+              as ExtraDto?,
     ));
   }
 }
@@ -192,30 +224,33 @@ class _$MessageDtoImpl extends _MessageDto {
       this.text,
       this.direction,
       this.to,
-      this.attachment})
+      this.attachment,
+      this.extra})
       : super._();
 
   factory _$MessageDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$MessageDtoImplFromJson(json);
 
   @override
-  final int? id;
+  final dynamic id;
   @override
   final String? uuid;
   @override
-  final int? timestamp;
+  final dynamic timestamp;
   @override
   final String? text;
   @override
   final String? direction;
   @override
-  final int? to;
+  final String? to;
   @override
   final String? attachment;
+  @override
+  final ExtraDto? extra;
 
   @override
   String toString() {
-    return 'MessageDto(id: $id, uuid: $uuid, timestamp: $timestamp, text: $text, direction: $direction, to: $to, attachment: $attachment)';
+    return 'MessageDto(id: $id, uuid: $uuid, timestamp: $timestamp, text: $text, direction: $direction, to: $to, attachment: $attachment, extra: $extra)';
   }
 
   @override
@@ -223,22 +258,30 @@ class _$MessageDtoImpl extends _MessageDto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MessageDtoImpl &&
-            (identical(other.id, id) || other.id == id) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             (identical(other.uuid, uuid) || other.uuid == uuid) &&
-            (identical(other.timestamp, timestamp) ||
-                other.timestamp == timestamp) &&
+            const DeepCollectionEquality().equals(other.timestamp, timestamp) &&
             (identical(other.text, text) || other.text == text) &&
             (identical(other.direction, direction) ||
                 other.direction == direction) &&
             (identical(other.to, to) || other.to == to) &&
             (identical(other.attachment, attachment) ||
-                other.attachment == attachment));
+                other.attachment == attachment) &&
+            (identical(other.extra, extra) || other.extra == extra));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, uuid, timestamp, text, direction, to, attachment);
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      uuid,
+      const DeepCollectionEquality().hash(timestamp),
+      text,
+      direction,
+      to,
+      attachment,
+      extra);
 
   /// Create a copy of MessageDto
   /// with the given fields replaced by the non-null parameter values.
@@ -258,37 +301,373 @@ class _$MessageDtoImpl extends _MessageDto {
 
 abstract class _MessageDto extends MessageDto {
   const factory _MessageDto(
-      {final int? id,
+      {final dynamic id,
       final String? uuid,
-      final int? timestamp,
+      final dynamic timestamp,
       final String? text,
       final String? direction,
-      final int? to,
-      final String? attachment}) = _$MessageDtoImpl;
+      final String? to,
+      final String? attachment,
+      final ExtraDto? extra}) = _$MessageDtoImpl;
   const _MessageDto._() : super._();
 
   factory _MessageDto.fromJson(Map<String, dynamic> json) =
       _$MessageDtoImpl.fromJson;
 
   @override
-  int? get id;
+  dynamic get id;
   @override
   String? get uuid;
   @override
-  int? get timestamp;
+  dynamic get timestamp;
   @override
   String? get text;
   @override
   String? get direction;
   @override
-  int? get to;
+  String? get to;
   @override
   String? get attachment;
+  @override
+  ExtraDto? get extra;
 
   /// Create a copy of MessageDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MessageDtoImplCopyWith<_$MessageDtoImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ExtraDto _$ExtraDtoFromJson(Map<String, dynamic> json) {
+  return _ExtraDto.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ExtraDto {
+  String? get buttons => throw _privateConstructorUsedError;
+  String? get chainId => throw _privateConstructorUsedError;
+
+  /// Serializes this ExtraDto to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of ExtraDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $ExtraDtoCopyWith<ExtraDto> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ExtraDtoCopyWith<$Res> {
+  factory $ExtraDtoCopyWith(ExtraDto value, $Res Function(ExtraDto) then) =
+      _$ExtraDtoCopyWithImpl<$Res, ExtraDto>;
+  @useResult
+  $Res call({String? buttons, String? chainId});
+}
+
+/// @nodoc
+class _$ExtraDtoCopyWithImpl<$Res, $Val extends ExtraDto>
+    implements $ExtraDtoCopyWith<$Res> {
+  _$ExtraDtoCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of ExtraDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? buttons = freezed,
+    Object? chainId = freezed,
+  }) {
+    return _then(_value.copyWith(
+      buttons: freezed == buttons
+          ? _value.buttons
+          : buttons // ignore: cast_nullable_to_non_nullable
+              as String?,
+      chainId: freezed == chainId
+          ? _value.chainId
+          : chainId // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ExtraDtoImplCopyWith<$Res>
+    implements $ExtraDtoCopyWith<$Res> {
+  factory _$$ExtraDtoImplCopyWith(
+          _$ExtraDtoImpl value, $Res Function(_$ExtraDtoImpl) then) =
+      __$$ExtraDtoImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String? buttons, String? chainId});
+}
+
+/// @nodoc
+class __$$ExtraDtoImplCopyWithImpl<$Res>
+    extends _$ExtraDtoCopyWithImpl<$Res, _$ExtraDtoImpl>
+    implements _$$ExtraDtoImplCopyWith<$Res> {
+  __$$ExtraDtoImplCopyWithImpl(
+      _$ExtraDtoImpl _value, $Res Function(_$ExtraDtoImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ExtraDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? buttons = freezed,
+    Object? chainId = freezed,
+  }) {
+    return _then(_$ExtraDtoImpl(
+      buttons: freezed == buttons
+          ? _value.buttons
+          : buttons // ignore: cast_nullable_to_non_nullable
+              as String?,
+      chainId: freezed == chainId
+          ? _value.chainId
+          : chainId // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ExtraDtoImpl extends _ExtraDto {
+  const _$ExtraDtoImpl({this.buttons, this.chainId}) : super._();
+
+  factory _$ExtraDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ExtraDtoImplFromJson(json);
+
+  @override
+  final String? buttons;
+  @override
+  final String? chainId;
+
+  @override
+  String toString() {
+    return 'ExtraDto(buttons: $buttons, chainId: $chainId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ExtraDtoImpl &&
+            (identical(other.buttons, buttons) || other.buttons == buttons) &&
+            (identical(other.chainId, chainId) || other.chainId == chainId));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, buttons, chainId);
+
+  /// Create a copy of ExtraDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ExtraDtoImplCopyWith<_$ExtraDtoImpl> get copyWith =>
+      __$$ExtraDtoImplCopyWithImpl<_$ExtraDtoImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ExtraDtoImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ExtraDto extends ExtraDto {
+  const factory _ExtraDto({final String? buttons, final String? chainId}) =
+      _$ExtraDtoImpl;
+  const _ExtraDto._() : super._();
+
+  factory _ExtraDto.fromJson(Map<String, dynamic> json) =
+      _$ExtraDtoImpl.fromJson;
+
+  @override
+  String? get buttons;
+  @override
+  String? get chainId;
+
+  /// Create a copy of ExtraDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ExtraDtoImplCopyWith<_$ExtraDtoImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ButtonDto _$ButtonDtoFromJson(Map<String, dynamic> json) {
+  return _ButtonDto.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ButtonDto {
+  String? get text => throw _privateConstructorUsedError;
+  String? get callbackData => throw _privateConstructorUsedError;
+
+  /// Serializes this ButtonDto to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of ButtonDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $ButtonDtoCopyWith<ButtonDto> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ButtonDtoCopyWith<$Res> {
+  factory $ButtonDtoCopyWith(ButtonDto value, $Res Function(ButtonDto) then) =
+      _$ButtonDtoCopyWithImpl<$Res, ButtonDto>;
+  @useResult
+  $Res call({String? text, String? callbackData});
+}
+
+/// @nodoc
+class _$ButtonDtoCopyWithImpl<$Res, $Val extends ButtonDto>
+    implements $ButtonDtoCopyWith<$Res> {
+  _$ButtonDtoCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of ButtonDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? text = freezed,
+    Object? callbackData = freezed,
+  }) {
+    return _then(_value.copyWith(
+      text: freezed == text
+          ? _value.text
+          : text // ignore: cast_nullable_to_non_nullable
+              as String?,
+      callbackData: freezed == callbackData
+          ? _value.callbackData
+          : callbackData // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ButtonDtoImplCopyWith<$Res>
+    implements $ButtonDtoCopyWith<$Res> {
+  factory _$$ButtonDtoImplCopyWith(
+          _$ButtonDtoImpl value, $Res Function(_$ButtonDtoImpl) then) =
+      __$$ButtonDtoImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String? text, String? callbackData});
+}
+
+/// @nodoc
+class __$$ButtonDtoImplCopyWithImpl<$Res>
+    extends _$ButtonDtoCopyWithImpl<$Res, _$ButtonDtoImpl>
+    implements _$$ButtonDtoImplCopyWith<$Res> {
+  __$$ButtonDtoImplCopyWithImpl(
+      _$ButtonDtoImpl _value, $Res Function(_$ButtonDtoImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ButtonDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? text = freezed,
+    Object? callbackData = freezed,
+  }) {
+    return _then(_$ButtonDtoImpl(
+      text: freezed == text
+          ? _value.text
+          : text // ignore: cast_nullable_to_non_nullable
+              as String?,
+      callbackData: freezed == callbackData
+          ? _value.callbackData
+          : callbackData // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ButtonDtoImpl extends _ButtonDto {
+  const _$ButtonDtoImpl({this.text, this.callbackData}) : super._();
+
+  factory _$ButtonDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ButtonDtoImplFromJson(json);
+
+  @override
+  final String? text;
+  @override
+  final String? callbackData;
+
+  @override
+  String toString() {
+    return 'ButtonDto(text: $text, callbackData: $callbackData)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ButtonDtoImpl &&
+            (identical(other.text, text) || other.text == text) &&
+            (identical(other.callbackData, callbackData) ||
+                other.callbackData == callbackData));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, text, callbackData);
+
+  /// Create a copy of ButtonDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ButtonDtoImplCopyWith<_$ButtonDtoImpl> get copyWith =>
+      __$$ButtonDtoImplCopyWithImpl<_$ButtonDtoImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ButtonDtoImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ButtonDto extends ButtonDto {
+  const factory _ButtonDto({final String? text, final String? callbackData}) =
+      _$ButtonDtoImpl;
+  const _ButtonDto._() : super._();
+
+  factory _ButtonDto.fromJson(Map<String, dynamic> json) =
+      _$ButtonDtoImpl.fromJson;
+
+  @override
+  String? get text;
+  @override
+  String? get callbackData;
+
+  /// Create a copy of ButtonDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ButtonDtoImplCopyWith<_$ButtonDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

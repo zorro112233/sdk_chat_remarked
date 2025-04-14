@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math';
 import 'dart:ui' as ui;
 
 import 'package:flutter/foundation.dart';
@@ -141,4 +142,11 @@ Future<File> downloadAndCompressImage(String url) async {
   } else {
     throw Exception('Failed to download image');
   }
+}
+
+String generateLargeNumber() {
+  final random = Random();
+  final timestampPart = DateTime.now().millisecondsSinceEpoch.toString();
+  final randomSuffix = random.nextInt(900) + 100; // 3-значный хвост
+  return '$timestampPart$randomSuffix';
 }
