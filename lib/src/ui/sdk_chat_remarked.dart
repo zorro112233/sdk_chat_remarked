@@ -39,52 +39,54 @@ class SdkChatRemarked extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final radius = buttonIcon == null ? Consts.borderRadius44 : borderRadius;
-    return Stack(
-      fit: StackFit.expand,
-      children: [
-        child,
-        if (token.isNotEmpty)
-          Positioned(
-            bottom: bottom,
-            right: right,
-            left: left,
-            top: top,
-            child: GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => _ChatScreen(
-                      title: title,
-                      hint: hint,
-                      emptyListPlaceholder: emptyListPlaceholder,
-                      token: token,
-                      idOrder: idOrder,
-                      colorBg: colorBg,
-                      colorIcon: colorIcon,
-                      point: point,
-                    ),
-                  ),
-                );
-              },
-              child: buttonIcon ??
-                  Container(
-                    height: 44,
-                    width: 44,
-                    decoration: BoxDecoration(
-                      color: colorBg ?? AppColors.pink,
-                      borderRadius: radius,
-                    ),
-                    child: Center(
-                      child: AppIcons.icon(
-                        AppIcons.chat,
-                        color: colorIcon ?? AppColors.white,
+    return SafeArea(
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          child,
+          if (token.isNotEmpty)
+            Positioned(
+              bottom: bottom,
+              right: right,
+              left: left,
+              top: top,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => _ChatScreen(
+                        title: title,
+                        hint: hint,
+                        emptyListPlaceholder: emptyListPlaceholder,
+                        token: token,
+                        idOrder: idOrder,
+                        colorBg: colorBg,
+                        colorIcon: colorIcon,
+                        point: point,
                       ),
                     ),
-                  ),
-            ),
-          )
-      ],
+                  );
+                },
+                child: buttonIcon ??
+                    Container(
+                      height: 44,
+                      width: 44,
+                      decoration: BoxDecoration(
+                        color: colorBg ?? AppColors.pink,
+                        borderRadius: radius,
+                      ),
+                      child: Center(
+                        child: AppIcons.icon(
+                          AppIcons.chat,
+                          color: colorIcon ?? AppColors.white,
+                        ),
+                      ),
+                    ),
+              ),
+            )
+        ],
+      ),
     );
   }
 }
