@@ -27,12 +27,9 @@ class _ChatScreen extends StatefulWidget {
 }
 
 class __ChatScreenState extends State<_ChatScreen> {
-  // String get token => token;
-  // String? get point => point;
-  // String? get order =>  widget.idOrder;
-  String get token => '37531255-58af-6af7-1029-2210fea3a570';
-  String? get point => '118000';
-  String? get idOrder => '1';
+  String get token => widget.token;
+  String? get point => widget.point;
+  int? get idOrder => widget.idOrder;
 
   int _page = 0;
   int totalMessages = 0;
