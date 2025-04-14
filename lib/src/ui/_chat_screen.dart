@@ -511,19 +511,33 @@ class __ChatScreenState extends State<_ChatScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         if (imagePath != null)
-                          Row(
+                          Stack(
                             children: [
-                              Image.file(
-                                File(imagePath!),
-                                width: 50,
-                                height: 50,
-                                fit: BoxFit.contain,
+                              ClipRRect(
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(12)),
+                                child: Image.file(
+                                  File(imagePath!),
+                                  width: 100,
+                                  height: 100,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
-                              4.sbHeight,
-                              IconButton(
-                                icon: const Icon(Icons.close),
-                                onPressed: _clear,
-                              ),
+                              Positioned(
+                                top: 4,
+                                right: 4,
+                                width: 20,
+                                height: 20,
+                                child: IconButton(
+                                  icon: Icon(
+                                    Icons.close,
+                                    size: 12,
+                                    color: AppColors.paleVioletTxt,
+                                  ),
+                                  onPressed: _clear,
+                                  padding: EdgeInsets.zero,
+                                ),
+                              )
                             ],
                           ),
                         Row(
@@ -531,11 +545,13 @@ class __ChatScreenState extends State<_ChatScreen> {
                             IconButton(
                               icon: const Icon(Icons.add),
                               onPressed: _handleImageSelection,
+                              color: AppColors.paleVioletTxt,
                             ),
                             Expanded(
                               child: AppInput(
                                 controller: _controller,
                                 hintText: widget.hint,
+                                height: 40,
                               ),
                             ),
                             12.sbWidth,
