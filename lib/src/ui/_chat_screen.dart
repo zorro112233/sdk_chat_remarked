@@ -377,215 +377,221 @@ class __ChatScreenState extends State<_ChatScreen> {
     final messagesByDate = groupMenssagesByDate(_messages);
     return Material(
       color: Colors.white,
-      child: Scaffold(
-        backgroundColor:
-            widget.colorBg?.withValues(alpha: .4) ?? const Color(0xFFFFCDCD),
-        appBar: SimpleAppBar(
-          title: widget.title,
-          onLeadingTap: () {
-            Navigator.pop(context);
-          },
-        ),
-        body: _unauthorized.isNotEmpty
-            ? Center(
-                child: AppText.bold24(_unauthorized),
-              )
-            : Column(
-                children: <Widget>[
-                  12.sbHeight,
-                  if (isLoading && _messages.isEmpty)
-                    Expanded(
-                      child: Center(
-                        child: CircularProgressIndicator(
-                          strokeWidth: 3,
-                          color: AppColors.grayBtn,
+      child: SafeArea(
+        child: Scaffold(
+          backgroundColor:
+              widget.colorBg?.withValues(alpha: .4) ?? const Color(0xFFFFCDCD),
+          appBar: SimpleAppBar(
+            title: widget.title,
+            onLeadingTap: () {
+              Navigator.pop(context);
+            },
+          ),
+          body: _unauthorized.isNotEmpty
+              ? Center(
+                  child: AppText.bold24(_unauthorized),
+                )
+              : Column(
+                  children: <Widget>[
+                    12.sbHeight,
+                    if (isLoading && _messages.isEmpty)
+                      Expanded(
+                        child: Center(
+                          child: CircularProgressIndicator(
+                            strokeWidth: 3,
+                            color: AppColors.grayBtn,
+                          ),
                         ),
-                      ),
-                    )
-                  else if (!isLoading && _unauthorized.isNotEmpty)
-                    Expanded(
-                      child: Center(
-                        child: AppText.bold24(_unauthorized),
-                      ),
-                    )
-                  else if (_messages.isEmpty &&
-                      widget.emptyListPlaceholder != null)
-                    Expanded(
-                      child: Center(
-                        child: AppText.bold24(widget.emptyListPlaceholder),
-                      ),
-                    )
-                  else
-                    Expanded(
-                      child: Stack(
-                        children: [
-                          ListView.builder(
-                            shrinkWrap: true,
-                            controller: _scrollController,
-                            physics: const ClampingScrollPhysics(),
-                            padding: const EdgeInsets.symmetric(horizontal: 12),
-                            itemCount: messagesByDate.length,
-                            itemBuilder: (context, index) {
-                              final date = messagesByDate.keys.elementAt(index);
-                              final menssageForDate = messagesByDate[date]!;
+                      )
+                    else if (!isLoading && _unauthorized.isNotEmpty)
+                      Expanded(
+                        child: Center(
+                          child: AppText.bold24(_unauthorized),
+                        ),
+                      )
+                    else if (_messages.isEmpty &&
+                        widget.emptyListPlaceholder != null)
+                      Expanded(
+                        child: Center(
+                          child: AppText.bold24(widget.emptyListPlaceholder),
+                        ),
+                      )
+                    else
+                      Expanded(
+                        child: Stack(
+                          children: [
+                            ListView.builder(
+                              shrinkWrap: true,
+                              controller: _scrollController,
+                              physics: const ClampingScrollPhysics(),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 12),
+                              itemCount: messagesByDate.length,
+                              itemBuilder: (context, index) {
+                                final date =
+                                    messagesByDate.keys.elementAt(index);
+                                final menssageForDate = messagesByDate[date]!;
 
-                              final isToday = now.difference(date).inDays == 0;
+                                final isToday =
+                                    now.difference(date).inDays == 0;
 
-                              return Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  // Заголовок с датой
-                                  Padding(
-                                    padding: const EdgeInsets.only(bottom: 8),
-                                    child: Center(
-                                      child: AppText.medium14(
-                                        isToday
-                                            ? 'Сегодня'.hardcoded
-                                            : date.stringFromDateTime,
-                                        color: AppColors.grayBtn,
-                                      ),
-                                    ),
-                                  ),
-                                  if (isLoading)
-                                    SizedBox(
-                                      height: 20,
-                                      width: 20,
+                                return Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    // Заголовок с датой
+                                    Padding(
+                                      padding: const EdgeInsets.only(bottom: 8),
                                       child: Center(
-                                        child: CircularProgressIndicator(
-                                          strokeWidth: 2,
+                                        child: AppText.medium14(
+                                          isToday
+                                              ? 'Сегодня'.hardcoded
+                                              : date.stringFromDateTime,
                                           color: AppColors.grayBtn,
                                         ),
                                       ),
                                     ),
-                                  // Список транзакций для этой даты
-                                  ...menssageForDate.map(
-                                    (t) {
-                                      return _ChatBubble(
-                                        message: t,
-                                        colorBg: widget.colorBg
-                                            ?.withValues(alpha: .3),
-                                        callbackData: _orderBtn,
-                                      );
-                                    },
-                                  ),
-                                ],
-                              );
-                            },
-                            // separatorBuilder: (context, index) => 12.sbHeight,
-                          ),
-                        ],
-                      ),
-                    ),
-                  if (isLoadingAfterOrderReview) const _TypingIndicator(),
-                  if (!isPushedButtons)
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 12,
-                        vertical: 4,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          _Btn(
-                            title: 'Заказ',
-                            onTap: _order,
-                          ),
-                          12.sbWidth,
-                          _Btn(
-                            title: 'Оставить отзыв',
-                            onTap: _leaveReview,
-                          )
-                        ],
-                      ),
-                    ),
-                  12.sbHeight,
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 12,
-                      vertical: 16,
-                    ),
-                    decoration: const BoxDecoration(
-                      color: Color(0xFFF8F9FC),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        if (imagePath != null)
-                          Stack(
-                            children: [
-                              ClipRRect(
-                                borderRadius:
-                                    const BorderRadius.all(Radius.circular(12)),
-                                child: Image.file(
-                                  File(imagePath!),
-                                  width: 100,
-                                  height: 100,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              Positioned(
-                                top: 4,
-                                right: 4,
-                                width: 20,
-                                height: 20,
-                                child: IconButton(
-                                  icon: Icon(
-                                    Icons.close,
-                                    size: 12,
-                                    color: AppColors.paleVioletTxt,
-                                  ),
-                                  onPressed: _clear,
-                                  padding: EdgeInsets.zero,
-                                ),
-                              )
-                            ],
-                          ),
-                        Row(
-                          children: <Widget>[
-                            IconButton(
-                              icon: const Icon(Icons.add),
-                              onPressed: _handleImageSelection,
-                              color: AppColors.paleVioletTxt,
-                            ),
-                            Expanded(
-                              child: AppInput(
-                                controller: _controller,
-                                hintText: widget.hint,
-                                height: 40,
-                              ),
-                            ),
-                            12.sbWidth,
-                            Material(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(40)),
-                              child: InkWell(
-                                onTap: _sendMessage,
-                                borderRadius:
-                                    const BorderRadius.all(Radius.circular(40)),
-                                child: Ink(
-                                  height: 40,
-                                  width: 40,
-                                  decoration: BoxDecoration(
-                                    color: widget.colorBg ?? Colors.red,
-                                    borderRadius: const BorderRadius.all(
-                                      Radius.circular(40),
+                                    if (isLoading)
+                                      SizedBox(
+                                        height: 20,
+                                        width: 20,
+                                        child: Center(
+                                          child: CircularProgressIndicator(
+                                            strokeWidth: 2,
+                                            color: AppColors.grayBtn,
+                                          ),
+                                        ),
+                                      ),
+                                    // Список транзакций для этой даты
+                                    ...menssageForDate.map(
+                                      (t) {
+                                        return _ChatBubble(
+                                          message: t,
+                                          colorBg: widget.colorBg
+                                              ?.withValues(alpha: .3),
+                                          callbackData: _orderBtn,
+                                        );
+                                      },
                                     ),
-                                  ),
-                                  child: Icon(
-                                    Icons.north,
-                                    size: 20,
-                                    color: widget.colorIcon ?? AppColors.white,
-                                  ),
-                                ),
-                              ),
+                                  ],
+                                );
+                              },
+                              // separatorBuilder: (context, index) => 12.sbHeight,
                             ),
                           ],
                         ),
-                      ],
+                      ),
+                    if (isLoadingAfterOrderReview) const _TypingIndicator(),
+                    if (!isPushedButtons)
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 4,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            _Btn(
+                              title: 'Заказ',
+                              onTap: _order,
+                            ),
+                            12.sbWidth,
+                            _Btn(
+                              title: 'Оставить отзыв',
+                              onTap: _leaveReview,
+                            )
+                          ],
+                        ),
+                      ),
+                    12.sbHeight,
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 16,
+                      ),
+                      decoration: const BoxDecoration(
+                        color: Color(0xFFF8F9FC),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          if (imagePath != null)
+                            Stack(
+                              children: [
+                                ClipRRect(
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(12)),
+                                  child: Image.file(
+                                    File(imagePath!),
+                                    width: 100,
+                                    height: 100,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                Positioned(
+                                  top: 4,
+                                  right: 4,
+                                  width: 20,
+                                  height: 20,
+                                  child: IconButton(
+                                    icon: Icon(
+                                      Icons.close,
+                                      size: 12,
+                                      color: AppColors.paleVioletTxt,
+                                    ),
+                                    onPressed: _clear,
+                                    padding: EdgeInsets.zero,
+                                  ),
+                                )
+                              ],
+                            ),
+                          Row(
+                            children: <Widget>[
+                              IconButton(
+                                icon: const Icon(Icons.add),
+                                onPressed: _handleImageSelection,
+                                color: AppColors.paleVioletTxt,
+                              ),
+                              Expanded(
+                                child: AppInput(
+                                  controller: _controller,
+                                  hintText: widget.hint,
+                                  height: 40,
+                                ),
+                              ),
+                              12.sbWidth,
+                              Material(
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(40)),
+                                child: InkWell(
+                                  onTap: _sendMessage,
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(40)),
+                                  child: Ink(
+                                    height: 40,
+                                    width: 40,
+                                    decoration: BoxDecoration(
+                                      color: widget.colorBg ?? Colors.red,
+                                      borderRadius: const BorderRadius.all(
+                                        Radius.circular(40),
+                                      ),
+                                    ),
+                                    child: Icon(
+                                      Icons.north,
+                                      size: 20,
+                                      color:
+                                          widget.colorIcon ?? AppColors.white,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                ),
+        ),
       ),
     );
   }
