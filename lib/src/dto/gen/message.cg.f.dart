@@ -347,6 +347,7 @@ ExtraDto _$ExtraDtoFromJson(Map<String, dynamic> json) {
 mixin _$ExtraDto {
   String? get buttons => throw _privateConstructorUsedError;
   String? get chainId => throw _privateConstructorUsedError;
+  String? get scenarioStepId => throw _privateConstructorUsedError;
 
   /// Serializes this ExtraDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -363,7 +364,7 @@ abstract class $ExtraDtoCopyWith<$Res> {
   factory $ExtraDtoCopyWith(ExtraDto value, $Res Function(ExtraDto) then) =
       _$ExtraDtoCopyWithImpl<$Res, ExtraDto>;
   @useResult
-  $Res call({String? buttons, String? chainId});
+  $Res call({String? buttons, String? chainId, String? scenarioStepId});
 }
 
 /// @nodoc
@@ -383,6 +384,7 @@ class _$ExtraDtoCopyWithImpl<$Res, $Val extends ExtraDto>
   $Res call({
     Object? buttons = freezed,
     Object? chainId = freezed,
+    Object? scenarioStepId = freezed,
   }) {
     return _then(_value.copyWith(
       buttons: freezed == buttons
@@ -392,6 +394,10 @@ class _$ExtraDtoCopyWithImpl<$Res, $Val extends ExtraDto>
       chainId: freezed == chainId
           ? _value.chainId
           : chainId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      scenarioStepId: freezed == scenarioStepId
+          ? _value.scenarioStepId
+          : scenarioStepId // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -405,7 +411,7 @@ abstract class _$$ExtraDtoImplCopyWith<$Res>
       __$$ExtraDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? buttons, String? chainId});
+  $Res call({String? buttons, String? chainId, String? scenarioStepId});
 }
 
 /// @nodoc
@@ -423,6 +429,7 @@ class __$$ExtraDtoImplCopyWithImpl<$Res>
   $Res call({
     Object? buttons = freezed,
     Object? chainId = freezed,
+    Object? scenarioStepId = freezed,
   }) {
     return _then(_$ExtraDtoImpl(
       buttons: freezed == buttons
@@ -433,6 +440,10 @@ class __$$ExtraDtoImplCopyWithImpl<$Res>
           ? _value.chainId
           : chainId // ignore: cast_nullable_to_non_nullable
               as String?,
+      scenarioStepId: freezed == scenarioStepId
+          ? _value.scenarioStepId
+          : scenarioStepId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -440,7 +451,8 @@ class __$$ExtraDtoImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ExtraDtoImpl extends _ExtraDto {
-  const _$ExtraDtoImpl({this.buttons, this.chainId}) : super._();
+  const _$ExtraDtoImpl({this.buttons, this.chainId, this.scenarioStepId})
+      : super._();
 
   factory _$ExtraDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$ExtraDtoImplFromJson(json);
@@ -449,10 +461,12 @@ class _$ExtraDtoImpl extends _ExtraDto {
   final String? buttons;
   @override
   final String? chainId;
+  @override
+  final String? scenarioStepId;
 
   @override
   String toString() {
-    return 'ExtraDto(buttons: $buttons, chainId: $chainId)';
+    return 'ExtraDto(buttons: $buttons, chainId: $chainId, scenarioStepId: $scenarioStepId)';
   }
 
   @override
@@ -461,12 +475,15 @@ class _$ExtraDtoImpl extends _ExtraDto {
         (other.runtimeType == runtimeType &&
             other is _$ExtraDtoImpl &&
             (identical(other.buttons, buttons) || other.buttons == buttons) &&
-            (identical(other.chainId, chainId) || other.chainId == chainId));
+            (identical(other.chainId, chainId) || other.chainId == chainId) &&
+            (identical(other.scenarioStepId, scenarioStepId) ||
+                other.scenarioStepId == scenarioStepId));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, buttons, chainId);
+  int get hashCode =>
+      Object.hash(runtimeType, buttons, chainId, scenarioStepId);
 
   /// Create a copy of ExtraDto
   /// with the given fields replaced by the non-null parameter values.
@@ -485,8 +502,10 @@ class _$ExtraDtoImpl extends _ExtraDto {
 }
 
 abstract class _ExtraDto extends ExtraDto {
-  const factory _ExtraDto({final String? buttons, final String? chainId}) =
-      _$ExtraDtoImpl;
+  const factory _ExtraDto(
+      {final String? buttons,
+      final String? chainId,
+      final String? scenarioStepId}) = _$ExtraDtoImpl;
   const _ExtraDto._() : super._();
 
   factory _ExtraDto.fromJson(Map<String, dynamic> json) =
@@ -496,6 +515,8 @@ abstract class _ExtraDto extends ExtraDto {
   String? get buttons;
   @override
   String? get chainId;
+  @override
+  String? get scenarioStepId;
 
   /// Create a copy of ExtraDto
   /// with the given fields replaced by the non-null parameter values.

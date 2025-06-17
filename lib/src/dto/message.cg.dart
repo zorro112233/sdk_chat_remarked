@@ -49,6 +49,7 @@ class ExtraDto with _$ExtraDto {
   const factory ExtraDto({
     String? buttons,
     String? chainId,
+    String? scenarioStepId,
   }) = _ExtraDto;
 
   /// конструктор
@@ -61,6 +62,7 @@ class ExtraDto with _$ExtraDto {
     return Extra(
       buttons: _decodeButtons(buttons ?? ''),
       chainId: chainId ?? '',
+      scenarioStepId: scenarioStepId ?? '',
     );
   }
 }

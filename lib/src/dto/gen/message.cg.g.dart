@@ -49,16 +49,22 @@ _$ExtraDtoImpl _$$ExtraDtoImplFromJson(Map<String, dynamic> json) =>
         final val = _$ExtraDtoImpl(
           buttons: $checkedConvert('buttons', (v) => v as String?),
           chainId: $checkedConvert('chain_id', (v) => v as String?),
+          scenarioStepId:
+              $checkedConvert('scenario_step_id', (v) => v as String?),
         );
         return val;
       },
-      fieldKeyMap: const {'chainId': 'chain_id'},
+      fieldKeyMap: const {
+        'chainId': 'chain_id',
+        'scenarioStepId': 'scenario_step_id'
+      },
     );
 
 Map<String, dynamic> _$$ExtraDtoImplToJson(_$ExtraDtoImpl instance) =>
     <String, dynamic>{
       'buttons': instance.buttons,
       'chain_id': instance.chainId,
+      'scenario_step_id': instance.scenarioStepId,
     };
 
 _$ButtonDtoImpl _$$ButtonDtoImplFromJson(Map<String, dynamic> json) =>

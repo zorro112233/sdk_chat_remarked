@@ -40,7 +40,8 @@ class Extra with _$Extra {
   const factory Extra({
     @JsonKey(fromJson: _decodeButtons, toJson: _encodeButtons)
     required List<Button> buttons,
-    required String chainId,
+    @Deprecated('Заменен на scenario_step_id') required String chainId,
+    required String scenarioStepId,
   }) = _Extra;
 }
 

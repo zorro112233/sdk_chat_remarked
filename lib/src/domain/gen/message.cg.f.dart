@@ -338,7 +338,9 @@ abstract class _Message implements Message {
 mixin _$Extra {
   @JsonKey(fromJson: _decodeButtons, toJson: _encodeButtons)
   List<Button> get buttons => throw _privateConstructorUsedError;
+  @Deprecated('Заменен на scenario_step_id')
   String get chainId => throw _privateConstructorUsedError;
+  String get scenarioStepId => throw _privateConstructorUsedError;
 
   /// Create a copy of Extra
   /// with the given fields replaced by the non-null parameter values.
@@ -354,7 +356,8 @@ abstract class $ExtraCopyWith<$Res> {
   $Res call(
       {@JsonKey(fromJson: _decodeButtons, toJson: _encodeButtons)
       List<Button> buttons,
-      String chainId});
+      @Deprecated('Заменен на scenario_step_id') String chainId,
+      String scenarioStepId});
 }
 
 /// @nodoc
@@ -374,6 +377,7 @@ class _$ExtraCopyWithImpl<$Res, $Val extends Extra>
   $Res call({
     Object? buttons = null,
     Object? chainId = null,
+    Object? scenarioStepId = null,
   }) {
     return _then(_value.copyWith(
       buttons: null == buttons
@@ -383,6 +387,10 @@ class _$ExtraCopyWithImpl<$Res, $Val extends Extra>
       chainId: null == chainId
           ? _value.chainId
           : chainId // ignore: cast_nullable_to_non_nullable
+              as String,
+      scenarioStepId: null == scenarioStepId
+          ? _value.scenarioStepId
+          : scenarioStepId // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -398,7 +406,8 @@ abstract class _$$ExtraImplCopyWith<$Res> implements $ExtraCopyWith<$Res> {
   $Res call(
       {@JsonKey(fromJson: _decodeButtons, toJson: _encodeButtons)
       List<Button> buttons,
-      String chainId});
+      @Deprecated('Заменен на scenario_step_id') String chainId,
+      String scenarioStepId});
 }
 
 /// @nodoc
@@ -416,6 +425,7 @@ class __$$ExtraImplCopyWithImpl<$Res>
   $Res call({
     Object? buttons = null,
     Object? chainId = null,
+    Object? scenarioStepId = null,
   }) {
     return _then(_$ExtraImpl(
       buttons: null == buttons
@@ -425,6 +435,10 @@ class __$$ExtraImplCopyWithImpl<$Res>
       chainId: null == chainId
           ? _value.chainId
           : chainId // ignore: cast_nullable_to_non_nullable
+              as String,
+      scenarioStepId: null == scenarioStepId
+          ? _value.scenarioStepId
+          : scenarioStepId // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -436,7 +450,8 @@ class _$ExtraImpl implements _Extra {
   const _$ExtraImpl(
       {@JsonKey(fromJson: _decodeButtons, toJson: _encodeButtons)
       required final List<Button> buttons,
-      required this.chainId})
+      @Deprecated('Заменен на scenario_step_id') required this.chainId,
+      required this.scenarioStepId})
       : _buttons = buttons;
 
   final List<Button> _buttons;
@@ -449,11 +464,14 @@ class _$ExtraImpl implements _Extra {
   }
 
   @override
+  @Deprecated('Заменен на scenario_step_id')
   final String chainId;
+  @override
+  final String scenarioStepId;
 
   @override
   String toString() {
-    return 'Extra(buttons: $buttons, chainId: $chainId)';
+    return 'Extra(buttons: $buttons, chainId: $chainId, scenarioStepId: $scenarioStepId)';
   }
 
   @override
@@ -462,12 +480,14 @@ class _$ExtraImpl implements _Extra {
         (other.runtimeType == runtimeType &&
             other is _$ExtraImpl &&
             const DeepCollectionEquality().equals(other._buttons, _buttons) &&
-            (identical(other.chainId, chainId) || other.chainId == chainId));
+            (identical(other.chainId, chainId) || other.chainId == chainId) &&
+            (identical(other.scenarioStepId, scenarioStepId) ||
+                other.scenarioStepId == scenarioStepId));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_buttons), chainId);
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_buttons), chainId, scenarioStepId);
 
   /// Create a copy of Extra
   /// with the given fields replaced by the non-null parameter values.
@@ -482,13 +502,17 @@ abstract class _Extra implements Extra {
   const factory _Extra(
       {@JsonKey(fromJson: _decodeButtons, toJson: _encodeButtons)
       required final List<Button> buttons,
-      required final String chainId}) = _$ExtraImpl;
+      @Deprecated('Заменен на scenario_step_id') required final String chainId,
+      required final String scenarioStepId}) = _$ExtraImpl;
 
   @override
   @JsonKey(fromJson: _decodeButtons, toJson: _encodeButtons)
   List<Button> get buttons;
   @override
+  @Deprecated('Заменен на scenario_step_id')
   String get chainId;
+  @override
+  String get scenarioStepId;
 
   /// Create a copy of Extra
   /// with the given fields replaced by the non-null parameter values.
