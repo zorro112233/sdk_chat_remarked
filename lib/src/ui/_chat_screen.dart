@@ -18,7 +18,7 @@ class _ChatScreen extends StatefulWidget {
 
   final String token;
   final String? point;
-  final int? idOrder;
+  final String? idOrder;
 
   final Color? colorIcon;
   final Color? colorBg;
@@ -29,7 +29,7 @@ class _ChatScreen extends StatefulWidget {
 class __ChatScreenState extends State<_ChatScreen> {
   String get token => widget.token;
   String? get point => widget.point;
-  int? get idOrder => widget.idOrder;
+  String? get idOrder => widget.idOrder;
 
   // String get token => 'c27f1301118c9b4c5612a5615bc2566f';
   // String? get point => '118100';
