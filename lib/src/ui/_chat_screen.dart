@@ -18,7 +18,7 @@ class _ChatScreen extends StatefulWidget {
 
   final String token;
   final String? point;
-  final int? idOrder;
+  final String? idOrder;
 
   final Color? colorIcon;
   final Color? colorBg;

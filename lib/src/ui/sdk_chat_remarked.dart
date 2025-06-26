@@ -24,7 +24,7 @@ class SdkChatRemarked extends StatelessWidget {
   final String? hint;
   final String? emptyListPlaceholder;
   final String token;
-  final int? idOrder;
+  final String? idOrder;
   final Widget child;
   final Color? colorIcon;
   final Color? colorBg;
