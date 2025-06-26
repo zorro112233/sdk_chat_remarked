@@ -9,7 +9,7 @@ class _ChatBubble extends StatelessWidget {
 
   final Message message;
   final Color? colorBg;
-  final void Function({required Button btn, required String scenarioStepId})?
+  final void Function({required Button btn, required String chainId})?
       callbackData;
 
   @override
@@ -62,7 +62,7 @@ class _ChatBubble extends StatelessWidget {
                         onTap: () {
                           callbackData?.call(
                             btn: btn,
-                            scenarioStepId: message.extra!.scenarioStepId,
+                            chainId: message.extra!.scenarioStepId,
                           );
                         },
                         colorText: AppColors.white,

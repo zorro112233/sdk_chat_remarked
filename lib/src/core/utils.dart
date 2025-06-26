@@ -144,9 +144,9 @@ Future<File> downloadAndCompressImage(String url) async {
   }
 }
 
-String generateLargeNumber() {
+int generateLargeNumber() {
   final random = Random();
-  final timestampPart = DateTime.now().millisecondsSinceEpoch.toString();
+  final timestampPart = DateTime.now().millisecondsSinceEpoch;
   final randomSuffix = random.nextInt(900) + 100; // 3-значный хвост
-  return '$timestampPart$randomSuffix';
+  return timestampPart + randomSuffix;
 }

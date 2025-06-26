@@ -31,8 +31,8 @@ class __ChatScreenState extends State<_ChatScreen> {
   String? get point => widget.point;
   String? get idOrder => widget.idOrder;
 
-  // String get token => 'c27f1301118c9b4c5612a5615bc2566f';
-  // String? get point => '118100';
+  // String get token => '37531255-58af-6af7-1029-2210fea3a570';
+  // String? get point => '118000';
   // String? get idOrder => '1';
 
   int _page = 0;
@@ -41,7 +41,7 @@ class __ChatScreenState extends State<_ChatScreen> {
 
   late ScrollController _scrollController;
 
-  static const url = 'wss://whatsapp1.clientomer.ru:3003/chat';
+  static const url = 'wss://whatsapp.clientomer.ru:3004/chat';
 
   bool isLoading = false;
 
@@ -70,14 +70,24 @@ class __ChatScreenState extends State<_ChatScreen> {
 
     channel.stream.listen(
       (message) {
-        // debugModePrint('message $message');
         final map = jsonDecode(message) as Map<String, dynamic>;
+        debugModePrint('map $map');
 
         /// Сообщение об ошибке
         if (map['status'] != null && !map['status']) {
-          changeLoading(false);
           setState(() {
             _unauthorized = map['message'];
+          });
+          return;
+        }
+
+        /// response
+        if (map.containsKey('response') &&
+            map['response'].containsKey('error')) {
+          setState(() {
+            isLoadingAfterOrderReview = false;
+            isLoading = false;
+            _unauthorized = map['response']['error']['message'];
           });
           return;
         }
@@ -108,7 +118,6 @@ class __ChatScreenState extends State<_ChatScreen> {
               _messages.insertAll(0, allMessages.unseen.messages);
             }
           });
-          changeLoading(false);
         }
 
         final mapMessageDto = MessageDto.fromJson(map);
@@ -118,6 +127,7 @@ class __ChatScreenState extends State<_ChatScreen> {
           _changeLoadingAfterOrderReview(false);
           addPostFrameCallback(() => _scrollToBottom());
         }
+        changeLoading(false);
       },
     );
 
@@ -146,6 +156,7 @@ class __ChatScreenState extends State<_ChatScreen> {
     };
 
     final jsonString = jsonEncode(idOrder != null ? startOrder : start);
+    debugModePrint('jsonString $jsonString');
     channel.sink.add(jsonString);
   }
 
@@ -153,7 +164,7 @@ class __ChatScreenState extends State<_ChatScreen> {
     final map = {
       "messages": [
         {
-          "order_id": idOrder,
+          "scenario_step_id": idOrder,
           "text": _controller.text,
           "attachment": {
             "name_orig": "file_name_${_messages.length + 1}.jpg",
@@ -248,7 +259,7 @@ class __ChatScreenState extends State<_ChatScreen> {
       "auth": {"token": token, "point": point},
       "messages": [
         {
-          "order_id": '1',
+          "scenario_step_id": '1',
           "collback": "start_orders",
           "text": "Заказ",
           "extra": {"message_type": "close_chain"},
@@ -280,13 +291,13 @@ class __ChatScreenState extends State<_ChatScreen> {
     _changePushedButtons(true);
   }
 
-  void _orderBtn({required Button btn, required String scenarioStepId}) {
+  void _orderBtn({required Button btn, required String chainId}) {
     _changeLoadingAfterOrderReview(true);
     final map = {
       "auth": {"token": token, "point": point},
       "messages": [
         {
-          "order_id": scenarioStepId,
+          "scenario_step_id": chainId,
           "collback": btn.callbackData,
           "text": btn.text,
           "extra": {"message_type": "close_chain"},
@@ -323,7 +334,7 @@ class __ChatScreenState extends State<_ChatScreen> {
       "auth": {"token": token, "point": point},
       "messages": [
         {
-          "order_id": '1',
+          "scenario_step_id": '1',
           "collback": "start_feedback",
           "text": "Оставить отзыв",
           "extra": {"message_type": "close_chain"},
@@ -398,7 +409,7 @@ class __ChatScreenState extends State<_ChatScreen> {
               : Column(
                   children: <Widget>[
                     12.sbHeight,
-                    if (isLoading && _messages.isEmpty)
+                    if (isLoading)
                       Expanded(
                         child: Center(
                           child: CircularProgressIndicator(

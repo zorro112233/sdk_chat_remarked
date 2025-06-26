@@ -1,4 +1,5 @@
 # Miscellaneous
+*.jks
 *.class
 *.log
 *.pyc
@@ -8,7 +9,33 @@
 .buildlog/
 .history
 .svn/
+*.lock
+*.g.dart
+.env
+.env.*
+*.apk
+*.ap_
+*.aab
+/*/out
+/*/*/build
+/*/*/production
+*~
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+/build
+/captures
+.externalNativeBuild
+*/build/*
 migrate_working_dir/
+
+# files for the dex VM
+*.dex
+
+# generated files
+bin/
+gen/
 
 # IntelliJ related
 *.iml
@@ -29,3 +56,6 @@ migrate_working_dir/
 build/
 /.flutter-plugins
 /.flutter-plugins-dependencies
+
+# packages file containing multi-root paths
+.packages.generated
