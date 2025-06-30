@@ -31,10 +31,6 @@ class __ChatScreenState extends State<_ChatScreen> {
   String? get point => widget.point;
   String? get idOrder => widget.idOrder;
 
-  // String get token => '37531255-58af-6af7-1029-2210fea3a570';
-  // String? get point => '118000';
-  // String? get idOrder => '1';
-
   int _page = 0;
   int totalMessages = 0;
   final _controller = TextEditingController();
@@ -71,7 +67,6 @@ class __ChatScreenState extends State<_ChatScreen> {
     channel.stream.listen(
       (message) {
         final map = jsonDecode(message) as Map<String, dynamic>;
-        debugModePrint('map $map');
 
         /// Сообщение об ошибке
         if (map['status'] != null && !map['status']) {
@@ -156,7 +151,6 @@ class __ChatScreenState extends State<_ChatScreen> {
     };
 
     final jsonString = jsonEncode(idOrder != null ? startOrder : start);
-    debugModePrint('jsonString $jsonString');
     channel.sink.add(jsonString);
   }
 
@@ -164,7 +158,7 @@ class __ChatScreenState extends State<_ChatScreen> {
     final map = {
       "messages": [
         {
-          "scenario_step_id": idOrder,
+          "order_id": idOrder,
           "text": _controller.text,
           "attachment": {
             "name_orig": "file_name_${_messages.length + 1}.jpg",
@@ -259,7 +253,7 @@ class __ChatScreenState extends State<_ChatScreen> {
       "auth": {"token": token, "point": point},
       "messages": [
         {
-          "scenario_step_id": '1',
+          "order_id": '1',
           "collback": "start_orders",
           "text": "Заказ",
           "extra": {"message_type": "close_chain"},
@@ -334,7 +328,7 @@ class __ChatScreenState extends State<_ChatScreen> {
       "auth": {"token": token, "point": point},
       "messages": [
         {
-          "scenario_step_id": '1',
+          "order_id": '1',
           "collback": "start_feedback",
           "text": "Оставить отзыв",
           "extra": {"message_type": "close_chain"},
