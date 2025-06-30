@@ -338,7 +338,6 @@ abstract class _Message implements Message {
 mixin _$Extra {
   @JsonKey(fromJson: _decodeButtons, toJson: _encodeButtons)
   List<Button> get buttons => throw _privateConstructorUsedError;
-  @Deprecated('Заменен на scenario_step_id')
   String get chainId => throw _privateConstructorUsedError;
   String get scenarioStepId => throw _privateConstructorUsedError;
 
@@ -356,7 +355,7 @@ abstract class $ExtraCopyWith<$Res> {
   $Res call(
       {@JsonKey(fromJson: _decodeButtons, toJson: _encodeButtons)
       List<Button> buttons,
-      @Deprecated('Заменен на scenario_step_id') String chainId,
+      String chainId,
       String scenarioStepId});
 }
 
@@ -406,7 +405,7 @@ abstract class _$$ExtraImplCopyWith<$Res> implements $ExtraCopyWith<$Res> {
   $Res call(
       {@JsonKey(fromJson: _decodeButtons, toJson: _encodeButtons)
       List<Button> buttons,
-      @Deprecated('Заменен на scenario_step_id') String chainId,
+      String chainId,
       String scenarioStepId});
 }
 
@@ -450,7 +449,7 @@ class _$ExtraImpl implements _Extra {
   const _$ExtraImpl(
       {@JsonKey(fromJson: _decodeButtons, toJson: _encodeButtons)
       required final List<Button> buttons,
-      @Deprecated('Заменен на scenario_step_id') required this.chainId,
+      required this.chainId,
       required this.scenarioStepId})
       : _buttons = buttons;
 
@@ -464,7 +463,6 @@ class _$ExtraImpl implements _Extra {
   }
 
   @override
-  @Deprecated('Заменен на scenario_step_id')
   final String chainId;
   @override
   final String scenarioStepId;
@@ -502,14 +500,13 @@ abstract class _Extra implements Extra {
   const factory _Extra(
       {@JsonKey(fromJson: _decodeButtons, toJson: _encodeButtons)
       required final List<Button> buttons,
-      @Deprecated('Заменен на scenario_step_id') required final String chainId,
+      required final String chainId,
       required final String scenarioStepId}) = _$ExtraImpl;
 
   @override
   @JsonKey(fromJson: _decodeButtons, toJson: _encodeButtons)
   List<Button> get buttons;
   @override
-  @Deprecated('Заменен на scenario_step_id')
   String get chainId;
   @override
   String get scenarioStepId;

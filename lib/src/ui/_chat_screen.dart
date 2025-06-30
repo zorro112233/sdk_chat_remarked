@@ -297,7 +297,7 @@ class __ChatScreenState extends State<_ChatScreen> {
       "auth": {"token": token, "point": point},
       "messages": [
         {
-          "scenario_step_id": chainId,
+          "order_id": chainId,
           "collback": btn.callbackData,
           "text": btn.text,
           "extra": {"message_type": "close_chain"},
@@ -389,6 +389,7 @@ class __ChatScreenState extends State<_ChatScreen> {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint('isLoading $isLoading');
     final messagesByDate = groupMenssagesByDate(_messages);
     return Material(
       color: Colors.white,
