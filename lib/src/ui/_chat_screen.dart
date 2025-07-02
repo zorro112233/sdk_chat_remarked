@@ -66,7 +66,9 @@ class __ChatScreenState extends State<_ChatScreen> {
 
     channel.stream.listen(
       (message) {
+        debugModePrint('message $message');
         final map = jsonDecode(message) as Map<String, dynamic>;
+        debugModePrint('map $map');
 
         /// Сообщение об ошибке
         if (map['status'] != null && !map['status']) {
@@ -147,7 +149,8 @@ class __ChatScreenState extends State<_ChatScreen> {
     final startOrder = {
       "auth": {"token": token, "point": point},
       "page": _page,
-      "id_order": widget.idOrder,
+      "order_id": idOrder,
+      "scenario_step_id": '1',
     };
 
     final jsonString = jsonEncode(idOrder != null ? startOrder : start);
@@ -253,7 +256,8 @@ class __ChatScreenState extends State<_ChatScreen> {
       "auth": {"token": token, "point": point},
       "messages": [
         {
-          "order_id": '1',
+          "order_id": idOrder,
+          "scenario_step_id": '1',
           "collback": "start_orders",
           "text": "Заказ",
           "extra": {"message_type": "close_chain"},
@@ -291,7 +295,8 @@ class __ChatScreenState extends State<_ChatScreen> {
       "auth": {"token": token, "point": point},
       "messages": [
         {
-          "order_id": chainId,
+          "order_id": idOrder,
+          "scenario_step_id": chainId,
           "collback": btn.callbackData,
           "text": btn.text,
           "extra": {"message_type": "close_chain"},
@@ -300,6 +305,7 @@ class __ChatScreenState extends State<_ChatScreen> {
       ]
     };
     final jsonString = jsonEncode(map);
+    debugModePrint('_orderBtn $map ');
     channel.sink.add(jsonString);
 
     setState(() {
@@ -328,7 +334,8 @@ class __ChatScreenState extends State<_ChatScreen> {
       "auth": {"token": token, "point": point},
       "messages": [
         {
-          "order_id": '1',
+          "order_id": idOrder,
+          "scenario_step_id": '1',
           "collback": "start_feedback",
           "text": "Оставить отзыв",
           "extra": {"message_type": "close_chain"},

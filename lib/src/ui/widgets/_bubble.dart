@@ -62,7 +62,7 @@ class _ChatBubble extends StatelessWidget {
                         onTap: () {
                           callbackData?.call(
                             btn: btn,
-                            chainId: message.extra!.chainId,
+                            chainId: message.extra!.scenarioStepId,
                           );
                         },
                         colorText: AppColors.white,
