@@ -1,5 +1,3 @@
-library sdk_chat_remarked;
-
 import 'dart:convert';
 import 'dart:io';
 
