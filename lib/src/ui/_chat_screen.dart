@@ -4,6 +4,7 @@ class _ChatScreen extends StatefulWidget {
   const _ChatScreen({
     required this.title,
     required this.token,
+    this.wssUrl,
     this.idOrder,
     this.colorIcon,
     this.colorBg,
@@ -14,6 +15,7 @@ class _ChatScreen extends StatefulWidget {
 
   final String title;
   final String? hint;
+  final String? wssUrl;
   final String? emptyListPlaceholder;
 
   final String token;
@@ -33,17 +35,13 @@ class __ChatScreenState extends State<_ChatScreen> {
 
   late ScrollController _scrollController;
 
-  static const url = 'wss://whatsapp.clientomer.ru:3004/chat';
-
   bool isLoading = false;
 
   String? imagePath;
   String? base64image;
 
   /// Замените на ваш WebSocket сервер
-  final channel = WebSocketChannel.connect(
-    Uri.parse(url),
-  );
+  late WebSocketChannel channel;
 
   final List<Message> _messages = [];
   var _unauthorized = '';
@@ -54,13 +52,16 @@ class __ChatScreenState extends State<_ChatScreen> {
   void initState() {
     super.initState();
     _scrollController = ScrollController();
-
+    channel = WebSocketChannel.connect(
+      Uri.parse(widget.wssUrl ?? 'wss://cabinet2.clientomer.ru:3004/chat'),
+    );
     start();
 
     channel.stream.listen(
       (message) {
         // debugModePrint('message $message');
         final map = jsonDecode(message) as Map<String, dynamic>;
+        debugModePrint('map $map');
 
         /// Сообщение об ошибке
         if (map['status'] != null && !map['status']) {
@@ -84,7 +85,7 @@ class __ChatScreenState extends State<_ChatScreen> {
 
         /// UNSEEN
         if (map.containsKey('unseen')) {
-          // debugModePrint('UNSEEN::: ${map['unseen']}');
+          debugModePrint('UNSEEN::: ${map['unseen']}');
           final allMessages = AllMessagesDto.fromJson(map).toDomain();
 
           setState(() {
@@ -128,6 +129,11 @@ class __ChatScreenState extends State<_ChatScreen> {
 
     final jsonString = jsonEncode(widget.idOrder != null ? startOrder : start);
     channel.sink.add(jsonString);
+    // Future.delayed(
+    //   Durations.extralong4,
+    // ).then((_) {
+    //   changeLoading(false);
+    // });
   }
 
   void _sendMessage() {

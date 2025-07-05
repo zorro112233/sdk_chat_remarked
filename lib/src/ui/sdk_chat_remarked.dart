@@ -6,6 +6,7 @@ class SdkChatRemarked extends StatelessWidget {
     required this.child,
     required this.title,
     required this.token,
+    this.wssUrl,
     this.idOrder,
     this.colorIcon,
     this.colorBg,
@@ -24,6 +25,7 @@ class SdkChatRemarked extends StatelessWidget {
   final String? hint;
   final String? emptyListPlaceholder;
   final String token;
+  final String? wssUrl;
   final String? idOrder;
   final Widget child;
   final Color? colorIcon;
@@ -57,6 +59,7 @@ class SdkChatRemarked extends StatelessWidget {
                     builder: (context) => _ChatScreen(
                       title: title,
                       hint: hint,
+                      wssUrl: wssUrl,
                       emptyListPlaceholder: emptyListPlaceholder,
                       token: token,
                       idOrder: idOrder,
