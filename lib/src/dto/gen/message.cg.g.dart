@@ -49,8 +49,7 @@ _$ExtraDtoImpl _$$ExtraDtoImplFromJson(Map<String, dynamic> json) =>
         final val = _$ExtraDtoImpl(
           buttons: $checkedConvert('buttons', (v) => v as String?),
           chainId: $checkedConvert('chain_id', (v) => v as String?),
-          scenarioStepId:
-              $checkedConvert('scenario_step_id', (v) => v as String?),
+          scenarioStepId: $checkedConvert('scenario_step_id', (v) => v),
         );
         return val;
       },

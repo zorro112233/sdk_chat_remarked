@@ -347,7 +347,7 @@ ExtraDto _$ExtraDtoFromJson(Map<String, dynamic> json) {
 mixin _$ExtraDto {
   String? get buttons => throw _privateConstructorUsedError;
   String? get chainId => throw _privateConstructorUsedError;
-  String? get scenarioStepId => throw _privateConstructorUsedError;
+  dynamic get scenarioStepId => throw _privateConstructorUsedError;
 
   /// Serializes this ExtraDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -364,7 +364,7 @@ abstract class $ExtraDtoCopyWith<$Res> {
   factory $ExtraDtoCopyWith(ExtraDto value, $Res Function(ExtraDto) then) =
       _$ExtraDtoCopyWithImpl<$Res, ExtraDto>;
   @useResult
-  $Res call({String? buttons, String? chainId, String? scenarioStepId});
+  $Res call({String? buttons, String? chainId, dynamic scenarioStepId});
 }
 
 /// @nodoc
@@ -398,7 +398,7 @@ class _$ExtraDtoCopyWithImpl<$Res, $Val extends ExtraDto>
       scenarioStepId: freezed == scenarioStepId
           ? _value.scenarioStepId
           : scenarioStepId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as dynamic,
     ) as $Val);
   }
 }
@@ -411,7 +411,7 @@ abstract class _$$ExtraDtoImplCopyWith<$Res>
       __$$ExtraDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? buttons, String? chainId, String? scenarioStepId});
+  $Res call({String? buttons, String? chainId, dynamic scenarioStepId});
 }
 
 /// @nodoc
@@ -443,7 +443,7 @@ class __$$ExtraDtoImplCopyWithImpl<$Res>
       scenarioStepId: freezed == scenarioStepId
           ? _value.scenarioStepId
           : scenarioStepId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as dynamic,
     ));
   }
 }
@@ -462,7 +462,7 @@ class _$ExtraDtoImpl extends _ExtraDto {
   @override
   final String? chainId;
   @override
-  final String? scenarioStepId;
+  final dynamic scenarioStepId;
 
   @override
   String toString() {
@@ -476,14 +476,14 @@ class _$ExtraDtoImpl extends _ExtraDto {
             other is _$ExtraDtoImpl &&
             (identical(other.buttons, buttons) || other.buttons == buttons) &&
             (identical(other.chainId, chainId) || other.chainId == chainId) &&
-            (identical(other.scenarioStepId, scenarioStepId) ||
-                other.scenarioStepId == scenarioStepId));
+            const DeepCollectionEquality()
+                .equals(other.scenarioStepId, scenarioStepId));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, buttons, chainId, scenarioStepId);
+  int get hashCode => Object.hash(runtimeType, buttons, chainId,
+      const DeepCollectionEquality().hash(scenarioStepId));
 
   /// Create a copy of ExtraDto
   /// with the given fields replaced by the non-null parameter values.
@@ -505,7 +505,7 @@ abstract class _ExtraDto extends ExtraDto {
   const factory _ExtraDto(
       {final String? buttons,
       final String? chainId,
-      final String? scenarioStepId}) = _$ExtraDtoImpl;
+      final dynamic scenarioStepId}) = _$ExtraDtoImpl;
   const _ExtraDto._() : super._();
 
   factory _ExtraDto.fromJson(Map<String, dynamic> json) =
@@ -516,7 +516,7 @@ abstract class _ExtraDto extends ExtraDto {
   @override
   String? get chainId;
   @override
-  String? get scenarioStepId;
+  dynamic get scenarioStepId;
 
   /// Create a copy of ExtraDto
   /// with the given fields replaced by the non-null parameter values.

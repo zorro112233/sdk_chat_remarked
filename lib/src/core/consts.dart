@@ -20,4 +20,10 @@ class Consts {
 
   /// default icon size
   static const iconSize = 24.0;
+
+  /// Ошибочное значение -1 int
+  static const invalidIntValue = -1;
+
+  /// Ошибочное значение -1 double
+  static const invalidDoubleValue = -1.0;
 }

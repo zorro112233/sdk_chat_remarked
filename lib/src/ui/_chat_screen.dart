@@ -38,10 +38,9 @@ class __ChatScreenState extends State<_ChatScreen> {
   late ScrollController _scrollController;
 
   static const url = 'wss://cabinet2.clientomer.ru:3004/chat';
-  // static const url = 'wss://whatsapp.clientomer.ru:3004/chat';
 
   bool isLoading = false;
-
+  bool showKeyboard = false;
   String? imagePath;
   String? base64image;
 
@@ -67,9 +66,8 @@ class __ChatScreenState extends State<_ChatScreen> {
 
     channel.stream.listen(
       (message) {
-        debugModePrint('message $message');
         final map = jsonDecode(message) as Map<String, dynamic>;
-        debugModePrint('map $map');
+        // debugModePrint('map $map');
 
         /// Сообщение об ошибке
         if (map['status'] != null && !map['status']) {
@@ -104,7 +102,6 @@ class __ChatScreenState extends State<_ChatScreen> {
 
         /// UNSEEN
         if (map.containsKey('unseen')) {
-          // debugModePrint('UNSEEN::: ${map['unseen']}');
           final allMessages = AllMessagesDto.fromJson(map).toDomain();
 
           setState(() {
@@ -123,9 +120,10 @@ class __ChatScreenState extends State<_ChatScreen> {
         if (mapMessage != Message.empty && mapMessage.text.isNotEmpty) {
           _messages.add(mapMessage);
           _changeLoadingAfterOrderReview(false);
+          _changeShowKeyboard(mapMessage.extra!.buttons.isEmpty);
           addPostFrameCallback(() => _scrollToBottom());
         }
-        changeLoading(false);
+        _changeLoading(false);
       },
     );
 
@@ -140,7 +138,7 @@ class __ChatScreenState extends State<_ChatScreen> {
   }
 
   Future<void> start() async {
-    changeLoading(true);
+    _changeLoading(true);
 
     final start = {
       "auth": {"token": token, "point": point},
@@ -221,19 +219,6 @@ class __ChatScreenState extends State<_ChatScreen> {
     }
   }
 
-  void changeLoading(bool b) {
-    setState(() {
-      isLoading = b;
-    });
-  }
-
-  void _clear() {
-    setState(() {
-      base64image = null;
-      imagePath = null;
-    });
-  }
-
   Map<DateTime, List<Message>> groupMenssagesByDate(
     List<Message> messages,
   ) {
@@ -267,7 +252,6 @@ class __ChatScreenState extends State<_ChatScreen> {
       ]
     };
     final jsonString = jsonEncode(map);
-    debugModePrint('_order jsonString $jsonString');
     channel.sink.add(jsonString);
 
     setState(() {
@@ -389,10 +373,33 @@ class __ChatScreenState extends State<_ChatScreen> {
     });
   }
 
+  void _changeLoading(bool b) {
+    setState(() {
+      isLoading = b;
+    });
+  }
+
+  void _changeShowKeyboard(bool b) {
+    setState(() {
+      showKeyboard = b;
+    });
+  }
+
+  void _clear() {
+    setState(() {
+      base64image = null;
+      imagePath = null;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    debugPrint('isLoading $isLoading');
     final messagesByDate = groupMenssagesByDate(_messages);
+
+    final hKeyboard = MediaQuery.of(context).viewInsets.bottom;
+    if (hKeyboard > 100) {
+      addPostFrameCallback(() => _scrollToBottom());
+    }
     return Material(
       color: Colors.white,
       child: SafeArea(
@@ -533,7 +540,9 @@ class __ChatScreenState extends State<_ChatScreen> {
                         ),
                       ),
                     12.sbHeight,
-                    Container(
+                    AnimatedContainer(
+                      duration: Durations.extralong1,
+                      height: showKeyboard ? 80 : 0,
                       padding: const EdgeInsets.symmetric(
                         horizontal: 12,
                         vertical: 16,
@@ -541,82 +550,84 @@ class __ChatScreenState extends State<_ChatScreen> {
                       decoration: const BoxDecoration(
                         color: Color(0xFFF8F9FC),
                       ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          if (imagePath != null)
-                            Stack(
-                              children: [
-                                ClipRRect(
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(12)),
-                                  child: Image.file(
-                                    File(imagePath!),
-                                    width: 100,
-                                    height: 100,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                                Positioned(
-                                  top: 4,
-                                  right: 4,
-                                  width: 20,
-                                  height: 20,
-                                  child: IconButton(
-                                    icon: Icon(
-                                      Icons.close,
-                                      size: 12,
-                                      color: AppColors.paleVioletTxt,
+                      child: SingleChildScrollView(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            if (imagePath != null)
+                              Stack(
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(12)),
+                                    child: Image.file(
+                                      File(imagePath!),
+                                      width: 100,
+                                      height: 100,
+                                      fit: BoxFit.cover,
                                     ),
-                                    onPressed: _clear,
-                                    padding: EdgeInsets.zero,
                                   ),
-                                )
-                              ],
-                            ),
-                          Row(
-                            children: <Widget>[
-                              IconButton(
-                                icon: const Icon(Icons.add),
-                                onPressed: _handleImageSelection,
-                                color: AppColors.paleVioletTxt,
+                                  Positioned(
+                                    top: 4,
+                                    right: 4,
+                                    width: 20,
+                                    height: 20,
+                                    child: IconButton(
+                                      icon: Icon(
+                                        Icons.close,
+                                        size: 12,
+                                        color: AppColors.paleVioletTxt,
+                                      ),
+                                      onPressed: _clear,
+                                      padding: EdgeInsets.zero,
+                                    ),
+                                  )
+                                ],
                               ),
-                              Expanded(
-                                child: AppInput(
-                                  controller: _controller,
-                                  hintText: widget.hint,
-                                  height: 40,
+                            Row(
+                              children: <Widget>[
+                                IconButton(
+                                  icon: const Icon(Icons.add),
+                                  onPressed: _handleImageSelection,
+                                  color: AppColors.paleVioletTxt,
                                 ),
-                              ),
-                              12.sbWidth,
-                              Material(
-                                borderRadius:
-                                    const BorderRadius.all(Radius.circular(40)),
-                                child: InkWell(
-                                  onTap: _sendMessage,
+                                Expanded(
+                                  child: AppInput(
+                                    controller: _controller,
+                                    hintText: widget.hint,
+                                    height: 40,
+                                  ),
+                                ),
+                                12.sbWidth,
+                                Material(
                                   borderRadius: const BorderRadius.all(
                                       Radius.circular(40)),
-                                  child: Ink(
-                                    height: 40,
-                                    width: 40,
-                                    decoration: BoxDecoration(
-                                      color: widget.colorBg ?? Colors.red,
-                                      borderRadius: const BorderRadius.all(
-                                        Radius.circular(40),
+                                  child: InkWell(
+                                    onTap: _sendMessage,
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(40)),
+                                    child: Ink(
+                                      height: 40,
+                                      width: 40,
+                                      decoration: BoxDecoration(
+                                        color: widget.colorBg ?? Colors.red,
+                                        borderRadius: const BorderRadius.all(
+                                          Radius.circular(40),
+                                        ),
                                       ),
-                                    ),
-                                    child: Icon(
-                                      Icons.north,
-                                      size: 20,
-                                      color:
-                                          widget.colorIcon ?? AppColors.white,
+                                      child: Icon(
+                                        Icons.north,
+                                        size: 20,
+                                        color:
+                                            widget.colorIcon ?? AppColors.white,
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],
