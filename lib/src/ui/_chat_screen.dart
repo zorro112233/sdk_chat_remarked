@@ -37,7 +37,7 @@ class __ChatScreenState extends State<_ChatScreen> {
 
   late ScrollController _scrollController;
 
-  static const url = 'wss://cabinet2.clientomer.ru:3004/chat';
+  static const url = 'wss://chat.remarked.ru:3004/chat';
 
   bool isLoading = false;
   bool showKeyboard = false;
