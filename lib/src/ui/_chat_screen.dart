@@ -53,7 +53,7 @@ class __ChatScreenState extends State<_ChatScreen> {
     super.initState();
     _scrollController = ScrollController();
     channel = WebSocketChannel.connect(
-      Uri.parse(widget.wssUrl ?? 'wss://cabinet2.clientomer.ru:3004/chat'),
+      Uri.parse(widget.wssUrl ?? 'wss://chat.remarked.ru:3004/chat'),
     );
     start();
 
